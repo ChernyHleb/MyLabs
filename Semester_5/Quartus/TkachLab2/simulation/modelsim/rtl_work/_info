@@ -1,0 +1,45 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\popov\MyLabs\Semester_5\Quartus\TkachLab2\simulation\modelsim
+valu
+IFV<4E[ImDTe@8h2:<m2M;0
+VD`;eEgc[6zfD^d:m[cDd<3
+Z1 dC:\Users\popov\MyLabs\Semester_5\Quartus\TkachLab2\simulation\modelsim
+w1604531759
+8C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/alu.v
+FC:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/alu.v
+L0 16
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+!i10b 1
+!s100 j4T^@jBkabEz3gb_;FGST3
+!s85 0
+!s108 1604531901.916000
+!s107 C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2|C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/alu.v|
+!s101 -O0
+Z4 !s92 -vlog01compat -work work +incdir+C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2 -O0
+vtestbench
+!i10b 1
+!s100 Mcd:FMP:aY;Ah[gWWX7O_0
+I::3NRN[lG[2fK?_@i52Vd3
+VhGfW:390DM[oDMzegDH9`2
+R1
+w1604531098
+8C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/testbench.v
+FC:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/testbench.v
+L0 2
+R2
+r1
+!s85 0
+31
+!s108 1604531901.993000
+!s107 C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/testbench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2|C:/Users/popov/MyLabs/Semester_5/Quartus/TkachLab2/testbench.v|
+!s101 -O0
+R3
+R4
