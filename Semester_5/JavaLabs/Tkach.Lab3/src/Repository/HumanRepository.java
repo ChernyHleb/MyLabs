@@ -13,7 +13,7 @@ import java.util.UUID;
 
 import Model.Human;
 
-public class HumanRepository implements IRepository<Human> {
+public abstract class HumanRepository implements IRepository<Human> {
 	private String _defaultHumanDBFile;
 
 	@Override

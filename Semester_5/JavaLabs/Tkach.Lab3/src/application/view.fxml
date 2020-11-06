@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<GridPane alignment="center" xmlns="http://javafx.com/javafx/@"
+		  xmlns:fx="http://javafx.com/fxml"
+		  fx:controller="application.Controller">
+		  
+	<fx:define>
+        <ToggleGroup fx:id="LoggingMode" />
+    </fx:define>
+		  
+	<VBox prefHeight="300" prefWidth="100" GridPane.columnIndex="0">
+		<ComboBox value="Student" fx:id="humanTypeComboBox"
+				  onAction="#handleHumanTypeComboBoxChoose">
+			<items>
+				<FXCollections fx:factory="observableArrayList">
+					<String fx:value="Student"/>
+					<String fx:value="Parent"/>
+					<String fx:value="Nerd"/>
+					<String fx:value="CoolParent"/>
+				</FXCollections>
+			</items>
+		</ComboBox>
+	
+		<Button text="Insert" fx:id="insertButton" prefWidth="100"
+			    onAction="#handleInsertButtonClick"/>
+		<Label><text>Logging mode:</text></Label>
+		
+		<HBox>
+		    <RadioButton fx:id="LoggingOn" text="On" toggleGroup="$LoggingMode"/>
+		    <RadioButton fx:id="LoggingOff" text="Off" toggleGroup="$LoggingMode"/>
+		</HBox>
+		<VBox fx:id="insertHumanViewVBox"/>
+	</VBox>
+	
+	<TextArea fx:id="mainTextArea" prefHeight="300" prefWidth="400"  
+			  GridPane.columnIndex="1">
+	
+	</TextArea>
+</GridPane>
+
