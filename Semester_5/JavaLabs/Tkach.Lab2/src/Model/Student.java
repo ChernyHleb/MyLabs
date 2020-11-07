@@ -12,9 +12,10 @@ interface IStudent {
 public class Student extends Human implements IStudent {
 	protected ArrayList<Semester> _semesters;
 
-	public Student(String firstName, String lastName, String patronymic, Date birthday,
-			Gender gender, Double moneyAmount, ArrayList<Semester> semesters) {
-		super(firstName, lastName, patronymic, birthday, gender, moneyAmount);
+	public Student(String firstName, String lastName, Date birthday, String patronymic, Gender gender,
+			Double moneyAmount, ArrayList<Semester> semesters, 
+			ArrayList<Human> parents, ArrayList<Human> children) {
+		super(firstName, lastName, birthday, patronymic, gender, moneyAmount, parents, children);
 		this._semesters = semesters;
 	}
 	
@@ -41,8 +42,8 @@ public class Student extends Human implements IStudent {
 	
 	public Parent GetPair(String lastName, Date birthday,
 			String patronymic, Gender gender, Double moneyAmount) {
-		Parent parent = new Parent(this._patronymic ,lastName, patronymic, 
-				birthday, gender, moneyAmount);
+		Parent parent = new Parent(this._patronymic ,lastName, birthday, patronymic, gender, moneyAmount, new ArrayList<Human>(), new ArrayList<Human>());
+		this._parents.add(parent);
 		return parent;
 	}
 	
@@ -50,6 +51,7 @@ public class Student extends Human implements IStudent {
 	{
 		Parent parent = new Parent();
 		parent.SetFirstName(this._patronymic);
+		this._parents.add(parent);
 		return parent;
 	}
 	
