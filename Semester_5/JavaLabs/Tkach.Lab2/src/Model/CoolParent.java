@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 interface ICoolParent{
@@ -9,10 +8,9 @@ interface ICoolParent{
 
 public class CoolParent extends Parent implements ICoolParent{
 
-	public CoolParent(String firstName, String lastName, Date birthday, 
-			String patronymic, Gender gender,Double moneyAmount,
-			ArrayList<Human> parents, ArrayList<Human> children) {
-		super(firstName, lastName, birthday, patronymic, gender, moneyAmount, parents, children);
+	public CoolParent(String firstName, String lastName,String patronymic,
+			Date birthday, Gender gender,Double moneyAmount) {
+		super(firstName, lastName, patronymic, birthday, gender, moneyAmount);
 	}
 
 	public CoolParent()
@@ -41,10 +39,9 @@ public class CoolParent extends Parent implements ICoolParent{
 	
 	public Nerd GetPair(String firstName, String lastName, Date birthday, 
 			Gender gender, Double moneyAmount) {
-		Nerd nerd = new Nerd(firstName, lastName, birthday, 
-				this._firstName, gender, moneyAmount, Randomiser.rndSemestersForNerd(this._moneyAmount),
-				new ArrayList<Human>(), new ArrayList<Human>());
-		this._children.add(nerd);
+		Nerd nerd = new Nerd(firstName, lastName,this._firstName,
+				birthday, gender, moneyAmount, 
+				Randomiser.rndSemestersForNerd(this._moneyAmount));
 		return nerd;
 	}
 	
@@ -53,7 +50,6 @@ public class CoolParent extends Parent implements ICoolParent{
 		Nerd nerd = new Nerd();
 		nerd.SetFirstName(this._firstName);
 		nerd.set_semesters(Randomiser.rndSemestersForNerd(this._moneyAmount));
-		this._children.add(nerd);
 		return nerd;
 	}
 	
