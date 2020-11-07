@@ -1,5 +1,8 @@
 package Model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -36,8 +39,20 @@ public abstract class Human {
 		this._moneyAmount = moneyAmount;
 	}
 	
-	public String toString()
+	public Human(String str) throws ParseException
 	{
+		String[] data = str.split(" ");
+		this._id = UUID.fromString(data[1]);
+		this._firstName = data[2];
+		this._lastName = data[3];
+		this._patronymic = data[4];
+		this._birthDate = (new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")).parse(data[5].replaceAll("%", " "));
+		this._gender = Gender.valueOf(data[6]);
+		this._moneyAmount = Double.parseDouble(data[7].replaceAll(",", "."));
+	}
+	
+	public String toString()
+	{			
 		String output = String.format("Name: '%s' LastName: '%s' Patronymic: '%s'"
 				+ " Age: '%d' Gender: '%s' Money: '%f'", 
 				this._firstName,
@@ -52,12 +67,13 @@ public abstract class Human {
 	
 	public String SerializeToString()
 	{
+		String birthdayAsString = (new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")).format(_birthDate);
 		String result = String.format("%s %s %s %s %s %s %f",
 				_id.toString(),
 				_firstName,
 				_lastName,
 				_patronymic,
-				_birthDate.toString().replaceAll(" ", "|"),
+				birthdayAsString.replaceAll(" ", "%"),
 				_gender.toString(),
 				_moneyAmount
 				);

@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -15,6 +16,11 @@ public class Parent extends Human {
 	public Parent()
 	{
 		super();
+	}
+	
+	public Parent(String str) throws ParseException
+	{
+		super(str);
 	}
 	
 	public String toString()

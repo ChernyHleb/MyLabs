@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -23,6 +24,11 @@ public class Student extends Human implements IStudent {
 	{
 		super();
 		this._semesters = Randomiser.rndSemesters();
+	}
+	
+	public Student(String str) throws ParseException
+	{
+		super(str);
 	}
 	
 	public Double get_lastSessionAverageMark()

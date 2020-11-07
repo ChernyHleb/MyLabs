@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -16,6 +17,11 @@ public class Nerd extends Student {
 	public Nerd()
 	{
 		super();
+	}
+	
+	public Nerd(String str) throws ParseException
+	{
+		super(str);
 	}
 	
 	public String toString()

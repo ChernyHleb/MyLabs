@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,6 +18,11 @@ public class CoolParent extends Parent implements ICoolParent{
 	public CoolParent()
 	{
 		super();
+	}
+	
+	public CoolParent(String str) throws ParseException
+	{
+		super(str);
 	}
 	
 	public String toString()
