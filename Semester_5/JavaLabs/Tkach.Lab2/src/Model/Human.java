@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,8 +12,6 @@ public abstract class Human {
 	protected Date _birthDate;
 	protected Gender _gender;
 	protected Double _moneyAmount;
-	protected ArrayList<Human> _parents;
-	protected ArrayList<Human> _children;
 	
 	public Human()
 	{
@@ -25,13 +21,10 @@ public abstract class Human {
 		this._lastName = Randomiser.rndLastName();
 		this._patronymic = Randomiser.rndPatronymic();
 		this._moneyAmount = Randomiser.rndDouble(1000000);
-		//this.set_parents(randomHuman._parents);
-		//this.set_children(randomHuman._children);
 	}
 	
-	public Human(String firstName, String lastName, Date birthday,
-			String patronymic, Gender gender, Double moneyAmount,
-			ArrayList<Human> parents, ArrayList<Human> children)
+	public Human(String firstName, String lastName, String patronymic, 
+			Date birthday, Gender gender, Double moneyAmount)
 	{
 		this._birthDate = birthday;
 		this._firstName = firstName;
@@ -39,8 +32,6 @@ public abstract class Human {
 		this._patronymic = patronymic;
 		this._gender = gender;
 		this._moneyAmount = moneyAmount;
-		this.set_parents(parents);
-		this.set_children(children);
 	}
 	
 	public String toString()
@@ -110,26 +101,5 @@ public abstract class Human {
 
 	public void SetMoneyAmount(Double _moneyAmount) {
 		this._moneyAmount = _moneyAmount;
-	}
-
-	public ArrayList<Human> get_parents() {
-		return _parents;
-	}
-
-	public void set_parents(ArrayList<Human> _parents) {
-		this._parents = _parents;
-	}
-
-	public ArrayList<Human> get_children() {
-		return _children;
-	}
-
-	public void set_children(ArrayList<Human> _children) {
-		this._children = _children;
-	}
-	
-	public void add_child(Human child)
-	{
-		this._children.add(child);
 	}
 }
