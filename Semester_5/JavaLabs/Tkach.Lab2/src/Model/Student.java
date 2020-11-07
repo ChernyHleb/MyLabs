@@ -2,9 +2,10 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 interface IStudent {
-	Parent GetPair(String lastName, Date birthday, 
+	Parent GetPair(UUID id, String lastName, Date birthday, 
 			String patronymic, Gender gender, Double moneyAmount);
 	Double get_lastSessionAverageMark();
 }
@@ -12,9 +13,9 @@ interface IStudent {
 public class Student extends Human implements IStudent {
 	protected ArrayList<Semester> _semesters;
 
-	public Student(String firstName, String lastName, String patronymic, Date birthday,
+	public Student(UUID id, String firstName, String lastName, String patronymic, Date birthday,
 			Gender gender, Double moneyAmount, ArrayList<Semester> semesters) {
-		super(firstName, lastName, patronymic, birthday, gender, moneyAmount);
+		super(id, firstName, lastName, patronymic, birthday, gender, moneyAmount);
 		this._semesters = semesters;
 	}
 	
@@ -39,9 +40,17 @@ public class Student extends Human implements IStudent {
 		return output;
 	}
 	
-	public Parent GetPair(String lastName, Date birthday,
+	public String SerializeToString()
+	{
+		String result = String.format("STUDENT %s",
+				super.SerializeToString());
+		/// add subjects
+		return result;
+	}
+	
+	public Parent GetPair(UUID id, String lastName, Date birthday,
 			String patronymic, Gender gender, Double moneyAmount) {
-		Parent parent = new Parent(this._patronymic ,lastName, patronymic, 
+		Parent parent = new Parent(id, this._patronymic ,lastName, patronymic, 
 				birthday, gender, moneyAmount);
 		return parent;
 	}

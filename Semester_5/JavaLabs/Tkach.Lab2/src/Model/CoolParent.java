@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Date;
+import java.util.UUID;
 
 interface ICoolParent{
 	void giveMoney(Student student, Double money);
@@ -8,9 +9,9 @@ interface ICoolParent{
 
 public class CoolParent extends Parent implements ICoolParent{
 
-	public CoolParent(String firstName, String lastName,String patronymic,
+	public CoolParent(UUID id, String firstName, String lastName,String patronymic,
 			Date birthday, Gender gender,Double moneyAmount) {
-		super(firstName, lastName, patronymic, birthday, gender, moneyAmount);
+		super(id, firstName, lastName, patronymic, birthday, gender, moneyAmount);
 	}
 
 	public CoolParent()
@@ -21,6 +22,12 @@ public class CoolParent extends Parent implements ICoolParent{
 	public String toString()
 	{
 		return String.format("~COOLPARENT %s", super.toString());
+	}
+	
+	public String SerializeToString()
+	{
+		String result = super.SerializeToString().replaceFirst("^PARENT", "COOLPARENT");
+		return result;
 	}
 	
 	public void giveMoney(Student student, Double money) {
@@ -37,9 +44,9 @@ public class CoolParent extends Parent implements ICoolParent{
 		}
 	}
 	
-	public Nerd GetPair(String firstName, String lastName, Date birthday, 
+	public Nerd GetPair(UUID id, String firstName, String lastName, Date birthday, 
 			Gender gender, Double moneyAmount) {
-		Nerd nerd = new Nerd(firstName, lastName,this._firstName,
+		Nerd nerd = new Nerd(id, firstName, lastName,this._firstName,
 				birthday, gender, moneyAmount, 
 				Randomiser.rndSemestersForNerd(this._moneyAmount));
 		return nerd;

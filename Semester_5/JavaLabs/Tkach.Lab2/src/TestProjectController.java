@@ -17,6 +17,7 @@ public class TestProjectController {
 		this._view.WriteText(String.format("NERD TEST:\n%s\n", this.test_nerd()));
 		this._view.WriteText(String.format("PARENT TEST:\n%s\n", this.test_parent()));
 		this._view.WriteText(String.format("COOLPARENT TEST:\n%s\n", this.test_coolParent()));
+		this._view.WriteText(this.test_SerializeToStringMethod());
 	}
 	
 	private String test_student()
@@ -49,6 +50,22 @@ public class TestProjectController {
 		CoolParent testCoolParent = new CoolParent();
 		String output = String.format("%s\n~GETPAIR %s", 
 				testCoolParent.toString(), testCoolParent.GetPair().toString());
+		return output;
+	}
+	
+	private String test_SerializeToStringMethod()
+	{
+		Student testStudent = new Student();
+		Nerd testNerd = new Nerd();
+		Parent testParent = new Parent();
+		CoolParent testCoolParent = new CoolParent();
+		
+		String output = String.format("\n~SERIALIZE_TO_STRING:\n%s\n%s\n%s\n%s\n", 
+				testStudent.SerializeToString(),
+				testNerd.SerializeToString(),
+				testParent.SerializeToString(),
+				testCoolParent.SerializeToString()
+				);
 		return output;
 	}
 }

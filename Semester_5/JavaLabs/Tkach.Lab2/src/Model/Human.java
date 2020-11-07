@@ -15,6 +15,7 @@ public abstract class Human {
 	
 	public Human()
 	{
+		this._id = UUID.randomUUID();
 		this._birthDate = Randomiser.rndDate();
 		this._gender = Randomiser.rndGender();
 		this._firstName = Randomiser.rndName(this._gender);
@@ -23,9 +24,10 @@ public abstract class Human {
 		this._moneyAmount = Randomiser.rndDouble(1000000);
 	}
 	
-	public Human(String firstName, String lastName, String patronymic, 
+	public Human(UUID id ,String firstName, String lastName, String patronymic, 
 			Date birthday, Gender gender, Double moneyAmount)
 	{
+		this._id = id;
 		this._birthDate = birthday;
 		this._firstName = firstName;
 		this._lastName = lastName;
@@ -46,6 +48,20 @@ public abstract class Human {
 				this._moneyAmount
 			);
 		return output;
+	}
+	
+	public String SerializeToString()
+	{
+		String result = String.format("%s %s %s %s %s %s %f",
+				_id.toString(),
+				_firstName,
+				_lastName,
+				_patronymic,
+				_birthDate.toString().replaceAll(" ", "|"),
+				_gender.toString(),
+				_moneyAmount
+				);
+		return result;
 	}
 
 	public String GetFirstName() {
