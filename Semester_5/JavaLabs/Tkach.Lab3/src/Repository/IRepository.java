@@ -10,5 +10,4 @@ public interface IRepository<T> {
 	public void SaveToTextFile(T entity, String FileName);
 	public void SaveToTextFile(ArrayList<T> entities, String FileName);
 	public ArrayList<T> LoadAllFromTextFile(String FileName);
-	public T StringToEntity(String str);
 }

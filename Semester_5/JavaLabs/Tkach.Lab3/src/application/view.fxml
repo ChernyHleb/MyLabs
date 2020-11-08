@@ -12,8 +12,8 @@
         <ToggleGroup fx:id="LoggingMode" />
     </fx:define>
 		  
-	<VBox prefHeight="300" prefWidth="100" GridPane.columnIndex="0">
-		<ComboBox value="Student" fx:id="humanTypeComboBox"
+	<VBox prefHeight="400" prefWidth="100" GridPane.columnIndex="0">
+		<ComboBox value="none" fx:id="humanTypeComboBox"
 				  onAction="#handleHumanTypeComboBoxChoose">
 			<items>
 				<FXCollections fx:factory="observableArrayList">
@@ -21,24 +21,26 @@
 					<String fx:value="Parent"/>
 					<String fx:value="Nerd"/>
 					<String fx:value="CoolParent"/>
+					<String fx:value="none"/>
 				</FXCollections>
 			</items>
 		</ComboBox>
 	
-		<Button text="Insert" fx:id="insertButton" prefWidth="100"
-			    onAction="#handleInsertButtonClick"/>
+		<Button text="REFRESH" fx:id="refreshButton" prefWidth="100"
+			    onAction="#handleRefreshButtonClick"/>
 		<Label><text>Logging mode:</text></Label>
 		
 		<HBox>
 		    <RadioButton fx:id="LoggingOn" text="On" toggleGroup="$LoggingMode"/>
 		    <RadioButton fx:id="LoggingOff" text="Off" toggleGroup="$LoggingMode"/>
 		</HBox>
-		<VBox fx:id="insertHumanViewVBox"/>
 	</VBox>
 	
-	<TextArea fx:id="mainTextArea" prefHeight="300" prefWidth="400"  
-			  GridPane.columnIndex="1">
-	
-	</TextArea>
+	<GridPane GridPane.columnIndex="1">
+		<GridPane fx:id="insertHumanGridPane" GridPane.rowIndex="0"/>
+		<Label text="DATABASE:" GridPane.rowIndex="1"/>
+		<TextArea fx:id="mainTextArea" prefHeight="400" prefWidth="650"  
+				  GridPane.rowIndex="2"/>
+	</GridPane>
 </GridPane>
 

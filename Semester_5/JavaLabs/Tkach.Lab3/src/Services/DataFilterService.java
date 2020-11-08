@@ -8,7 +8,7 @@ public class DataFilterService {
 		ArrayList<String> filteredData = new ArrayList<String>();
 		for(String entity : data)
 		{
-			if (entity.split(" ")[0] == pattern)
+			if (entity.split(" ")[0].equals(pattern))
 				filteredData.add(entity);
 		}
 		return filteredData;
