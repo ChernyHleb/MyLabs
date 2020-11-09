@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.DatePicker?>
 
-<VBox prefHeight="400.0" prefWidth="600" xmlns="http://javafx.com/javafx/@"
-	  xmlns:fx="http://javafx.com/fxml" fx:controller="application.Controller">
-
-	<Button text="IM STUDENT"/>
-
-</VBox>
+<GridPane xmlns="http://javafx.com/javafx/@" xmlns:fx="http://javafx.com/fxml" 
+		  fx:controller="application.insertStudentController">
+	<VBox>
+		<HBox>
+			<Label text="First Name:"/>
+			<TextField prefWidth="100" 
+					   fx:id="firstNameTextField"/>
+			
+			<Label text="Last Name:"/>
+			<TextField prefWidth="100"
+				       fx:id="lastNameTextField"/>
+		</HBox>
+		
+		<HBox>
+			<Label text="Patronymic:"/>
+			<TextField prefWidth="100"
+					   fx:id="patrobymicTextField"/>
+			
+			<Label text="Gender:"/>
+			<ComboBox value="Male"
+					  fx:id="genderComboBox">
+				<items>
+					<FXCollections fx:factory="observableArrayList">
+						<String fx:value="Male"/>
+						<String fx:value="Female"/>
+					</FXCollections>
+				</items>
+			</ComboBox>
+		</HBox>
+		
+		<HBox>
+			<Label text="Money:"/>
+			<TextField prefWidth="100" fx:id="moneyTextField"/>
+			
+			<Label text="Birthday:"/>
+			<DatePicker fx:id="birthdayDatePicker"/>
+		</HBox>
+		
+		<HBox>
+			<Button text="Randomise" fx:id="randomiseButton"/>
+			<Button text="Clean" fx:id="cleanButton"/>
+			<Button text="Add new Student" fx:id="addStudentButton"/>
+		</HBox>
+	</VBox>
+	
+</GridPane>

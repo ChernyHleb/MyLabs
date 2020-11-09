@@ -21,7 +21,7 @@ public class Main extends Application {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
 			mainWindow.setTitle("Hello world!");
-			Scene scene = new Scene(root, 500, 300);
+			Scene scene = new Scene(root, 750, 400);
 			mainWindow.setScene(scene);
 			mainWindow.show();
 		} catch(Exception e) {

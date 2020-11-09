@@ -1,5 +1,8 @@
 package Model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,6 +18,7 @@ public abstract class Human {
 	
 	public Human()
 	{
+		this._id = UUID.randomUUID();
 		this._birthDate = Randomiser.rndDate();
 		this._gender = Randomiser.rndGender();
 		this._firstName = Randomiser.rndName(this._gender);
@@ -23,9 +27,10 @@ public abstract class Human {
 		this._moneyAmount = Randomiser.rndDouble(1000000);
 	}
 	
-	public Human(String firstName, String lastName, String patronymic, 
+	public Human(UUID id ,String firstName, String lastName, String patronymic, 
 			Date birthday, Gender gender, Double moneyAmount)
 	{
+		this._id = id;
 		this._birthDate = birthday;
 		this._firstName = firstName;
 		this._lastName = lastName;
@@ -34,8 +39,20 @@ public abstract class Human {
 		this._moneyAmount = moneyAmount;
 	}
 	
-	public String toString()
+	public Human(String str) throws ParseException
 	{
+		String[] data = str.split(" ");
+		this._id = UUID.fromString(data[1]);
+		this._firstName = data[2];
+		this._lastName = data[3];
+		this._patronymic = data[4];
+		this._birthDate = (new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")).parse(data[5].replaceAll("%", " "));
+		this._gender = Gender.valueOf(data[6]);
+		this._moneyAmount = Double.parseDouble(data[7].replaceAll(",", "."));
+	}
+	
+	public String toString()
+	{			
 		String output = String.format("Name: '%s' LastName: '%s' Patronymic: '%s'"
 				+ " Age: '%d' Gender: '%s' Money: '%f'", 
 				this._firstName,
@@ -46,6 +63,21 @@ public abstract class Human {
 				this._moneyAmount
 			);
 		return output;
+	}
+	
+	public String SerializeToString()
+	{
+		String birthdayAsString = (new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")).format(_birthDate);
+		String result = String.format("%s %s %s %s %s %s %f",
+				_id.toString(),
+				_firstName,
+				_lastName,
+				_patronymic,
+				birthdayAsString.replaceAll(" ", "%"),
+				_gender.toString(),
+				_moneyAmount
+				);
+		return result;
 	}
 
 	public String GetFirstName() {

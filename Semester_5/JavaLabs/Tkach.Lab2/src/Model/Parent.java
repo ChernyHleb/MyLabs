@@ -1,13 +1,15 @@
 package Model;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class Parent extends Human {
 
-	public Parent(String firstName, String lastName, String patronymic, 
+	public Parent(UUID id, String firstName, String lastName, String patronymic, 
 			Date birthday, Gender gender, Double moneyAmount) {
-		super(firstName, lastName,  patronymic, birthday, gender, moneyAmount);
+		super(id, firstName, lastName,  patronymic, birthday, gender, moneyAmount);
 		
 	}
 	
@@ -16,15 +18,27 @@ public class Parent extends Human {
 		super();
 	}
 	
+	public Parent(String str) throws ParseException
+	{
+		super(str);
+	}
+	
 	public String toString()
 	{
 		return String.format("~PARENT %s", super.toString());
 	}
 	
-	public Student GetPair(String firstName, String lastName, Date birthday, Gender gender,
+	public String SerializeToString()
+	{
+		String result = String.format("PARENT %s",
+				super.SerializeToString());
+		return result;
+	}
+	
+	public Student GetPair(UUID id, String firstName, String lastName, Date birthday, Gender gender,
 			Double moneyAmount, ArrayList<Semester> semesters) {
 		 String patronymic = this._firstName;
-		 Student student = new Student(firstName, lastName, patronymic, birthday, gender,
+		 Student student = new Student(id, firstName, lastName, patronymic, birthday, gender,
 					moneyAmount, semesters);
 		 return student;
 	}

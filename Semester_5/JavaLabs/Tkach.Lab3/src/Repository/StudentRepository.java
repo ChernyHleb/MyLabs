@@ -1,6 +1,9 @@
 package Repository;
 
+import java.io.File;
 import java.lang.reflect.Array;
+import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
@@ -31,29 +34,25 @@ public class StudentRepository implements IRepository<Student>{
 
 	@Override
 	public ArrayList<Student> LoadAllFromTextFile(String FileName) {
+		URL url = getClass().getResource(FileName);
+		String path = url.getPath();
+		
 		ArrayList<Student> result = new ArrayList<Student>();
 		
 		ArrayList<String> data =
 			DataFilterService.FilterData(
-					FileIOService.ReadFromFile(FileName),
+					FileIOService.ReadFromFile(path),
 					"STUDENT"
 			);
 		
 		for(String str : data) {
-			result.add(StringToEntity(str));
+			try {
+				result.add(new Student(str));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return result;
 	}
-
-	@Override
-	public Student StringToEntity(String str) {
-		ArrayList<String> attributes = new ArrayList<String>(Arrays.asList(str.split(" ")));
-		
-		Student student = new Student();
-		
-		return student;
-	}
-
-	
 }
