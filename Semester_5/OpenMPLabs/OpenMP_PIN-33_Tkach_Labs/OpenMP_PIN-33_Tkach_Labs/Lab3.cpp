@@ -4,29 +4,45 @@ void Lab3::Demonstrate()
 {
 	for (int dim = 5; dim < 15626; dim *= 5)
 	{
-		Matrix* matrixA = new Matrix(dim);
-		Matrix* matrixB = new Matrix(dim);
-
-		std::cout << matrixA->ToShortString() + "\n";
-
-		auto timerStart = std::chrono::high_resolution_clock::now();
-		FuncWithoutOpenMP(matrixA, matrixB);
-		auto timerStop = std::chrono::high_resolution_clock::now();
-
-		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timerStop - timerStart).count();
-		std::cout << "Without OpenMP: " << duration << " nanoSec\n";
-
-		timerStart = std::chrono::high_resolution_clock::now();
-		FuncWithReduction(matrixA, matrixB);
-		timerStop = std::chrono::high_resolution_clock::now();
-		duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
-	
-		duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
-		std::cout << "With OpenMP: " << duration << " nanoSec\n\n";
-
-		delete matrixA;
-		delete matrixB;
+		std::cout << GetStatistics(dim) << std::endl;
 	}
+}
+
+std::string Lab3::GetStatistics(int dim)
+{
+	std::string output = "";
+
+	SetMatrixA(new Matrix(dim));
+	SetMatrixB(new Matrix(dim));
+
+	output += matrixA->ToShortString() + "\n";
+
+	auto timerStart = std::chrono::high_resolution_clock::now();
+	int64_t result = FuncWithoutOpenMP(matrixA, matrixB);
+	auto timerStop = std::chrono::high_resolution_clock::now();
+
+	auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timerStop - timerStart).count();
+	output += "~~Without OpenMP: " + std::to_string(duration) + " nanoSec\n";
+	output += "~~RESULT: " + std::to_string(result) + "\n";
+
+	timerStart = std::chrono::high_resolution_clock::now();
+	result = FuncWithReduction(matrixA, matrixB);
+	timerStop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
+
+	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
+	output += "~~With OpenMP: " + std::to_string(duration) + " nanoSec\n";
+	output += "~~RESULT: " + std::to_string(result) + "\n";
+	
+	return output;
+}
+
+Lab3::~Lab3()
+{
+	if(matrixA != nullptr)
+		delete matrixA;
+	if(matrixB != nullptr)
+		delete matrixB;
 }
 
 int64_t Lab3::FuncWithReduction(Matrix* matrixA, Matrix* matrixB)
@@ -38,7 +54,7 @@ int64_t Lab3::FuncWithReduction(Matrix* matrixA, Matrix* matrixB)
 
 	#pragma omp parallel shared(dim, matrixA, matrixB)
 	{
-		#pragma opm for private(i, j, temp, A, B) reduction(+:sum)
+		#pragma omp for private(i, j, temp, A, B) reduction(+:sum)
 		{
 			A = matrixA->matrix;
 			B = matrixB->matrix;
