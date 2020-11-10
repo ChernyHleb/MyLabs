@@ -16,6 +16,7 @@ public:
 	Matrix();
 	Matrix(int dimention);
 	Matrix(int N, int M);
+	~Matrix();
 };
 
 #endif // ! Matrix_HEADER
