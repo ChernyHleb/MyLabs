@@ -7,13 +7,14 @@ void Lab3::Demonstrate()
 		Matrix* matrixA = new Matrix(dim);
 		Matrix* matrixB = new Matrix(dim);
 
+		std::cout << matrixA->ToShortString() + "\n";
+
 		auto timerStart = std::chrono::high_resolution_clock::now();
 		FuncWithoutOpenMP(matrixA, matrixB);
 		auto timerStop = std::chrono::high_resolution_clock::now();
 
 		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timerStop - timerStart).count();
-		std::cout << "Without OpenMP: " << matrixA->ToShortString() << std::endl
-			      << "DURATION: " << duration << " nanoSec\n";
+		std::cout << "Without OpenMP: " << duration << " nanoSec\n";
 
 		timerStart = std::chrono::high_resolution_clock::now();
 		FuncWithReduction(matrixA, matrixB);
@@ -21,15 +22,43 @@ void Lab3::Demonstrate()
 		duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
 	
 		duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
-		std::cout << "With OpenMP: " << matrixA->ToShortString() << std::endl 
-				  << "DURATION: " << duration << " nanoSec\n\n";
+		std::cout << "With OpenMP: " << duration << " nanoSec\n\n";
+
+		delete matrixA;
+		delete matrixB;
 	}
 }
 
 int64_t Lab3::FuncWithReduction(Matrix* matrixA, Matrix* matrixB)
 {
-	int64_t sum = 0;
+	int64_t sum;
+	int i, j, temp;
+	int dim = matrixA->N;
+	int** A, ** B;
 
+	#pragma omp parallel shared(dim, matrixA, matrixB)
+	{
+		#pragma opm for private(i, j, temp, A, B) reduction(+:sum)
+		{
+			A = matrixA->matrix;
+			B = matrixB->matrix;
+
+			sum = 0;
+			for (i = 0; i < dim; i++)
+			{
+				for (j = 0; j < dim; j++)
+				{
+					int a = A[i][j];
+					int b = B[i][j];
+
+					temp = std::max(a + b, 4 * a - b);
+
+					if (temp > 1)
+						sum += temp;
+				}
+			}
+		}
+	}
 	return sum;
 }
 

@@ -50,3 +50,12 @@ Matrix::Matrix(int N, int M)
 	}
 }
 
+Matrix::~Matrix()
+{
+	for (int i = 0; i < this->N; i++)
+	{
+		delete this->matrix[i];
+	}
+	delete this->matrix;
+}
+

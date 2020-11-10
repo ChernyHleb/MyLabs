@@ -10,4 +10,6 @@ int main()
 
     Lab3 *testLab3 = new Lab3();
     testLab3 -> Demonstrate();
+
+    delete testLab3;
 }
