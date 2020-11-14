@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox alignment="center" xmlns="http://javafx.com/javafx/@"
+		  xmlns:fx="http://javafx.com/fxml"
+		  fx:controller="application.mainController">
+	<HBox>
+		<HBox alignment="center">
+			<ComboBox value="All" fx:id="humanTypeComboBox"
+					  onAction="#handleHumanTypeComboBoxChoose">
+				<items>
+					<FXCollections fx:factory="observableArrayList">
+						<String fx:value="All"/>
+						<String fx:value="Student"/>
+						<String fx:value="Parent"/>
+						<String fx:value="Nerd"/>
+						<String fx:value="CoolParent"/>
+					</FXCollections>
+				</items>
+			</ComboBox>
+			<Button fx:id="addHumanButton">Add</Button>
+			<Button fx:id="editHumanButton">Edit</Button>
+			<Button fx:id="deleteHumanButton">Delete</Button>
+			<Button fx:id="infoHumanButton">Info</Button>
+			<Label><text>Logging:</text></Label>
+			<HBox alignment="center">
+		    	<RadioButton fx:id="LoggingOn" text="On" toggleGroup="$LoggingMode"/>
+		    	<RadioButton fx:id="LoggingOff" text="Off" toggleGroup="$LoggingMode"/>
+			</HBox>
+		</HBox>
+	</HBox>
+	
+	<TableView fx:id="dataTableView"> 
+		<columns>
+			<TableColumn text="Type"></TableColumn>
+			<TableColumn text="Name"></TableColumn>
+			<TableColumn text="LastName"></TableColumn>
+			<TableColumn text="Patronymic"></TableColumn>
+			<TableColumn text="Birthday"></TableColumn>
+			<TableColumn text="Gender"></TableColumn>
+			<TableColumn text="MoneyAmount"></TableColumn>
+		</columns>
+	</TableView>
+</VBox>
+
