@@ -39,8 +39,7 @@
 	<GridPane GridPane.columnIndex="1">
 		<GridPane fx:id="insertHumanGridPane" GridPane.rowIndex="0"/>
 		<Label text="DATABASE:" GridPane.rowIndex="1"/>
-		<TextArea fx:id="mainTextArea" prefHeight="400" prefWidth="650"  
-				  GridPane.rowIndex="2"/>
+		<TableView  prefHeight="400" prefWidth="650" GridPane.rowIndex="2"/>
 	</GridPane>
 </GridPane>
 

@@ -31,7 +31,7 @@ std::string Lab4::GetStatistics(int dim)
 	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
 
 	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
-	output += "~~With OpenMP: " + std::to_string(duration) + " nanoSec\n";
+	output += "~~With Reduction: " + std::to_string(duration) + " nanoSec\n";
 	output += "~~RESULT: " + std::to_string(result) + "\n";
 
 	timerStart = std::chrono::high_resolution_clock::now();
