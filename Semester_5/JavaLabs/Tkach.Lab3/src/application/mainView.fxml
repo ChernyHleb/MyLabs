@@ -21,7 +21,7 @@
 					</FXCollections>
 				</items>
 			</ComboBox>
-			<Button fx:id="addHumanButton">Add</Button>
+			<Button fx:id="addHumanButton" onAction="#handleAddHumanButtonPressed">Add</Button>
 			<Button fx:id="editHumanButton">Edit</Button>
 			<Button fx:id="deleteHumanButton">Delete</Button>
 			<Button fx:id="infoHumanButton">Info</Button>
@@ -35,13 +35,13 @@
 	
 	<TableView fx:id="dataTableView"> 
 		<columns>
-			<TableColumn text="Type"></TableColumn>
-			<TableColumn text="Name"></TableColumn>
-			<TableColumn text="LastName"></TableColumn>
-			<TableColumn text="Patronymic"></TableColumn>
-			<TableColumn text="Birthday"></TableColumn>
-			<TableColumn text="Gender"></TableColumn>
-			<TableColumn text="MoneyAmount"></TableColumn>
+			<TableColumn text="Type" fx:id="humanTypeTableColumn"></TableColumn>
+			<TableColumn text="Name" fx:id="humanNameTableColumn"></TableColumn>
+			<TableColumn text="LastName" fx:id="humanLastNameTableColumn"></TableColumn>
+			<TableColumn text="Patronymic" fx:id="humanPatronymicTableColumn"></TableColumn>
+			<TableColumn text="Birthday" fx:id="humanBirthdayTableColumn"></TableColumn>
+			<TableColumn text="Gender" fx:id="humanGenderTableColumn"></TableColumn>
+			<TableColumn text="MoneyAmount" fx:id="humanMoneyAmountTableColumn"></TableColumn>
 		</columns>
 	</TableView>
 </VBox>

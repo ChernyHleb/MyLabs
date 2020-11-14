@@ -13,16 +13,19 @@ public class CoolParent extends Parent implements ICoolParent{
 	public CoolParent(UUID id, String firstName, String lastName,String patronymic,
 			Date birthday, Gender gender,Double moneyAmount) {
 		super(id, firstName, lastName, patronymic, birthday, gender, moneyAmount);
+		this._humanType = "COOLPARENT";
 	}
 
 	public CoolParent()
 	{
 		super();
+		this._humanType = "COOLPARENT";
 	}
 	
 	public CoolParent(String str) throws ParseException
 	{
 		super(str);
+		this._humanType = "COOLPARENT";
 	}
 	
 	public String toString()
@@ -44,7 +47,7 @@ public class CoolParent extends Parent implements ICoolParent{
 				throw new Exception("Not enough money to give away!");
 			}
 			this._moneyAmount -= money;
-			student.SetMoneyAmount(student.GetMoneyAmount() + money);
+			student.set_moneyAmount(student.get_moneyAmount() + money);
 		} catch (Exception ex) {
 			return;
 		}
@@ -61,7 +64,7 @@ public class CoolParent extends Parent implements ICoolParent{
 	public Nerd GetPair()
 	{
 		Nerd nerd = new Nerd();
-		nerd.SetFirstName(this._firstName);
+		nerd.set_firstName(this._firstName);
 		nerd.set_semesters(Randomiser.rndSemestersForNerd(this._moneyAmount));
 		return nerd;
 	}

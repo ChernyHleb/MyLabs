@@ -10,17 +10,19 @@ public class Parent extends Human {
 	public Parent(UUID id, String firstName, String lastName, String patronymic, 
 			Date birthday, Gender gender, Double moneyAmount) {
 		super(id, firstName, lastName,  patronymic, birthday, gender, moneyAmount);
-		
+		this._humanType = "PARENT";
 	}
 	
 	public Parent()
 	{
 		super();
+		this._humanType = "PARENT";
 	}
 	
 	public Parent(String str) throws ParseException
 	{
 		super(str);
+		this._humanType = "PARENT";
 	}
 	
 	public String toString()
@@ -47,7 +49,7 @@ public class Parent extends Human {
 	{
 		String patronymic = this._firstName;
 		Student student = new Student();
-		student.SetPatronymic(patronymic);
+		student.set_patronymic(patronymic);
 		
 		return student;
 	}

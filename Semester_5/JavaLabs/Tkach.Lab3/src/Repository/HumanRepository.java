@@ -1,13 +1,14 @@
 package Repository;
 
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import Model.CoolParent;
 import Model.Human;
+import Model.Nerd;
 import Model.Student;
-import Services.DataFilterService;
+import Model.Parent;
 import Services.FileIOService;
 
 public class HumanRepository implements IRepository<Human>{
@@ -35,23 +36,32 @@ public class HumanRepository implements IRepository<Human>{
 		URL url = getClass().getResource(FileName);
 		String path = url.getPath();
 		
-		ArrayList<Human> result = new ArrayList<Human>();
+		ArrayList<Human> people = new ArrayList<Human>();
+		ArrayList<String> fileData = FileIOService.ReadFromFile(path);
 		
-		ArrayList<String> data =
-			DataFilterService.FilterData(
-					FileIOService.ReadFromFile(path),
-					"STUDENT"
-			);
-		
-		for(String str : data) {
-			try {
-				result.add(new Student(str));
-			} catch (ParseException e) {
-				e.printStackTrace();
+		try {
+			for(String str : fileData) {
+				switch(str.split(" ")[0]) {
+				case("STUDENT"):
+					people.add(new Student(str));
+					break;
+				case("NERD"):
+					people.add(new Nerd(str));
+					break;
+				case("PARENT"):
+					people.add(new Parent(str));
+					break;
+				case("COOLPARENT"):
+					people.add(new CoolParent(str));
+					break;
+				}
 			}
+		} 
+		catch(Exception e) {
+			
 		}
 		
-		return result;
+		return people;
 	}
 
 }

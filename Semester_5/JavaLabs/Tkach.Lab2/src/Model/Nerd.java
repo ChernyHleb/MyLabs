@@ -12,16 +12,19 @@ public class Nerd extends Student {
 			ArrayList<Semester> semesters) {
 		super(id, firstName, lastName, patronymic, birthday, gender, 
 				moneyAmount, semesters);
+		this._humanType = "NERD";
 	}
 	
 	public Nerd()
 	{
 		super();
+		this._humanType = "NERD";
 	}
 	
 	public Nerd(String str) throws ParseException
 	{
 		super(str);
+		this._humanType = "NERD";
 	}
 	
 	public String toString()
@@ -50,8 +53,8 @@ public class Nerd extends Student {
 	{
 		Double moneyAmount = Math.pow(10, Math.round(super.get_lastSessionAverageMark()));
 		CoolParent parent = new CoolParent();
-		parent.SetFirstName(this._patronymic);
-		parent.SetMoneyAmount(moneyAmount);
+		parent.set_firstName(this._patronymic);
+		parent.set_moneyAmount(moneyAmount);
 		
 		return parent;
 	}
