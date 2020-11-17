@@ -89,7 +89,14 @@ public class mainController implements IController {
 		}
 		else {
 			DeleteHumanController controller = (DeleteHumanController)loadWindow("DeleteHumanView.fxml", "Delete Human");
-		    controller.humanLabel.setText(String.format("Do you really want to delete %s %s ?", selectedHuman.get_firstName(), selectedHuman.get_lastName()));
+		    controller.humanLabel.setText(
+		    	String.format(
+		    		"Do you really want to delete %s %s ?", 
+		    		selectedHuman.get_firstName(), 
+		    		selectedHuman.get_lastName()
+		    	)
+		    );
+		    controller.chosedHuman = selectedHuman;
 		}
 	}
 	

@@ -10,16 +10,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileIOService {
-	public static void WriteToFile(String fileName, ArrayList<String> data)
+	public static void WriteToFile(String fileName, ArrayList<String> data, boolean appendMode)
 	{
 		try {
 			File file = new File(fileName);
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file, appendMode);
 			BufferedWriter writer = new BufferedWriter(fw);
 			
 			for(String entity : data){
 				writer.write(entity + "\n");
 			}
+			writer.close();
+			
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		catch (IOException e)
+		{
+			
+		}
+	}
+	
+	public static void WriteToFile(String fileName, String data, boolean appendMode)
+	{
+		try {
+			File file = new File(fileName);
+			FileWriter fw = new FileWriter(file, appendMode);
+			BufferedWriter writer = new BufferedWriter(fw);
+			
+			writer.write(data + "\n");
+			writer.close();
 			
 		} 
 		catch (FileNotFoundException e) {
@@ -44,6 +65,7 @@ public class FileIOService {
 			{
 				result.add(line);
 			}
+			reader.close();
 			return result;
 		}
 		catch (FileNotFoundException e) {
