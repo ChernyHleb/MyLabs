@@ -22,14 +22,17 @@
 				</items>
 			</ComboBox>
 			<Button fx:id="addHumanButton" onAction="#handleAddHumanButtonPressed">Add</Button>
-			<Button fx:id="editHumanButton">Edit</Button>
-			<Button fx:id="deleteHumanButton">Delete</Button>
+			<Button fx:id="editHumanButton" onAction="#handleEditButtonPressed">Edit</Button>
+			<Button fx:id="deleteHumanButton" onAction="#handleDeleteHumanButtonPressed">Delete</Button>
 			<Button fx:id="infoHumanButton">Info</Button>
 			<Label><text>Logging:</text></Label>
 			<HBox alignment="center">
 		    	<RadioButton fx:id="LoggingOn" text="On" toggleGroup="$LoggingMode"/>
 		    	<RadioButton fx:id="LoggingOff" text="Off" toggleGroup="$LoggingMode"/>
 			</HBox>
+			<Button fx:id="manageUsersButton">Manage Users</Button>
+			<Label fx:id="userNameLabel" text="UserName"/>
+			<Label fx:id="userTypeLabel" text="UserType"/>
 		</HBox>
 	</HBox>
 	

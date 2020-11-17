@@ -69,17 +69,54 @@ public class mainController implements IController {
 		this.dataTableView.setItems(list);
 	}
 	
+	public void handleEditButtonPressed() {
+		Human selectedHuman = dataTableView.getSelectionModel().getSelectedItem();
+		if(selectedHuman == null) {
+			System.out.print("no human was selected for edition!");
+			return;
+		}
+		else {
+			EditHumanController controller = (EditHumanController)loadWindow("editHumanView.fxml", "Edit Human");
+			controller.setHumanForEditing(selectedHuman);
+		}
+	}
+	
+	public void handleDeleteHumanButtonPressed() {
+		Human selectedHuman = dataTableView.getSelectionModel().getSelectedItem();
+		if(selectedHuman == null) {
+			System.out.print("no human was selected for delete!");
+			return;
+		}
+		else {
+			DeleteHumanController controller = (DeleteHumanController)loadWindow("DeleteHumanView.fxml", "Delete Human");
+		    controller.humanLabel.setText(String.format("Do you really want to delete %s %s ?", selectedHuman.get_firstName(), selectedHuman.get_lastName()));
+		}
+	}
+	
 	public void handleAddHumanButtonPressed() {
+		loadWindow("addHumanView.fxml", "Add Human");
+	}
+	
+	//загружает окно и возвращает связанный с ним контроллер
+	private IController loadWindow(String resource, String title){
+		IController controller = null;
 		try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("addHumanView.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(root, 450, 450));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+			Parent parent = loader.load();
+			
+			controller = (IController)loader.getController();
+			
+			Stage stage = new Stage();
+			stage.setTitle(title);
+			Scene scene = new Scene(parent);
+			stage.setScene(scene);
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return controller;
 	}
 	
 	public void handleHumanTypeComboBoxChoose() throws IOException{

@@ -5,20 +5,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class insertStudentController implements IController {
+public class addHumanController implements IController {
 	public TextField firstNameTextField, 
 					 lastNameTextField,
 					 patrobymicTextField,
 					 moneyTextField;
 	
-	public ComboBox genderComboBox;
+	public ComboBox<String> genderComboBox;
+	public ComboBox<String> humanTypeComboBox;
 	
 	public DatePicker birthdayDatePicker;
 	
 	public Button randomiseButton,
 				  cleanButton,
-				  addStudentButton;
-	
-	
+				  addHumanButton,
+				  cancelButton;
 	
 }
+
