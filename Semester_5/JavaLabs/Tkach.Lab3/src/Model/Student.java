@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import Services.Randomiser;
+
 interface IStudent {
 	Parent GetPair(UUID id, String lastName, Date birthday, 
 			String patronymic, Gender gender, Double moneyAmount);
@@ -18,17 +20,20 @@ public class Student extends Human implements IStudent {
 			Gender gender, Double moneyAmount, ArrayList<Semester> semesters) {
 		super(id, firstName, lastName, patronymic, birthday, gender, moneyAmount);
 		this._semesters = semesters;
+		this._humanType = "STUDENT";
 	}
 	
 	public Student()
 	{
 		super();
 		this._semesters = Randomiser.rndSemesters();
+		this._humanType = "STUDENT";
 	}
 	
 	public Student(String str) throws ParseException
 	{
 		super(str);
+		this._humanType = "STUDENT";
 	}
 	
 	public Double get_lastSessionAverageMark()
@@ -64,7 +69,7 @@ public class Student extends Human implements IStudent {
 	public Parent GetPair()
 	{
 		Parent parent = new Parent();
-		parent.SetFirstName(this._patronymic);
+		parent.set_firstName(this._patronymic);
 		return parent;
 	}
 	

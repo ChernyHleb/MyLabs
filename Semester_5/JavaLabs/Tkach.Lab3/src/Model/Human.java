@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import Services.Randomiser;
+
 public abstract class Human {
 	
 	protected UUID _id;
@@ -15,6 +17,8 @@ public abstract class Human {
 	protected Date _birthDate;
 	protected Gender _gender;
 	protected Double _moneyAmount;
+	
+	protected String _humanType;
 	
 	public Human()
 	{
@@ -80,11 +84,11 @@ public abstract class Human {
 		return result;
 	}
 
-	public String GetFirstName() {
+	public String get_firstName() {
 		return _firstName;
 	}
 
-	public void SetFirstName(String _firstName) {
+	public void set_firstName(String _firstName) {
 		this._firstName = _firstName;
 	}
 
@@ -95,43 +99,60 @@ public abstract class Human {
 		return years;
 	}
 
-	public String GetLastName() {
+	public String get_lastName() {
 		return _lastName;
 	}
 
-	public void SetLastName(String _lastName) {
+	public void set_lastName(String _lastName) {
 		this._lastName = _lastName;
 	}
 
-	public Date GetBirthDate() {
+	public Date get_birthDate() {
 		return _birthDate;
 	}
 
-	public void SetBirthDate(Date _birthDate) {
+	public void set_birthDate(Date _birthDate) {
 		this._birthDate = _birthDate;
 	}
 	
-	public String GetPatronymic() {
-		return _patronymic;
-	}
-
-	public void SetPatronymic(String _patronymic) {
-		this._patronymic = _patronymic;
-	}
-	
-	public Gender GetGender() {
+	public Gender get_gender() {
 		return _gender;
 	}
 
-	public void SetGender(Gender _gender) {
+	public void set_gender(Gender _gender) {
 		this._gender = _gender;
 	}
 	
-	public Double GetMoneyAmount() {
+	public Double get_moneyAmount() {
 		return _moneyAmount;
 	}
 
-	public void SetMoneyAmount(Double _moneyAmount) {
+	public void set_moneyAmount(Double _moneyAmount) {
 		this._moneyAmount = _moneyAmount;
 	}
+	
+	public String get_patronymic() {
+		return _patronymic;
+	}
+
+	public void set_patronymic(String _patronymic) {
+		this._patronymic = _patronymic;
+	}
+	
+	public UUID get_id() {
+		return _id;
+	}
+
+	public void set_id(UUID _id) {
+		this._id = _id;
+	}
+
+	public String get_humanType() {
+		return _humanType;
+	}
+
+	public void set_humanType(String _humanType) {
+		this._humanType = _humanType;
+	}
+
 }
