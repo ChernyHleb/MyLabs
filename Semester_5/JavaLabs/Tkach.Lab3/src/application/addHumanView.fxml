@@ -6,7 +6,19 @@
 <?import javafx.scene.control.DatePicker?>
 
 <VBox xmlns="http://javafx.com/javafx/@" xmlns:fx="http://javafx.com/fxml" 
-		  fx:controller="application.insertStudentController">
+		  fx:controller="application.addHumanController">
+	<ComboBox value="Student"
+				  fx:id="humanTypeComboBox">
+		<items>
+			<FXCollections fx:factory="observableArrayList">
+				<String fx:value="Student"/>
+				<String fx:value="Parent"/>
+				<String fx:value="Nerd"/>
+				<String fx:value="CoolParent"/>
+			</FXCollections>
+		</items>
+	</ComboBox>
+	
 	<HBox>
 		<Label text="First Name:"/>
 		<TextField prefWidth="100" 
@@ -43,8 +55,9 @@
 	</HBox>
 	
 	<HBox>
+		<Button text="Submit" fx:id="addStudentButton"/>
+		<Button text="Cancel" fx:id="cancelButton"/>
 		<Button text="Randomise" fx:id="randomiseButton"/>
 		<Button text="Clean" fx:id="cleanButton"/>
-		<Button text="Add new Student" fx:id="addStudentButton"/>
 	</HBox>
 </VBox>

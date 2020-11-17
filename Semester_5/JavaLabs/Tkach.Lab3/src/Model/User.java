@@ -24,6 +24,15 @@ public class User {
 				);
 	}
 	
+	public User(String str)
+	{
+		String[] strArr = str.split(" ");
+		this.id = UUID.fromString(strArr[0]);
+		this.name = strArr[1];
+		this.password = strArr[2];
+		this.type = UserType.valueOf(strArr[3]);
+	}
+	
 	
 	
 	public UUID getId() {

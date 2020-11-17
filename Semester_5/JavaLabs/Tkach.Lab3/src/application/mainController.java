@@ -70,16 +70,25 @@ public class mainController implements IController {
 	}
 	
 	public void handleAddHumanButtonPressed() {
+		loadAddHumanWindow();
+	}
+	
+	private void loadAddHumanWindow()
+	{
+		loadWindow("addHumanView.fxml", "Add Human");
+	}
+	
+	private void loadWindow(String resource, String title){
 		try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("addHumanView.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(root, 450, 450));
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+			Parent root = FXMLLoader.load(getClass().getResource(resource));
+			Stage stage = new Stage();
+			stage.setTitle(title);
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void handleHumanTypeComboBoxChoose() throws IOException{

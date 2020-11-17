@@ -36,7 +36,7 @@ public class Controller implements IController{
 	}
 	
 	private void switchHumanType(String humanType) throws IOException{
-		GridPane newGridPane = null;
+		/*GridPane newGridPane = null;
 		
 		switch(humanType) {
 		case("Nerd"):
@@ -51,6 +51,6 @@ public class Controller implements IController{
 			break;
 		}
 		
-		insertHumanGridPane.getChildren().setAll(newGridPane);
+		insertHumanGridPane.getChildren().setAll(newGridPane);*/
 	}
 }
