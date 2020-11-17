@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/@" xmlns:fx="http://javafx.com/fxml" 
+	  fx:controller="application.DeleteHumanController"
+	  prefWidth="350">
+	
+	<Label fx:id="humanLabel" text="HumanLabel"/>
+	
+	<HBox>
+		<Button text="Submit" fx:id="submitButton"/>
+		<Button text="Cancel" fx:id="cancelButton"/>
+	</HBox>
+</VBox>

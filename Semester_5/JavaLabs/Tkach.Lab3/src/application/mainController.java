@@ -69,6 +69,32 @@ public class mainController implements IController {
 		this.dataTableView.setItems(list);
 	}
 	
+	public void handleEditButtonPressed() {
+		
+		Human selectedHuman = dataTableView.getSelectionModel().getSelectedItem();
+		if(selectedHuman == null) {
+			System.out.print("no human was selected for edition!");
+			return;
+		}
+		else {
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("editHumanView.fxml"));
+				Parent parent = loader.load();
+				
+				EditHumanController controller = (EditHumanController)loader.getController();
+				controller.setHumanForEditing(selectedHuman);
+				
+				Stage stage = new Stage();
+				stage.setTitle("Edit Human");
+				Scene scene = new Scene(parent);
+				stage.setScene(scene);
+				stage.show();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void handleAddHumanButtonPressed() {
 		loadAddHumanWindow();
 	}

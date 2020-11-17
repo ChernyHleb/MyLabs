@@ -11,15 +11,15 @@ public class addHumanController implements IController {
 					 patrobymicTextField,
 					 moneyTextField;
 	
-	public ComboBox genderComboBox;
+	public ComboBox<String> genderComboBox;
+	public ComboBox<String> humanTypeComboBox;
 	
 	public DatePicker birthdayDatePicker;
 	
 	public Button randomiseButton,
 				  cleanButton,
-				  addStudentButton;
-	
-	
+				  addHumanButton,
+				  cancelButton;
 	
 }
 

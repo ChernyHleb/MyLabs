@@ -6,7 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 
 <VBox xmlns="http://javafx.com/javafx/@" xmlns:fx="http://javafx.com/fxml" 
-	  fx:controller="application.addHumanController"
+	  fx:controller="application.EditHumanController"
 	  prefWidth="350">
 	<ComboBox value="STUDENT"
 				  fx:id="humanTypeComboBox">
@@ -56,7 +56,7 @@
 	</HBox>
 	
 	<HBox>
-		<Button text="Submit" fx:id="addHumanButton"/>
+		<Button text="Submit" fx:id="SubmitButton"/>
 		<Button text="Cancel" fx:id="cancelButton"/>
 		<Button text="Randomise" fx:id="randomiseButton"/>
 		<Button text="Clean" fx:id="cleanButton"/>
