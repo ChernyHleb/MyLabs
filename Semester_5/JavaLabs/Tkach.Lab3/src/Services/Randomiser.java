@@ -1,9 +1,15 @@
-package Model;
+package Services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
+
+import Model.Gender;
+import Model.Semester;
+import Model.Subject;
+import Model.User;
+import Model.UserType;
 
 public class Randomiser {
 	private static ArrayList<String> maleNames = new ArrayList<String>(Arrays.asList(
@@ -19,6 +25,9 @@ public class Randomiser {
 	private static ArrayList<String> subjectNames = new ArrayList<String>(Arrays.asList(
 			"Maths", "English", "Java", "Physics", "Chemistry", "Geography",
 			"History", "Art", "Economics", "Music"));
+	private static ArrayList<String> userNames = new ArrayList<String>(Arrays.asList(
+			"catto", "doggo", "elPepe", "EteSech", "PinkGuy", "FilthyFrank", "wizardCatto", 
+			"bread"));
 	
 	/// сделать нормально
 	public static ArrayList<Semester> rndSemestersForNerd(Double moneyAmount)
@@ -106,5 +115,34 @@ public class Randomiser {
 		ms = -946771200000L + (Math.abs(rnd.nextLong()) % (70L * 365 * 24 * 60 * 60 * 1000));
 
 		return new Date(ms);
+	}
+	
+	public static User rndUser()
+	{
+		String name = userNames.get((int)rndDouble(userNames.size() - 1));
+		String password = rndString(10);
+		UserType type = UserType.values()[(int)rndDouble(UserType.values().length - 1)];
+		return new User(name, password, type);
+	}
+	
+	public static String rndString(int length) {
+	    int leftLimit = (int)'a';
+	    int rightLimit = (int)'z' ;
+	    
+	    Random random = new Random();
+	 
+	    String generatedString = random.ints(leftLimit, rightLimit + 1)
+	      .limit(length)
+	      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+	      .toString();
+	 
+	    return generatedString;
+	}
+	
+	public static ArrayList<String> getUserNames() {
+		return userNames;
+	}
+	public static void setUserNames(ArrayList<String> userNames) {
+		Randomiser.userNames = userNames;
 	}
 }

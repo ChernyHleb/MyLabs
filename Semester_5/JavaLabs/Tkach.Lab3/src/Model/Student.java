@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import Services.Randomiser;
+
 interface IStudent {
 	Parent GetPair(UUID id, String lastName, Date birthday, 
 			String patronymic, Gender gender, Double moneyAmount);
