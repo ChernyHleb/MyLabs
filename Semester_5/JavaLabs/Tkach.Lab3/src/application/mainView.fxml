@@ -23,7 +23,7 @@
 			</ComboBox>
 			<Button fx:id="addHumanButton" onAction="#handleAddHumanButtonPressed">Add</Button>
 			<Button fx:id="editHumanButton" onAction="#handleEditButtonPressed">Edit</Button>
-			<Button fx:id="deleteHumanButton">Delete</Button>
+			<Button fx:id="deleteHumanButton" onAction="#handleDeleteHumanButtonPressed">Delete</Button>
 			<Button fx:id="infoHumanButton">Info</Button>
 			<Label><text>Logging:</text></Label>
 			<HBox alignment="center">

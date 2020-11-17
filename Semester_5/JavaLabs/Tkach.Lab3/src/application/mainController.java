@@ -70,51 +70,53 @@ public class mainController implements IController {
 	}
 	
 	public void handleEditButtonPressed() {
-		
 		Human selectedHuman = dataTableView.getSelectionModel().getSelectedItem();
 		if(selectedHuman == null) {
 			System.out.print("no human was selected for edition!");
 			return;
 		}
 		else {
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("editHumanView.fxml"));
-				Parent parent = loader.load();
-				
-				EditHumanController controller = (EditHumanController)loader.getController();
-				controller.setHumanForEditing(selectedHuman);
-				
-				Stage stage = new Stage();
-				stage.setTitle("Edit Human");
-				Scene scene = new Scene(parent);
-				stage.setScene(scene);
-				stage.show();
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
+			EditHumanController controller = (EditHumanController)loadWindow("editHumanView.fxml", "Edit Human");
+			controller.setHumanForEditing(selectedHuman);
+		}
+	}
+	
+	public void handleDeleteHumanButtonPressed() {
+		Human selectedHuman = dataTableView.getSelectionModel().getSelectedItem();
+		if(selectedHuman == null) {
+			System.out.print("no human was selected for delete!");
+			return;
+		}
+		else {
+			DeleteHumanController controller = (DeleteHumanController)loadWindow("DeleteHumanView.fxml", "Delete Human");
+		    controller.humanLabel.setText(String.format("Do you really want to delete %s %s ?", selectedHuman.get_firstName(), selectedHuman.get_lastName()));
 		}
 	}
 	
 	public void handleAddHumanButtonPressed() {
-		loadAddHumanWindow();
-	}
-	
-	private void loadAddHumanWindow()
-	{
 		loadWindow("addHumanView.fxml", "Add Human");
 	}
 	
-	private void loadWindow(String resource, String title){
+	//загружает окно и возвращает связанный с ним контроллер
+	private IController loadWindow(String resource, String title){
+		IController controller = null;
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource(resource));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+			Parent parent = loader.load();
+			
+			controller = (IController)loader.getController();
+			
 			Stage stage = new Stage();
 			stage.setTitle(title);
-			Scene scene = new Scene(root);
+			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
+			return null;
 		}
+		
+		return controller;
 	}
 	
 	public void handleHumanTypeComboBoxChoose() throws IOException{
