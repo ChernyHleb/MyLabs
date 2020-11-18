@@ -6,10 +6,10 @@ import java.util.UUID;
 import Model.Human;
 
 public interface IRepository<T> {
-	public T LoadFromTextFile(UUID entityId, String FileName);
-	public void SaveToTextFile(T entity, String FileName);
-	public void SaveToTextFile(ArrayList<T> entities, String FileName);
-	public ArrayList<T> LoadAllFromTextFile(String FileName);
-	public void Delete(UUID entityId, String FileName);
-	public void DeleteAll(String FileName);
+	public T LoadFromTextFile(UUID entityId);
+	public void SaveToTextFile(T entity);
+	public void SaveToTextFile(ArrayList<T> entities);
+	public ArrayList<T> LoadAllFromTextFile();
+	public void Delete(UUID entityId);
+	public void DeleteAll();
 }

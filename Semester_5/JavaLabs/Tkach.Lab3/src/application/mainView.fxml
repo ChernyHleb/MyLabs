@@ -46,6 +46,7 @@
 			<TableColumn text="Birthday" fx:id="humanBirthdayTableColumn"></TableColumn>
 			<TableColumn text="Gender" fx:id="humanGenderTableColumn"></TableColumn>
 			<TableColumn text="MoneyAmount" fx:id="humanMoneyAmountTableColumn"></TableColumn>
+			<TableColumn text="UUID" fx:id="uuidTableColumn"></TableColumn>
 		</columns>
 	</TableView>
 </VBox>

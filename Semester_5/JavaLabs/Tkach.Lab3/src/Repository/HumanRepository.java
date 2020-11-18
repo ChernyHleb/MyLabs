@@ -2,7 +2,6 @@ package Repository;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.UUID;
 
 import Model.CoolParent;
@@ -13,39 +12,38 @@ import Model.Parent;
 import Services.FileIOService;
 
 public class HumanRepository implements IRepository<Human>{
+	private String currentDir;
+	private String databaseFilePath;
+	
+	public HumanRepository() {
+		this.currentDir = System.getProperty("user.dir");
+		this.databaseFilePath = currentDir + "/src/Repository/humanDataBase.txt";
+	}
 
 	@Override
-	public Human LoadFromTextFile(UUID entityId, String FileName) {
+	public Human LoadFromTextFile(UUID entityId) {
 		// TODO Auto-generated method 
 		return null;
 	}
 
 	@Override
-	public void SaveToTextFile(Human entity, String FileName) {
-		URL url = getClass().getResource(FileName);
-		String path = url.getPath();
-		FileIOService.WriteToFile(path, entity.SerializeToString(), true);	
+	public void SaveToTextFile(Human entity) {
+		FileIOService.WriteToFile(databaseFilePath, entity.SerializeToString(), true);	
 	}
 
 	@Override
-	public void SaveToTextFile(ArrayList<Human> entities, String FileName) {
-		URL url = getClass().getResource(FileName);
-		String path = url.getPath();
-		
+	public void SaveToTextFile(ArrayList<Human> entities) {
 		ArrayList<String> serializedHumans = new ArrayList<String>();
 		for(Human entity : entities) {
 			serializedHumans.add(entity.SerializeToString());
 		}
-		FileIOService.WriteToFile(path, serializedHumans, true);
+		FileIOService.WriteToFile(databaseFilePath, serializedHumans, true);
 	}
 
 	@Override
-	public ArrayList<Human> LoadAllFromTextFile(String FileName) {
-		URL url = getClass().getResource(FileName);
-		String path = url.getPath();
-		
+	public ArrayList<Human> LoadAllFromTextFile() {
 		ArrayList<Human> people = new ArrayList<Human>();
-		ArrayList<String> fileData = FileIOService.ReadFromFile(path);
+		ArrayList<String> fileData = FileIOService.ReadFromFile(databaseFilePath);
 		
 		try {
 			for(String str : fileData) {
@@ -73,23 +71,21 @@ public class HumanRepository implements IRepository<Human>{
 	}
 
 	@Override
-	public void Delete(UUID entityId, String FileName) {
-		ArrayList<Human> people = LoadAllFromTextFile(FileName);
+	public void Delete(UUID entityId) {
+		ArrayList<Human> people = LoadAllFromTextFile();
 		for(int i = 0; i < people.size(); i++) {
 			if(people.get(i).get_id().equals(entityId)) {
 				people.remove(i);
 				break;
 			}
 		}
-		DeleteAll(FileName);
-		SaveToTextFile(people, FileName);
+		DeleteAll();
+		SaveToTextFile(people);
 	}
 
 	@Override
-	public void DeleteAll(String FileName) {
-		URL url = getClass().getResource(FileName);
-		String path = url.getPath();
-		FileIOService.WriteToFile(path, "", false);
+	public void DeleteAll() {
+		FileIOService.WriteToFile(databaseFilePath, "", false);
 	}
 
 }

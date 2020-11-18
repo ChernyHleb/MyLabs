@@ -1,9 +1,8 @@
 package application;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.UUID;
 
 import Model.Gender;
 import Model.Human;
@@ -12,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,6 +36,7 @@ public class mainController implements IController {
 	public TableColumn<Human, Date> humanBirthdayTableColumn;
 	public TableColumn<Human, Gender> humanGenderTableColumn;
 	public TableColumn<Human, Double> humanMoneyAmountTableColumn;
+	public TableColumn<Human, UUID> uuidTableColumn;
 	
 	public ObservableList<Human> people;
 	
@@ -52,7 +51,7 @@ public class mainController implements IController {
 	// loading human collection from text file to observableList
 	public ObservableList<Human> getHumans(){
 		ObservableList<Human> people = FXCollections.observableArrayList();
-		people.addAll(humanRepository.LoadAllFromTextFile("humanDataBase.txt"));
+		people.addAll(humanRepository.LoadAllFromTextFile());
 		return people;
 	}
 	
@@ -66,6 +65,7 @@ public class mainController implements IController {
 		this.humanBirthdayTableColumn.setCellValueFactory(new PropertyValueFactory<Human, Date>("_birthDate"));
 		this.humanGenderTableColumn.setCellValueFactory(new PropertyValueFactory<Human, Gender>("_gender"));
 		this.humanMoneyAmountTableColumn.setCellValueFactory(new PropertyValueFactory<Human, Double>("_moneyAmount"));
+		this.uuidTableColumn.setCellValueFactory(new PropertyValueFactory<Human, UUID>("_id"));
 		
 		this.dataTableView.setItems(list);
 	}

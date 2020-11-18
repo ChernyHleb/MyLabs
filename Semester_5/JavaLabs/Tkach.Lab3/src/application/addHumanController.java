@@ -1,6 +1,5 @@
 package application;
 
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,7 +67,7 @@ public class addHumanController implements IController {
 	public void handleSubmitButtonClick() {
 		Human human = getHuman();
 		HumanRepository repo = new HumanRepository();
-		repo.SaveToTextFile(human, "humanDataBase.txt");
+		repo.SaveToTextFile(human);
 		Stage stage = (Stage) submitButton.getScene().getWindow();
 	    stage.close();
 	}
