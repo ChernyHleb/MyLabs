@@ -68,12 +68,12 @@ public class Randomiser {
 	
 	public static String rndSubjectName()
 	{
-		return subjectNames.get((int)rndDouble(subjectNames.size() - 1));
+		return subjectNames.get((int)rndDouble(subjectNames.size()));
 	}
 	
 	public static String rndPatronymic()
 	{
-		return maleNames.get((int)rndDouble(Randomiser.maleNames.size() - 1));
+		return maleNames.get((int)rndDouble(Randomiser.maleNames.size()));
 	}
 	
 	public static String rndLastName()
@@ -85,11 +85,11 @@ public class Randomiser {
 	{
 		if(gender == Gender.Male)
 		{
-			return Randomiser.maleNames.get((int)rndDouble(Randomiser.maleNames.size() - 1));
+			return Randomiser.maleNames.get((int)rndDouble(Randomiser.maleNames.size()));
 		}
 		else
 		{
-			return Randomiser.femaleNames.get((int)rndDouble(Randomiser.femaleNames.size() - 1));
+			return Randomiser.femaleNames.get((int)rndDouble(Randomiser.femaleNames.size()));
 		}
 	}
 	
@@ -125,9 +125,9 @@ public class Randomiser {
 	
 	public static User rndUser()
 	{
-		String name = userNames.get((int)rndDouble(userNames.size() - 1));
+		String name = userNames.get((int)rndDouble(userNames.size()));
 		String password = rndString(10);
-		UserType type = UserType.values()[(int)rndDouble(UserType.values().length - 1)];
+		UserType type = UserType.values()[(int)rndDouble(UserType.values().length)];
 		return new User(name, password, type);
 	}
 	
@@ -146,7 +146,7 @@ public class Randomiser {
 	}
 	
 	public static Human rndHuman() {
-		HumanType type = HumanType.values()[(int)rndDouble(HumanType.values().length - 1)];
+		HumanType type = HumanType.values()[(int)rndDouble(HumanType.values().length)];
 		Human human = null;
 		
 		switch(type) {

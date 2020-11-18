@@ -56,10 +56,13 @@
 	</HBox>
 	
 	<HBox>
-		<Button text="Submit" fx:id="addHumanButton"/>
-		<Button text="Cancel" fx:id="cancelButton"/>
+		<Button text="Submit" fx:id="submitButton"
+				onAction="#handleSubmitButtonClick"/>
+		<Button text="Cancel" fx:id="cancelButton"
+				onAction="#handleCancelButtonClick"/>
 		<Button text="Randomise" fx:id="randomiseButton" 
 			    onAction="#handleRandomiseButtonPressed"/>
-		<Button text="Clean" fx:id="cleanButton"/>
+		<Button text="Clean" fx:id="cleanButton"
+				onAction="#handleCleanButtonClick"/>
 	</HBox>
 </VBox>
