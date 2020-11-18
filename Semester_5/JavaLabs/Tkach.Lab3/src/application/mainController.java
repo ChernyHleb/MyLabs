@@ -28,6 +28,7 @@ public class mainController implements IController {
 	public Button editHumanButton;
 	public Button deleteHumanButton;
 	public Button infoHumanButton;
+	public Button resetButton;
 	
 	public TableView<Human> dataTableView;
 	public TableColumn<Human, String> humanTypeTableColumn;
@@ -89,7 +90,14 @@ public class mainController implements IController {
 		}
 		else {
 			DeleteHumanController controller = (DeleteHumanController)loadWindow("DeleteHumanView.fxml", "Delete Human");
-		    controller.humanLabel.setText(String.format("Do you really want to delete %s %s ?", selectedHuman.get_firstName(), selectedHuman.get_lastName()));
+		    controller.humanLabel.setText(
+		    	String.format(
+		    		"Do you really want to delete %s %s ?", 
+		    		selectedHuman.get_firstName(), 
+		    		selectedHuman.get_lastName()
+		    	)
+		    );
+		    controller.chosedHuman = selectedHuman;
 		}
 	}
 	
@@ -117,6 +125,10 @@ public class mainController implements IController {
 		}
 		
 		return controller;
+	}
+	
+	public void handleResetButtonPressed() {
+		this.ShowPeople();
 	}
 	
 	public void handleHumanTypeComboBoxChoose() throws IOException{

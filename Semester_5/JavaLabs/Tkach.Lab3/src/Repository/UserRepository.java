@@ -51,4 +51,16 @@ public class UserRepository implements IRepository<User>{
 		return users;
 	}
 
+	@Override
+	public void Delete(UUID entityId, String FileName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void DeleteAll(String FileName) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

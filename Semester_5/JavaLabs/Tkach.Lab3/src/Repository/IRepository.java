@@ -10,4 +10,6 @@ public interface IRepository<T> {
 	public void SaveToTextFile(T entity, String FileName);
 	public void SaveToTextFile(ArrayList<T> entities, String FileName);
 	public ArrayList<T> LoadAllFromTextFile(String FileName);
+	public void Delete(UUID entityId, String FileName);
+	public void DeleteAll(String FileName);
 }

@@ -5,8 +5,14 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
+import Model.CoolParent;
 import Model.Gender;
+import Model.Human;
+import Model.HumanType;
+import Model.Nerd;
+import Model.Parent;
 import Model.Semester;
+import Model.Student;
 import Model.Subject;
 import Model.User;
 import Model.UserType;
@@ -62,12 +68,12 @@ public class Randomiser {
 	
 	public static String rndSubjectName()
 	{
-		return subjectNames.get((int)rndDouble(subjectNames.size() - 1));
+		return subjectNames.get((int)rndDouble(subjectNames.size()));
 	}
 	
 	public static String rndPatronymic()
 	{
-		return maleNames.get((int)rndDouble(Randomiser.maleNames.size() - 1));
+		return maleNames.get((int)rndDouble(Randomiser.maleNames.size()));
 	}
 	
 	public static String rndLastName()
@@ -79,17 +85,17 @@ public class Randomiser {
 	{
 		if(gender == Gender.Male)
 		{
-			return Randomiser.maleNames.get((int)rndDouble(Randomiser.maleNames.size() - 1));
+			return Randomiser.maleNames.get((int)rndDouble(Randomiser.maleNames.size()));
 		}
 		else
 		{
-			return Randomiser.femaleNames.get((int)rndDouble(Randomiser.femaleNames.size() - 1));
+			return Randomiser.femaleNames.get((int)rndDouble(Randomiser.femaleNames.size()));
 		}
 	}
 	
 	public static Gender rndGender()
 	{	
-		if(rndDouble(1) == 1)
+		if((int)rndDouble(2) == 1)
 		{
 			return Gender.Male;
 		}
@@ -119,9 +125,9 @@ public class Randomiser {
 	
 	public static User rndUser()
 	{
-		String name = userNames.get((int)rndDouble(userNames.size() - 1));
+		String name = userNames.get((int)rndDouble(userNames.size()));
 		String password = rndString(10);
-		UserType type = UserType.values()[(int)rndDouble(UserType.values().length - 1)];
+		UserType type = UserType.values()[(int)rndDouble(UserType.values().length)];
 		return new User(name, password, type);
 	}
 	
@@ -137,6 +143,28 @@ public class Randomiser {
 	      .toString();
 	 
 	    return generatedString;
+	}
+	
+	public static Human rndHuman() {
+		HumanType type = HumanType.values()[(int)rndDouble(HumanType.values().length)];
+		Human human = null;
+		
+		switch(type) {
+		case STUDENT:
+			human = new Student();
+			break;
+		case PARENT:
+			human = new Parent();
+			break;
+		case NERD:
+			human = new Nerd();
+			break;
+		case COOLPARENT:
+			human = new CoolParent();
+			break;
+		}
+		
+		return human;
 	}
 	
 	public static ArrayList<String> getUserNames() {
