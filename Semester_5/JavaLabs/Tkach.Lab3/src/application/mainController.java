@@ -58,6 +58,8 @@ public class mainController implements IController {
 	public void ShowPeople(){
 		ObservableList<Human> list = this.getHumans();
 		
+		
+		
 		this.humanTypeTableColumn.setCellValueFactory(new PropertyValueFactory<Human, String>("_humanType"));
 		this.humanNameTableColumn.setCellValueFactory(new PropertyValueFactory<Human, String>("_firstName"));
 		this.humanLastNameTableColumn.setCellValueFactory(new PropertyValueFactory<Human, String>("_lastName"));

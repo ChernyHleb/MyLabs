@@ -20,4 +20,11 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/Repository/humanDataBase.txt</name>
+			<type>1</type>
+			<location>C:/Users/popov/MyLabs/MyLabs/Semester_5/JavaLabs/Tkach.Lab3/src/Repository/humanDataBase.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>
