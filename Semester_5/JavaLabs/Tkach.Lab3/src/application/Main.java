@@ -20,8 +20,8 @@ public class Main extends Application {
 			
 			
 			Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
-			mainWindow.setTitle("Hello world!");
-			Scene scene = new Scene(root, 750, 400);
+			mainWindow.setTitle("Lab 3");
+			Scene scene = new Scene(root, 900, 400);
 			mainWindow.setScene(scene);
 			mainWindow.show();
 		} catch(Exception e) {

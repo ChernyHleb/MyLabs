@@ -14,7 +14,7 @@ public class DeleteHumanController implements IController{
 	
 	public void handleSubmitButtonClick()
 	{
-		new HumanRepository().Delete(chosedHuman.get_id(), "humanDataBase.txt");
+		new HumanRepository().Delete(chosedHuman.get_id());
 		Stage stage = (Stage) submitButton.getScene().getWindow();
 	    stage.close();
 	}

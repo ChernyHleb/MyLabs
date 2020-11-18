@@ -15,50 +15,36 @@ import Services.FileIOService;
 public class UserRepository implements IRepository<User>{
 
 	@Override
-	public User LoadFromTextFile(UUID entityId, String FileName) {
+	public User LoadFromTextFile(UUID entityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void SaveToTextFile(User entity, String FileName) {
+	public void SaveToTextFile(User entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void SaveToTextFile(ArrayList<User> entities, String FileName) {
+	public void SaveToTextFile(ArrayList<User> entities) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public ArrayList<User> LoadAllFromTextFile(String FileName) {
-		URL url = getClass().getResource(FileName);
-		String path = url.getPath();
-		
-		ArrayList<User> users = new ArrayList<User>();
-		ArrayList<String> fileData = FileIOService.ReadFromFile(path);
-		
-		try {
-			for(String str : fileData) {
-				users.add(new User(str));
-			}
-		} 
-		catch(Exception e) {
-			
-		}
-		return users;
+	public ArrayList<User> LoadAllFromTextFile() {
+		return null;
 	}
 
 	@Override
-	public void Delete(UUID entityId, String FileName) {
+	public void Delete(UUID entityId) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void DeleteAll(String FileName) {
+	public void DeleteAll() {
 		// TODO Auto-generated method stub
 		
 	}
