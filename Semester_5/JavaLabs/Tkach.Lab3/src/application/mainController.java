@@ -28,6 +28,7 @@ public class mainController implements IController {
 	public Button editHumanButton;
 	public Button deleteHumanButton;
 	public Button infoHumanButton;
+	public Button resetButton;
 	
 	public TableView<Human> dataTableView;
 	public TableColumn<Human, String> humanTypeTableColumn;
@@ -124,6 +125,10 @@ public class mainController implements IController {
 		}
 		
 		return controller;
+	}
+	
+	public void handleResetButtonPressed() {
+		this.ShowPeople();
 	}
 	
 	public void handleHumanTypeComboBoxChoose() throws IOException{

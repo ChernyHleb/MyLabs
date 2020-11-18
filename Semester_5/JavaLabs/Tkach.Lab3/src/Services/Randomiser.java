@@ -5,8 +5,14 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
+import Model.CoolParent;
 import Model.Gender;
+import Model.Human;
+import Model.HumanType;
+import Model.Nerd;
+import Model.Parent;
 import Model.Semester;
+import Model.Student;
 import Model.Subject;
 import Model.User;
 import Model.UserType;
@@ -89,7 +95,7 @@ public class Randomiser {
 	
 	public static Gender rndGender()
 	{	
-		if(rndDouble(1) == 1)
+		if((int)rndDouble(2) == 1)
 		{
 			return Gender.Male;
 		}
@@ -137,6 +143,28 @@ public class Randomiser {
 	      .toString();
 	 
 	    return generatedString;
+	}
+	
+	public static Human rndHuman() {
+		HumanType type = HumanType.values()[(int)rndDouble(HumanType.values().length - 1)];
+		Human human = null;
+		
+		switch(type) {
+		case STUDENT:
+			human = new Student();
+			break;
+		case PARENT:
+			human = new Parent();
+			break;
+		case NERD:
+			human = new Nerd();
+			break;
+		case COOLPARENT:
+			human = new CoolParent();
+			break;
+		}
+		
+		return human;
 	}
 	
 	public static ArrayList<String> getUserNames() {
