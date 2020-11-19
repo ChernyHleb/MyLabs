@@ -1,2 +1,6 @@
 620d5e3b-2b26-493d-b0f6-b718247ec6dd DungeonMaster 123 ROOT
 8df5ebdd-0f8c-4942-8b52-9272fe85da5e Overlord qwerty USER
+6a350309-1b3d-41e6-b7fc-620e598ebb39 EteSech 333 USER
+1d492e8c-e25d-4077-9323-f19a67492224 ElPepe password USER
+e48e3b1e-0846-41e2-8da4-cf96876b25d3 123 123 ROOT
+e2852fae-adf0-4141-aa3d-829c6e85c880 doggo 666 ROOT

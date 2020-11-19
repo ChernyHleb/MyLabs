@@ -9,6 +9,7 @@
 		  fx:controller="application.mainController">
 	<HBox>
 		<HBox alignment="center">
+			<!-- 
 			<ComboBox value="All" fx:id="humanTypeComboBox"
 					  onAction="#handleHumanTypeComboBoxChoose">
 				<items>
@@ -21,19 +22,31 @@
 					</FXCollections>
 				</items>
 			</ComboBox>
+			 -->
 			<Button fx:id="addHumanButton" onAction="#handleAddHumanButtonPressed">Add</Button>
 			<Button fx:id="editHumanButton" onAction="#handleEditButtonPressed">Edit</Button>
 			<Button fx:id="deleteHumanButton" onAction="#handleDeleteHumanButtonPressed">Delete</Button>
-			<Button fx:id="infoHumanButton">Info</Button>
+			<!-- <Button fx:id="infoHumanButton">Info</Button> -->
 			<Button fx:id="resetButton" onAction="#handleResetButtonPressed">Reset</Button>
-			<Label><text>Logging:</text></Label>
-			<HBox alignment="center">
-		    	<RadioButton fx:id="LoggingOn" text="On" toggleGroup="$LoggingMode"/>
-		    	<RadioButton fx:id="LoggingOff" text="Off" toggleGroup="$LoggingMode"/>
-			</HBox>
-			<Button fx:id="manageUsersButton">Manage Users</Button>
+			
+			<Label>Current user: </Label>
 			<Label fx:id="userNameLabel" text="UserName"/>
 			<Label fx:id="userTypeLabel" text="UserType"/>
+			
+			<HBox fx:id="rootFunctionsHBox" alignment="center">
+				<Label text="Logging: "/>
+				<HBox alignment="center">
+			    	<RadioButton fx:id="LoggingOn" text="On " toggleGroup="$LoggingMode"/>
+			    	<RadioButton fx:id="LoggingOff" text="Off " toggleGroup="$LoggingMode"/>
+				</HBox>
+				<Label text="Tests: "/>
+				<HBox alignment="center">
+			    	<RadioButton fx:id="TestsOn" text="On " toggleGroup="$TestsMode"/>
+			    	<RadioButton fx:id="TestsOff" text="Off " toggleGroup="$TestsMode"/>
+				</HBox>
+			</HBox>
+			
+			<!--<Button fx:id="manageUsersButton">Manage Users</Button>-->
 		</HBox>
 	</HBox>
 	

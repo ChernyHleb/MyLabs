@@ -9,14 +9,17 @@ import Model.Nerd;
 import Model.Student;
 import Model.Parent;
 import Services.FileIOService;
+import Services.LoggerService;
 
 public class HumanRepository implements IRepository<Human>{
 	private String currentDir;
 	private String databaseFilePath;
+	private String databaseFileName;
 	
 	public HumanRepository() {
+		this.databaseFileName = "humanDataBase.txt";
 		this.currentDir = System.getProperty("user.dir");
-		this.databaseFilePath = currentDir + "/src/Repository/humanDataBase.txt";
+		this.databaseFilePath = currentDir + "/src/Repository/" + this.databaseFileName;
 	}
 
 	@Override
@@ -27,11 +30,13 @@ public class HumanRepository implements IRepository<Human>{
 
 	@Override
 	public void SaveToTextFile(Human entity) {
+		LoggerService.WriteToLog(String.format("%s %s", "Write to", databaseFileName));
 		FileIOService.WriteToFile(databaseFilePath, entity.SerializeToString(), true);	
 	}
 
 	@Override
 	public void SaveToTextFile(ArrayList<Human> entities) {
+		LoggerService.WriteToLog(String.format("%s %s", "Write to", databaseFileName));
 		ArrayList<String> serializedHumans = new ArrayList<String>();
 		for(Human entity : entities) {
 			serializedHumans.add(entity.SerializeToString());
@@ -41,6 +46,7 @@ public class HumanRepository implements IRepository<Human>{
 
 	@Override
 	public ArrayList<Human> LoadAllFromTextFile() {
+		LoggerService.WriteToLog(String.format("%s %s", "Read from", databaseFileName));
 		ArrayList<Human> people = new ArrayList<Human>();
 		ArrayList<String> fileData = FileIOService.ReadFromFile(databaseFilePath);
 		
@@ -71,6 +77,7 @@ public class HumanRepository implements IRepository<Human>{
 
 	@Override
 	public void Delete(UUID entityId) {
+		LoggerService.WriteToLog(String.format("%s %s", "Deleting from", databaseFileName));
 		ArrayList<Human> people = LoadAllFromTextFile();
 		for(int i = 0; i < people.size(); i++) {
 			if(people.get(i).get_id().equals(entityId)) {
@@ -84,6 +91,7 @@ public class HumanRepository implements IRepository<Human>{
 
 	@Override
 	public void DeleteAll() {
+		LoggerService.WriteToLog(String.format("%s %s", "Deleting all data from", databaseFileName));
 		FileIOService.WriteToFile(databaseFilePath, "", false);
 	}
 

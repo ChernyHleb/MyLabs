@@ -26,7 +26,7 @@ public class Randomiser {
 			"Amelia", "Mia", "Harper", "Evelyn"));
 	private static ArrayList<String> lastNames = new ArrayList<String>(Arrays.asList(
 			"Abe", "Abell", "Abler", "Bach", "Backer", "Cabot", "Cady",
-			"D’Errico", "D’Antoni", "Da Pra", "Eash", "Eaton", "Eakes",
+			"D’Errico", "D’Antoni", "DaPra", "Eash", "Eaton", "Eakes",
 			"Fabris", "Fagg"));
 	private static ArrayList<String> subjectNames = new ArrayList<String>(Arrays.asList(
 			"Maths", "English", "Java", "Physics", "Chemistry", "Geography",

@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import Model.Gender;
 import Model.Human;
+import Model.User;
+import Model.UserType;
 import Repository.HumanRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,9 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class mainController implements IController {
@@ -39,8 +43,14 @@ public class mainController implements IController {
 	public TableColumn<Human, UUID> uuidTableColumn;
 	
 	public ObservableList<Human> people;
+	private User currentUser;
 	
 	public HumanRepository humanRepository = new HumanRepository();
+	
+	public Label userNameLabel;
+	public Label userTypeLabel;
+	
+	public HBox rootFunctionsHBox;
 	
 	@FXML
 	public void initialize()
@@ -153,5 +163,19 @@ public class mainController implements IController {
 		
 		insertHumanGridPane.getChildren().setAll(newGridPane);
 		*/
+	}
+	
+	
+
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+		userNameLabel.setText(currentUser.getName());
+		userTypeLabel.setText(currentUser.getType().toString());
+		if(!currentUser.getType().equals(UserType.ROOT))
+			this.rootFunctionsHBox.setVisible(false);
 	}
 }

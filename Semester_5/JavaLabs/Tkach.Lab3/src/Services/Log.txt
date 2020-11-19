@@ -1,0 +1,133 @@
+19.11.2020 20:01:19 Write to userDataBase.txt
+19.11.2020 20:01:26 Read from userDataBase.txt
+19.11.2020 20:01:26 Read from humanDataBase.txt
+19.11.2020 20:01:26 Read from userDataBase.txt
+19.11.2020 20:01:26 Read from userDataBase.txt
+19.11.2020 20:01:26 
+~~~
+PROGRAM STARTED BY doggo
+19.11.2020 20:01:31 Deleting from humanDataBase.txt
+19.11.2020 20:01:31 Read from humanDataBase.txt
+19.11.2020 20:01:31 Deleting all data from humanDataBase.txt
+19.11.2020 20:01:31 Write to humanDataBase.txt
+19.11.2020 20:01:33 Read from humanDataBase.txt
+19.11.2020 20:01:37 Write to humanDataBase.txt
+19.11.2020 20:01:38 Read from humanDataBase.txt
+19.11.2020 20:01:40 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:09:39 Read from userDataBase.txt
+19.11.2020 20:09:39 Read from humanDataBase.txt
+19.11.2020 20:09:39 Read from userDataBase.txt
+19.11.2020 20:09:39 Read from userDataBase.txt
+19.11.2020 20:09:39 
+~~~
+PROGRAM STARTED BY DungeonMaster
+19.11.2020 20:09:55 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:11:01 Read from userDataBase.txt
+19.11.2020 20:11:01 Read from humanDataBase.txt
+19.11.2020 20:11:01 Read from userDataBase.txt
+19.11.2020 20:11:01 Read from userDataBase.txt
+19.11.2020 20:11:01 
+~~~
+PROGRAM STARTED BY 123
+19.11.2020 20:11:10 Write to humanDataBase.txt
+19.11.2020 20:11:12 Read from humanDataBase.txt
+19.11.2020 20:11:34 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:12:43 Read from userDataBase.txt
+19.11.2020 20:12:43 Read from humanDataBase.txt
+19.11.2020 20:12:43 Read from userDataBase.txt
+19.11.2020 20:12:43 Read from userDataBase.txt
+19.11.2020 20:12:43 
+~~~
+PROGRAM STARTED BY 123
+19.11.2020 20:13:03 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:13:55 Read from userDataBase.txt
+19.11.2020 20:13:55 Read from humanDataBase.txt
+19.11.2020 20:13:55 Read from userDataBase.txt
+19.11.2020 20:13:55 Read from userDataBase.txt
+19.11.2020 20:13:55 
+~~~
+PROGRAM STARTED BY 123
+19.11.2020 20:14:29 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:21:40 Read from userDataBase.txt
+19.11.2020 20:21:40 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:23:28 Read from userDataBase.txt
+19.11.2020 20:23:28 Read from humanDataBase.txt
+19.11.2020 20:23:28 Read from userDataBase.txt
+19.11.2020 20:23:28 Read from userDataBase.txt
+19.11.2020 20:23:28 
+~~~
+PROGRAM STARTED BY EteSech
+19.11.2020 20:23:35 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:23:40 Read from userDataBase.txt
+19.11.2020 20:23:40 Read from humanDataBase.txt
+19.11.2020 20:23:40 Read from userDataBase.txt
+19.11.2020 20:23:40 Read from userDataBase.txt
+19.11.2020 20:23:40 
+~~~
+PROGRAM STARTED BY 123
+19.11.2020 20:23:46 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:26:03 Read from userDataBase.txt
+19.11.2020 20:26:03 Read from humanDataBase.txt
+19.11.2020 20:26:03 Read from userDataBase.txt
+19.11.2020 20:26:03 Read from userDataBase.txt
+19.11.2020 20:26:03 
+~~~
+PROGRAM STARTED BY 123
+19.11.2020 20:26:06 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:32:11 Read from userDataBase.txt
+19.11.2020 20:32:11 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:34:15 Read from userDataBase.txt
+19.11.2020 20:34:15 Read from humanDataBase.txt
+19.11.2020 20:34:15 Read from userDataBase.txt
+19.11.2020 20:34:15 Read from userDataBase.txt
+19.11.2020 20:34:15 
+~~~
+PROGRAM STARTED BY 123
+19.11.2020 20:34:25 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:34:37 Read from userDataBase.txt
+19.11.2020 20:34:37 Read from humanDataBase.txt
+19.11.2020 20:34:38 Read from userDataBase.txt
+19.11.2020 20:34:38 Read from userDataBase.txt
+19.11.2020 20:34:38 
+~~~
+PROGRAM STARTED BY 123
+19.11.2020 20:34:40 APPLICAITON STOPPED
+~~~
+
+19.11.2020 20:34:51 Read from userDataBase.txt
+19.11.2020 20:34:51 Read from humanDataBase.txt
+19.11.2020 20:34:51 Read from userDataBase.txt
+19.11.2020 20:34:51 Read from userDataBase.txt
+19.11.2020 20:34:51 
+~~~
+PROGRAM STARTED BY EteSech
+19.11.2020 20:34:59 Deleting from humanDataBase.txt
+19.11.2020 20:34:59 Read from humanDataBase.txt
+19.11.2020 20:34:59 Deleting all data from humanDataBase.txt
+19.11.2020 20:34:59 Write to humanDataBase.txt
+19.11.2020 20:35:02 Read from humanDataBase.txt
+19.11.2020 20:35:03 APPLICAITON STOPPED
+~~~
+

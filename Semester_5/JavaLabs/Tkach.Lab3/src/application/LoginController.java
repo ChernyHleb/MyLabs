@@ -1,5 +1,9 @@
 package application;
 
+import Model.User;
+import Model.UserType;
+import Repository.UserRepository;
+import Services.LoggerService;
 import Services.Validator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +23,7 @@ public class LoginController implements IController{
 	
 	public void handleLogInButtonClick() {
 		if(Validator.LogInValidation(loginTextField.getText(), passwordField.getText())) {
-			this.loadMainWindow();
+			loadMainWindow();
 			Stage stage = (Stage) logInButton.getScene().getWindow();
 		    stage.close();
 		}
@@ -33,9 +37,15 @@ public class LoginController implements IController{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("mainView.fxml"));
 			Parent parent = loader.load();
 			
+			mainController controller = (mainController)loader.getController();
+			UserRepository repo = new UserRepository();
+			User user = repo.LoadFromTextFile(this.loginTextField.getText());
+			controller.setCurrentUser(user);
+			LoggerService.WriteToLog(String.format("\n~~~\n%s %s", "PROGRAM STARTED BY", user.getName()));
+			
 			Stage stage = new Stage();
 			stage.setTitle("Lab 3");
-			Scene scene = new Scene(parent);
+			Scene scene = new Scene(parent, 900, 400);
 			stage.setScene(scene);
 			stage.show();
 		} catch(Exception e) {

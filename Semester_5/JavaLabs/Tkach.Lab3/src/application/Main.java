@@ -2,6 +2,7 @@ package application;
 	
 import java.io.IOException;
 
+import Services.LoggerService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -20,7 +21,6 @@ public class Main extends Application {
 		try {
 			mainWindow = primaryStage;
 			mainWindow.setTitle("Lab 3");
-			//setMainView();
 			setLoginView();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class Main extends Application {
 		try {
 			Parent root;
 			root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
-			Scene scene = new Scene(root, 300, 100);
+			Scene scene = new Scene(root, 300, 120);
 			mainWindow.setScene(scene);
 			mainWindow.show();
 		} catch (IOException e) {
@@ -49,6 +49,11 @@ public class Main extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void stop(){
+	    LoggerService.WriteToLog("APPLICAITON STOPPED\n~~~\n");
 	}
 	
 	public static void main(String[] args) {
