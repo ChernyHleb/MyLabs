@@ -7,7 +7,7 @@
 		  fx:controller="application.LoginController">
 	
 	<Label text="HI! INSERT YOUR LOGIN AND PASSWORD"/>
-	
+	<Label text="" fx:id="alertLabel"/>
 	<HBox>
 		<Label text="Login:"/>
 		<TextField fx:id="loginTextField"/>

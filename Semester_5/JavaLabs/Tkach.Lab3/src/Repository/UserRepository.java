@@ -58,5 +58,4 @@ public class UserRepository implements IRepository<User>{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

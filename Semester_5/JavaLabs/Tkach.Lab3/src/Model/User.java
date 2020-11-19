@@ -33,8 +33,6 @@ public class User {
 		this.type = UserType.valueOf(strArr[3]);
 	}
 	
-	
-	
 	public UUID getId() {
 		return id;
 	}
