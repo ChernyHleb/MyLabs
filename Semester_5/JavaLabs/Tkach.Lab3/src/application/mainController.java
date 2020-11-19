@@ -109,7 +109,7 @@ public class mainController implements IController {
 	}
 	
 	//загружает окно и возвращает связанный с ним контроллер
-	private IController loadWindow(String resource, String title){
+	public IController loadWindow(String resource, String title){
 		IController controller = null;
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
