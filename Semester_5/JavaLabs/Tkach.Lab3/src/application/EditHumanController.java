@@ -1,36 +1,30 @@
 package application;
 
-import java.time.ZoneId;
+import java.util.UUID;
 
 import Model.Human;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import Repository.HumanRepository;
+import javafx.stage.Stage;
 
-public class EditHumanController implements IController{
-	public TextField firstNameTextField, 
-	 lastNameTextField,
-	 patrobymicTextField,
-	 moneyTextField;
+public class EditHumanController extends addHumanController implements IController{
+	private UUID oldHumanId = null; 
+	
+	@Override
+	public void handleSubmitButtonClick() {
+		Human human = getHuman();
+		human.set_id(oldHumanId);
+		HumanRepository repo = new HumanRepository();
+		repo.Delete(oldHumanId);
+		repo.SaveToTextFile(human);
+		Stage stage = (Stage) submitButton.getScene().getWindow();
+	    stage.close();
+	}
 
-	public ComboBox<String> genderComboBox;
-	public ComboBox<String> humanTypeComboBox;
-	
-	public DatePicker birthdayDatePicker;
-	
-	public Button randomiseButton,
-	 cleanButton,
-	 addHumanButton,
-	 cancelButton;
-	
-	public void setHumanForEditing(Human human) {
-		this.firstNameTextField.setText(human.get_firstName());
-		this.lastNameTextField.setText(human.get_lastName());
-		this.patrobymicTextField.setText(human.get_patronymic());
-		this.moneyTextField.setText(human.get_moneyAmount().toString());
-		this.genderComboBox.setValue(human.get_gender().toString());
-		this.humanTypeComboBox.setValue(human.get_humanType());
-		this.birthdayDatePicker.setValue(human.get_birthDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	public UUID getOldHumanId() {
+		return oldHumanId;
+	}
+
+	public void setOldHumanId(UUID oldHumanId) {
+		this.oldHumanId = oldHumanId;
 	}
 }

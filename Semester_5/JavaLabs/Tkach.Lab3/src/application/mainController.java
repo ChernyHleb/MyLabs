@@ -80,7 +80,8 @@ public class mainController implements IController {
 		}
 		else {
 			EditHumanController controller = (EditHumanController)loadWindow("editHumanView.fxml", "Edit Human");
-			controller.setHumanForEditing(selectedHuman);
+			controller.setHuman(selectedHuman);
+			controller.setOldHumanId(selectedHuman.get_id());
 		}
 	}
 	

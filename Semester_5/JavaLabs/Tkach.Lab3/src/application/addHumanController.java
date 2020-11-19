@@ -38,10 +38,10 @@ public class addHumanController implements IController {
 	
 	public void handleRandomiseButtonPressed() {
 		Human human = Randomiser.rndHuman();
-		setHumanForAdding(human);
+		setHuman(human);
 	}
 	
-	public void setHumanForAdding(Human human) {
+	public void setHuman(Human human) {
 		this.firstNameTextField.setText(human.get_firstName());
 		this.lastNameTextField.setText(human.get_lastName());
 		this.patrobymicTextField.setText(human.get_patronymic());
@@ -72,7 +72,7 @@ public class addHumanController implements IController {
 	    stage.close();
 	}
 	
-	private Human getHuman() {
+	protected Human getHuman() {
 		Human human = null;
 		
 		String firstName = this.firstNameTextField.getText();
