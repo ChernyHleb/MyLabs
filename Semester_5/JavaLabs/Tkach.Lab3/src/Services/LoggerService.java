@@ -10,7 +10,6 @@ public class LoggerService {
 	private static String currentDirectory;
 	
 	static {
-		Enable();
 		currentDirectory = System.getProperty("user.dir");
 		pathToLog = currentDirectory + "/src/Services/Log.txt";
 	}
@@ -34,8 +33,8 @@ public class LoggerService {
 	}
 
 	public static void Enable() {
-		WriteToLog("LOGGER ENABLED");
 		LoggerService.enabled = true;
+		WriteToLog("LOGGER ENABLED");
 	}
 	
 	public static void Disable() {

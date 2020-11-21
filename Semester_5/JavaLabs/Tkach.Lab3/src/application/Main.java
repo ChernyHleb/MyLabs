@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 import Services.LoggerService;
+import Services.ProgramSettingsService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -19,6 +20,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			ProgramSettingsService.LoadProperties();
+			ProgramSettingsService.ImplementSettings();
 			mainWindow = primaryStage;
 			mainWindow.setTitle("Lab 3");
 			setLoginView();

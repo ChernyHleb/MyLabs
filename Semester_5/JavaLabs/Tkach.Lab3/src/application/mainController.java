@@ -10,6 +10,7 @@ import Model.User;
 import Model.UserType;
 import Repository.HumanRepository;
 import Services.LoggerService;
+import Services.ProgramSettingsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -67,9 +68,11 @@ public class mainController implements IController {
 	public void initialize()
 	{
 		this.ShowPeople();
-		//LoggingMode = new ToggleGroup();
-		//LoggingOn.setToggleGroup(LoggingMode);
-		//LoggingOff.setToggleGroup(LoggingMode);
+		if(ProgramSettingsService.getProperties().getProperty("main.logging").equals("1")) {
+			LoggingMode.selectToggle(LoggingOn);
+		} else {
+			LoggingMode.selectToggle(LoggingOff);
+		}
 	}
 	
 	// loading human collection from text file to observableList
