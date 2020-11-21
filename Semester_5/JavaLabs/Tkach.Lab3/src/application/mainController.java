@@ -9,6 +9,7 @@ import Model.Human;
 import Model.User;
 import Model.UserType;
 import Repository.HumanRepository;
+import Services.LoggerService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,19 +19,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class mainController implements IController {
 	public ComboBox<String> humanTypeComboBox;
-	public Button addHumanButton;
-	public Button editHumanButton;
-	public Button deleteHumanButton;
-	public Button infoHumanButton;
-	public Button resetButton;
+	public Button addHumanButton,
+				  editHumanButton,
+				  deleteHumanButton,
+			      infoHumanButton,
+			      resetButton;
 	
 	public TableView<Human> dataTableView;
 	public TableColumn<Human, String> humanTypeTableColumn;
@@ -47,15 +50,26 @@ public class mainController implements IController {
 	
 	public HumanRepository humanRepository = new HumanRepository();
 	
-	public Label userNameLabel;
-	public Label userTypeLabel;
+	public Label userNameLabel,
+				 userTypeLabel;
 	
 	public HBox rootFunctionsHBox;
+	
+	public ToggleGroup LoggingMode,
+					   TestMode;
+	
+	public RadioButton LoggingOn,
+					   LoggingOff,
+					   TestsOn,
+					   TestsOff;
 	
 	@FXML
 	public void initialize()
 	{
 		this.ShowPeople();
+		//LoggingMode = new ToggleGroup();
+		//LoggingOn.setToggleGroup(LoggingMode);
+		//LoggingOff.setToggleGroup(LoggingMode);
 	}
 	
 	// loading human collection from text file to observableList
@@ -177,5 +191,13 @@ public class mainController implements IController {
 		userTypeLabel.setText(currentUser.getType().toString());
 		if(!currentUser.getType().equals(UserType.ROOT))
 			this.rootFunctionsHBox.setVisible(false);
+	}
+	
+	public void handleLoggingOnRadioButtonClick() {
+		LoggerService.Enable();
+	}
+	
+	public void handleLoggingOffRadioButtonClick() {
+		LoggerService.Disable();
 	}
 }

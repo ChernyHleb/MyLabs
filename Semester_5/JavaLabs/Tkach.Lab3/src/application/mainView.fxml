@@ -7,6 +7,11 @@
 <VBox alignment="center" xmlns="http://javafx.com/javafx/@"
 		  xmlns:fx="http://javafx.com/fxml"
 		  fx:controller="application.mainController">
+	<fx:define>
+		<ToggleGroup fx:id="LoggingMode"/>
+		<ToggleGroup fx:id="TestMode"/>
+	</fx:define>	  
+	
 	<HBox>
 		<HBox alignment="center">
 			<!-- 
@@ -36,13 +41,13 @@
 			<HBox fx:id="rootFunctionsHBox" alignment="center">
 				<Label text="Logging: "/>
 				<HBox alignment="center">
-			    	<RadioButton fx:id="LoggingOn" text="On " toggleGroup="$LoggingMode"/>
-			    	<RadioButton fx:id="LoggingOff" text="Off " toggleGroup="$LoggingMode"/>
+			    	<RadioButton fx:id="LoggingOn" text="On " toggleGroup="$LoggingMode" onAction="#handleLoggingOnRadioButtonClick"/>
+			    	<RadioButton fx:id="LoggingOff" text="Off " toggleGroup="$LoggingMode" onAction="#handleLoggingOffRadioButtonClick"/>
 				</HBox>
 				<Label text="Tests: "/>
 				<HBox alignment="center">
-			    	<RadioButton fx:id="TestsOn" text="On " toggleGroup="$TestsMode"/>
-			    	<RadioButton fx:id="TestsOff" text="Off " toggleGroup="$TestsMode"/>
+			    	<RadioButton fx:id="TestsOn" text="On " toggleGroup="$TestMode"/>
+			    	<RadioButton fx:id="TestsOff" text="Off " toggleGroup="$TestMode"/>
 				</HBox>
 			</HBox>
 			
