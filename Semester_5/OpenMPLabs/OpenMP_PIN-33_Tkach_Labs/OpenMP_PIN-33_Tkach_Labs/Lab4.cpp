@@ -2,7 +2,7 @@
 
 void Lab4::Demonstrate()
 {
-	for (int dim = 5; dim < 15626; dim *= 5)
+	for (int dim = 6; dim < 7776 + 1; dim *= 6)
 	{
 		std::cout << GetStatistics(dim) << std::endl;
 	}
@@ -26,21 +26,11 @@ std::string Lab4::GetStatistics(int dim)
 	output += "~~RESULT: " + std::to_string(result) + "\n";
 
 	timerStart = std::chrono::high_resolution_clock::now();
-	result = FuncWithReduction(matrixA, matrixB);
+	result = FuncWithSections(matrixA, matrixB);
 	timerStop = std::chrono::high_resolution_clock::now();
-	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
 
-	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
-	output += "~~With Reduction: " + std::to_string(duration) + " nanoSec\n";
-	output += "~~RESULT: " + std::to_string(result) + "\n";
-
-	timerStart = std::chrono::high_resolution_clock::now();
-	result = FuncWithSync(matrixA, matrixB);
-	timerStop = std::chrono::high_resolution_clock::now();
-	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
-
-	duration = std::chrono::duration_cast<std::chrono::microseconds>(timerStop - timerStart).count();
-	output += "~~With Sync: " + std::to_string(duration) + " nanoSec\n";
+	duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timerStop - timerStart).count();
+	output += "~~With Sections: " + std::to_string(duration) + " nanoSec\n";
 	output += "~~RESULT: " + std::to_string(result) + "\n";
 	
 	return output;
@@ -124,6 +114,130 @@ int64_t Lab4::FuncWithSync(Matrix* matrixA, Matrix* matrixB)
 #pragma omp critical
 				if (temp > 1)
 					sum += temp;
+			}
+		}
+	}
+	return sum;
+}
+
+int64_t Lab4::FuncWithSections(Matrix* matrixA, Matrix* MatrixB)
+{
+	int64_t sum = 0;
+	int i, j, temp;
+	int dim = matrixA->N;
+	int** A, ** B;
+
+#pragma omp parallel 
+	{
+	#pragma omp sections private(i, j, temp, A, B) reduction(+:sum)
+		{
+		#pragma omp section
+			{
+				for (i = 0; i < dim / 6; i++)
+				{
+					A = matrixA->matrix;
+					B = matrixB->matrix;
+					for (j = 0; j < dim; j++)
+					{
+						int a = A[i][j];
+						int b = B[i][j];
+
+						temp = std::max(a + b, 4 * a - b);
+
+						if (temp > 1)
+							sum += temp;
+					}
+				}
+			}
+		#pragma omp section
+			{
+				for (i = dim / 6; i < dim / 6 * 2; i++)
+				{
+					A = matrixA->matrix;
+					B = matrixB->matrix;
+					for (j = 0; j < dim; j++)
+					{
+						int a = A[i][j];
+						int b = B[i][j];
+
+						temp = std::max(a + b, 4 * a - b);
+
+						if (temp > 1)
+							sum += temp;
+					}
+				}
+			}
+		#pragma omp section
+			{
+				for (i = dim / 6 * 2; i < dim / 6 * 3; i++)
+				{
+					A = matrixA->matrix;
+					B = matrixB->matrix;
+					for (j = 0; j < dim; j++)
+					{
+						int a = A[i][j];
+						int b = B[i][j];
+
+						temp = std::max(a + b, 4 * a - b);
+
+						if (temp > 1)
+							sum += temp;
+					}
+				}
+			}
+		#pragma omp section
+			{
+				for (i = dim / 6 * 3; i < dim / 6 * 4; i++)
+				{
+					A = matrixA->matrix;
+					B = matrixB->matrix;
+					for (j = 0; j < dim; j++)
+					{
+						int a = A[i][j];
+						int b = B[i][j];
+
+						temp = std::max(a + b, 4 * a - b);
+
+						if (temp > 1)
+							sum += temp;
+					}
+				}
+			}
+		#pragma omp section
+			{
+				for (i = dim / 6 * 4; i < dim / 6 * 5; i++)
+				{
+					A = matrixA->matrix;
+					B = matrixB->matrix;
+					for (j = 0; j < dim; j++)
+					{
+						int a = A[i][j];
+						int b = B[i][j];
+
+						temp = std::max(a + b, 4 * a - b);
+
+						if (temp > 1)
+							sum += temp;
+					}
+				}
+			}
+		#pragma omp section
+			{
+				for (i = dim / 6 * 5; i < dim; i++)
+				{
+					A = matrixA->matrix;
+					B = matrixB->matrix;
+					for (j = 0; j < dim; j++)
+					{
+						int a = A[i][j];
+						int b = B[i][j];
+
+						temp = std::max(a + b, 4 * a - b);
+
+						if (temp > 1)
+							sum += temp;
+					}
+				}
 			}
 		}
 	}
