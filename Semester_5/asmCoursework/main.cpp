@@ -3,15 +3,16 @@
 int main()
 {   int a, b, sum;
 
-    a = 5;
-    b = 6;
+    __asm__(
+        mov %a, $5
+        mov %b, $10
+        mov %sum, $0
 
-    sum = a + b;
+        add %sum, %a
+        add %sum, %b
+    );
     
-    std::cout << 3 + 1;
-    std::string user;
-    std::cin >> user;
-    std::cout << "Hello World and " << user << std::endl;
+    std::cout << sum;
 
     return 0;
 }
