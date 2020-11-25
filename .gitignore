@@ -1,3 +1,8 @@
+# Executables
+*.exe
+*.out
+*.app
+
 .metadata
 bin/
 tmp/
@@ -584,7 +589,3 @@ _NCrunch*
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
