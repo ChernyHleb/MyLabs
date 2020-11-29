@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import Services.ExperimentLogger;
 import Services.Randomiser;
@@ -14,8 +15,9 @@ public class Experiment {
 	// etc...
 	private ArrayList<ExperimentLogger> _loggers;
 	//collection of results of all experiments
-	private ArrayList<ExperimentResult> _results;
-
+	private ArrayList<ExperimentResult> _resultsForArrayList;
+	private ArrayList<ExperimentResult> _resultsForLinkedList;
+	
 	public Experiment(int experimentsAmount) {
 		this._experimentsAmount = experimentsAmount;
 		//creating new logs
@@ -26,7 +28,8 @@ public class Experiment {
 			_loggers.add(new ExperimentLogger(String.format("LogFor%d.txt", len)));
 		}
 		//initializing other stuff
-		_results = new ArrayList<ExperimentResult>();
+		_resultsForArrayList = new ArrayList<ExperimentResult>();
+		_resultsForLinkedList = new ArrayList<ExperimentResult>();
 	}
 	
 	//default amount of experiments is 5 [10..100000]
@@ -36,29 +39,56 @@ public class Experiment {
 	
 	// defines amount of elements for each experiment and
 	// collects data to result ArrayList
-	public ArrayList<ExperimentResult> Run() {
+	public void Run() {
 		int elementsAmount = 1;
 		for(int i = 0; i < this._experimentsAmount; i++) {
 			elementsAmount *= 10;
-			_results.add(RunExperiment(String.format("Experiment for %d elements", elementsAmount), elementsAmount));
+			ArrayList<ExperimentResult> results = RunExperiment(
+													String.format("Experiment%d", elementsAmount), 
+													elementsAmount, 
+													_loggers.get(i)
+													);
+			_resultsForArrayList.add(results.get(0));
+			_resultsForLinkedList.add(results.get(1));
+		}
+	}
+
+	//Runs the concrete experiment
+	//The first result is for arrayList
+	//The second result is for linkedList
+	private ArrayList<ExperimentResult> RunExperiment(String name,  
+										   int elementsAmount,
+										   ExperimentLogger logger
+										   ) 
+	{
+		ArrayList<Human> arrayList = new ArrayList<Human>();
+		LinkedList<Human> linkedList  = new LinkedList<Human>();
+		long AvgAddTime = 0;
+		long TotalAddTime = 0;
+		long AddCounter = 0;
+		long AvgRemoveTime = 0;
+		long TotalRemoveTime = 0;
+		long RemoveCounter = 0;
+		
+		long startTime, stopTime, time;
+		
+		// getting results for arrayList
+		for(int i = 0; i < elementsAmount; i ++) {
+			startTime = System.nanoTime();
+			
+			arrayList.add(Randomiser.rndHuman());
+			
+			stopTime = System.nanoTime();
+			time = stopTime - startTime;
+			
+			AddCounter ++;
+			TotalAddTime += time;
 		}
 		
-		return _results;
-	}
-	
-	//Runs the concrete experiment
-	private ExperimentResult RunExperiment(String name, int elementsAmount) {
-		ArrayList<Human> arrayList;
-		LinkedList<Human> linkedList;
-		int AvgAddTime = 0;
-		int TotalAddTime = 0;
-		int AddCounter = 0;
-		int AvgRemoveTime = 0;
-		int TotalRemoveTime = 0;
-		int RemoveCounter = 0;
 		
+		// getting results for linkedList
 		for(int i = 0; i < elementsAmount; i ++) {
-			
+			linkedList.add(Randomiser.rndHuman());
 		}
 		
 		return new ExperimentResult(name,
@@ -71,43 +101,20 @@ public class Experiment {
 									);
 	}
 	
-	public static ArrayList<Human> SpawnArrayList(int capasity) {
-		ArrayList<Human> humans = new ArrayList<Human>();
-		for(int i = 0; i < capasity; i ++) {
-			humans.add(Randomiser.rndHuman());
-		}
-		return humans;
-	}
-	
-	public static LinkedList<Human> SpawnLinkedList(int capasity) {
-		LinkedList<Human> humans = new LinkedList<Human>();
-		for(int i = 0; i < capasity; i ++) {
-			humans.add(Randomiser.rndHuman());
-		}
-		return humans;
-	}
-	
-	private int MeasureAddTime() {
-		
-	}
-	
-	private int MeasureRemoveTime() {
-		
-	}
-	
 	public ArrayList<ExperimentLogger> get_loggers() {
 		return _loggers;
 	}
-
-	public ArrayList<ArrayList<Human>> get_arrayLists() {
-		return _arrayLists;
+	
+	public int get_experimentsAmount() {
+		return _experimentsAmount;
 	}
 
-	public ArrayList<LinkedList<Human>> get_linkedLists() {
-		return _linkedLists;
+	public ArrayList<ExperimentResult> get_resultsForArrayList() {
+		return _resultsForArrayList;
 	}
 
-	public ArrayList<ExperimentResult> get_results() {
-		return _results;
+	public ArrayList<ExperimentResult> get_resultsForLinkedList() {
+		return _resultsForLinkedList;
 	}
+
 }

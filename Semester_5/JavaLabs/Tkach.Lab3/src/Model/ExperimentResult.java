@@ -3,21 +3,21 @@ package Model;
 public class ExperimentResult {
 	public String experimentName;
 	//results of full experiment for add operation
-	private int AvgAddTime;
-	private int TotalAddTime;
-	private int AddCounter;
+	private long AvgAddTime;
+	private long TotalAddTime;
+	private long AddCounter;
 	//results of full experiment for remove operation
-	private int AvgRemoveTime;
-	private int TotalRemoveTime;
-	private int RemoveCounter;
+	private long AvgRemoveTime;
+	private long TotalRemoveTime;
+	private long RemoveCounter;
 	
 	public ExperimentResult(String name,
-							int AvgAddTime,
-							int TotalAddTime,
-							int AddCounter,
-							int AvgRemoveTime,
-							int TotalRemoveTime,
-							int RemoveCounter
+							long AvgAddTime,
+							long TotalAddTime,
+							long AddCounter,
+							long AvgRemoveTime,
+							long TotalRemoveTime,
+							long RemoveCounter
 							) 
 	{
 		this.experimentName = name;
@@ -40,27 +40,27 @@ public class ExperimentResult {
 								this.RemoveCounter);
 	}
 
-	public int getAvgAddTime() {
+	public long getAvgAddTime() {
 		return AvgAddTime;
 	}
 
-	public int getTotalAddTime() {
+	public long getTotalAddTime() {
 		return TotalAddTime;
 	}
 
-	public int getAddCounter() {
+	public long getAddCounter() {
 		return AddCounter;
 	}
 
-	public int getAvgRemoveTime() {
+	public long getAvgRemoveTime() {
 		return AvgRemoveTime;
 	}
 
-	public int getTotalRemoveTime() {
+	public long getTotalRemoveTime() {
 		return TotalRemoveTime;
 	}
 
-	public int getRemoveCounter() {
+	public long getRemoveCounter() {
 		return RemoveCounter;
 	}
 }

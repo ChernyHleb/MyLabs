@@ -9,7 +9,7 @@ public class ExperimentLogger {
 		pathToLog = currentDirectory + "/src/Services/" + logName;
 	}
 	
-	public void WriteToLog(String operation, int id, double time) {
+	public void WriteToLog(String operation, int id, long time) {
 		
 			String output = String.format(
 					"%s %d %f", 
