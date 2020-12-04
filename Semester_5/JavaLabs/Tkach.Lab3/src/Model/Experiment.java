@@ -83,6 +83,7 @@ public class Experiment {
 								(List<Human> l)->l.add(Randomiser.rndHuman()),
 								list,
 								"ADD",
+								i,
 								logger);
 		}
 		
@@ -93,20 +94,26 @@ public class Experiment {
 								(List<Human> l)->l.remove(l.size() - 1),
 								list,
 								"REM",
+								i,
 								logger);
 		}
 		
 		avgAddTime = totalAddTime / addCounter;
 		avgRemoveTime = totalRemoveTime / removeCounter;
 		
-		return new ExperimentResult(name,
-									avgAddTime,
-									totalAddTime,
-									addCounter,
-									avgRemoveTime,
-									totalRemoveTime,
-									removeCounter
-									);
+		ExperimentResult result = new ExperimentResult(
+				name,
+				avgAddTime,
+				totalAddTime,
+				addCounter,
+				avgRemoveTime,
+				totalRemoveTime,
+				removeCounter
+				);
+		
+		logger.WriteToLog(result);
+		
+		return result;
 	}
 	
 	
@@ -114,11 +121,13 @@ public class Experiment {
 	/// returns time of execution
 	public long MeasureListOperationExecutionTime(IListOperation<Human> func, 
 												  List<Human> list,
-												  String info,
+												  String operationName,
+												  int elementIndex,
 												  ExperimentLogger logger) {
 		long startTime, stopTime;
 		startTime = System.nanoTime();
 		
+		logger.WriteToLog(operationName, elementIndex, startTime);
 		func.execute(list);
 		
 		stopTime = System.nanoTime();

@@ -1,5 +1,7 @@
 package Services;
 
+import Model.ExperimentResult;
+
 public class ExperimentLogger {
 	private static String pathToLog;
 	private static String currentDirectory;
@@ -9,14 +11,18 @@ public class ExperimentLogger {
 		pathToLog = currentDirectory + "/src/Services/" + logName;
 	}
 	
-	public void WriteToLog(String operation, int id, long time) {
-		
+	public void WriteToLog(String operation, int idnex, long time) {
 			String output = String.format(
 					"%s %d %f", 
 					operation,
-					id,
+					idnex,
 					time
 					);
 			FileIOService.WriteToFile(pathToLog, output, true);					
+	}
+	
+	public void WriteToLog(ExperimentResult result) {
+		String output = result.ToString();
+		FileIOService.WriteToFile(pathToLog, output, true);	
 	}
 }
