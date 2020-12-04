@@ -61,9 +61,7 @@ public class Experiment {
 		}
 	}
 
-	//Runs the concrete experiment
-	//The first result is for arrayList
-	//The second result is for linkedList
+	//Runs the concrete experiment for some type of list
 	private ExperimentResult RunExperiment(
 										   String name,  
 										   int elementsAmount,
@@ -71,30 +69,43 @@ public class Experiment {
 										   List<Human> list
 										   ) 
 	{
-		long AvgAddTime = 0;
-		long TotalAddTime = 0;
-		long AddCounter = 0;
-		long AvgRemoveTime = 0;
-		long TotalRemoveTime = 0;
-		long RemoveCounter = 0;
+		long avgAddTime = 0;
+		long totalAddTime = 0;
+		long addCounter = 0;
+		long avgRemoveTime = 0;
+		long totalRemoveTime = 0;
+		long removeCounter = 0;
 		
 		// getting results for add operation
 		for(int i = 0; i < elementsAmount; i ++) {
-			AddCounter ++;
-			TotalAddTime += MeasureListOperationExecutionTime(
+			addCounter ++;
+			totalAddTime += MeasureListOperationExecutionTime(
 								(List<Human> l)->l.add(Randomiser.rndHuman()),
-								list);
+								list,
+								"ADD",
+								logger);
 		}
 		
+		// getting results for remove operation
+		for(int i = 0; i < elementsAmount / 10; i ++) {
+			removeCounter ++;
+			totalRemoveTime += MeasureListOperationExecutionTime(
+								(List<Human> l)->l.remove(l.size() - 1),
+								list,
+								"REM",
+								logger);
+		}
 		
+		avgAddTime = totalAddTime / addCounter;
+		avgRemoveTime = totalRemoveTime / removeCounter;
 		
 		return new ExperimentResult(name,
-									AvgAddTime,
-									TotalAddTime,
-									AddCounter,
-									AvgRemoveTime,
-									TotalRemoveTime,
-									RemoveCounter
+									avgAddTime,
+									totalAddTime,
+									addCounter,
+									avgRemoveTime,
+									totalRemoveTime,
+									removeCounter
 									);
 	}
 	
@@ -102,7 +113,9 @@ public class Experiment {
 	/// gets function and list - parameter of the given function
 	/// returns time of execution
 	public long MeasureListOperationExecutionTime(IListOperation<Human> func, 
-												  List<Human> list) {
+												  List<Human> list,
+												  String info,
+												  ExperimentLogger logger) {
 		long startTime, stopTime;
 		startTime = System.nanoTime();
 		
