@@ -7,6 +7,10 @@ import java.util.List;
 import Services.ExperimentLogger;
 import Services.Randomiser;
 
+interface IListOperation<T> {
+	void execute(List<T> list);
+}
+
 public class Experiment {
 	private int _experimentsAmount;
 	// 0 for 10 elements
@@ -42,27 +46,31 @@ public class Experiment {
 	public void Run() {
 		int elementsAmount = 1;
 		for(int i = 0; i < this._experimentsAmount; i++) {
+			ArrayList<Human> arrayList = new ArrayList<Human>();
+			LinkedList<Human> linkedList  = new LinkedList<Human>();
+			
 			elementsAmount *= 10;
-			ArrayList<ExperimentResult> results = RunExperiment(
-													String.format("Experiment%d", elementsAmount), 
+			_resultsForArrayList.add(RunExperiment(String.format("Experiment%d", elementsAmount), 
+												   elementsAmount, 
+												   _loggers.get(i),
+												   arrayList));
+			_resultsForLinkedList.add(RunExperiment(String.format("Experiment%d", elementsAmount), 
 													elementsAmount, 
-													_loggers.get(i)
-													);
-			_resultsForArrayList.add(results.get(0));
-			_resultsForLinkedList.add(results.get(1));
+													_loggers.get(i),
+													linkedList));
 		}
 	}
 
 	//Runs the concrete experiment
 	//The first result is for arrayList
 	//The second result is for linkedList
-	private ArrayList<ExperimentResult> RunExperiment(String name,  
+	private ExperimentResult RunExperiment(
+										   String name,  
 										   int elementsAmount,
-										   ExperimentLogger logger
+										   ExperimentLogger logger,
+										   List<Human> list
 										   ) 
 	{
-		ArrayList<Human> arrayList = new ArrayList<Human>();
-		LinkedList<Human> linkedList  = new LinkedList<Human>();
 		long AvgAddTime = 0;
 		long TotalAddTime = 0;
 		long AddCounter = 0;
@@ -70,26 +78,15 @@ public class Experiment {
 		long TotalRemoveTime = 0;
 		long RemoveCounter = 0;
 		
-		long startTime, stopTime, time;
-		
-		// getting results for arrayList
+		// getting results for add operation
 		for(int i = 0; i < elementsAmount; i ++) {
-			startTime = System.nanoTime();
-			
-			arrayList.add(Randomiser.rndHuman());
-			
-			stopTime = System.nanoTime();
-			time = stopTime - startTime;
-			
 			AddCounter ++;
-			TotalAddTime += time;
+			TotalAddTime += MeasureListOperationExecutionTime(
+								(List<Human> l)->l.add(Randomiser.rndHuman()),
+								list);
 		}
 		
 		
-		// getting results for linkedList
-		for(int i = 0; i < elementsAmount; i ++) {
-			linkedList.add(Randomiser.rndHuman());
-		}
 		
 		return new ExperimentResult(name,
 									AvgAddTime,
@@ -99,6 +96,21 @@ public class Experiment {
 									TotalRemoveTime,
 									RemoveCounter
 									);
+	}
+	
+	
+	/// gets function and list - parameter of the given function
+	/// returns time of execution
+	public long MeasureListOperationExecutionTime(IListOperation<Human> func, 
+												  List<Human> list) {
+		long startTime, stopTime;
+		startTime = System.nanoTime();
+		
+		func.execute(list);
+		
+		stopTime = System.nanoTime();
+		return stopTime - startTime;
+		
 	}
 	
 	public ArrayList<ExperimentLogger> get_loggers() {
