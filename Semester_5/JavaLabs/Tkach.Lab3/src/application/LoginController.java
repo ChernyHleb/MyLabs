@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class LoginController implements IController{
@@ -44,9 +45,10 @@ public class LoginController implements IController{
 			LoggerService.WriteToLog(String.format("\n~~~\n%s %s", "PROGRAM STARTED BY", user.getName()));
 			
 			Stage stage = new Stage();
-			stage.setTitle("Lab 3");
+			stage.setTitle("Lab 4,5");
 			Scene scene = new Scene(parent, 900, 400);
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/src/resources/icon.png"));
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

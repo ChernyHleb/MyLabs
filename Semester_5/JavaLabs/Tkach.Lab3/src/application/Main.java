@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 public class Main extends Application {
 	
@@ -22,7 +23,7 @@ public class Main extends Application {
 			ProgramSettingsService.LoadProperties();
 			ProgramSettingsService.ImplementSettings();
 			mainWindow = primaryStage;
-			mainWindow.setTitle("Lab 3");
+			mainWindow.setTitle("Lab 4,5");
 			setLoginView();
 		} catch(Exception e) {
 			e.printStackTrace();

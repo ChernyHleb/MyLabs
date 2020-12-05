@@ -22,6 +22,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>icon.png</name>
+			<type>1</type>
+			<location>C:/Users/popov/MyLabs/MyLabs/Semester_5/JavaLabs/Tkach.Lab3/src/resources/icon.png</location>
+		</link>
+		<link>
 			<name>src/Repository/humanDataBase.txt</name>
 			<type>1</type>
 			<location>C:/Users/popov/MyLabs/MyLabs/Semester_5/JavaLabs/Tkach.Lab3/src/Repository/humanDataBase.txt</location>

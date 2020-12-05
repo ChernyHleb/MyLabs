@@ -224,6 +224,6 @@ public class mainController implements IController {
 	}
 	
 	public void handleExperimentButtonClick() {
-		System.out.println("kek");
+		loadWindow("experimentView.fxml", "Experiment");
 	}
 }
