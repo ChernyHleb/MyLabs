@@ -56,6 +56,7 @@ public class Main extends Application {
 	@Override
 	public void stop(){
 	    LoggerService.WriteToLog("APPLICAITON STOPPED\n~~~\n");
+	    ProgramSettingsService.SaveProperties();
 	}
 	
 	public static void main(String[] args) {

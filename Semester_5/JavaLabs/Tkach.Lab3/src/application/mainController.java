@@ -34,7 +34,8 @@ public class mainController implements IController {
 				  editHumanButton,
 				  deleteHumanButton,
 			      infoHumanButton,
-			      resetButton;
+			      resetButton,
+			      ExperimentButton;
 	
 	public TableView<Human> dataTableView;
 	public TableColumn<Human, String> humanTypeTableColumn;
@@ -73,6 +74,14 @@ public class mainController implements IController {
 		} else {
 			LoggingMode.selectToggle(LoggingOff);
 		}
+		
+		if(ProgramSettingsService.getProperties().getProperty("main.tests").equals("1")) {
+			ExperimentButton.setVisible(true);
+			TestMode.selectToggle(TestsOn);
+		} else {
+			ExperimentButton.setVisible(false);
+			TestMode.selectToggle(TestsOff);
+		}
 	}
 	
 	// loading human collection from text file to observableList
@@ -84,8 +93,6 @@ public class mainController implements IController {
 	
 	public void ShowPeople(){
 		ObservableList<Human> list = this.getHumans();
-		
-		
 		
 		this.humanTypeTableColumn.setCellValueFactory(new PropertyValueFactory<Human, String>("_humanType"));
 		this.humanNameTableColumn.setCellValueFactory(new PropertyValueFactory<Human, String>("_firstName"));
@@ -197,10 +204,26 @@ public class mainController implements IController {
 	}
 	
 	public void handleLoggingOnRadioButtonClick() {
+		ProgramSettingsService.getProperties().setProperty("main.logging", "1");
 		LoggerService.Enable();
 	}
 	
 	public void handleLoggingOffRadioButtonClick() {
+		ProgramSettingsService.getProperties().setProperty("main.logging", "0");
 		LoggerService.Disable();
+	}
+	
+	public void handleTestsOnRadioButtonClick() {
+		ProgramSettingsService.getProperties().setProperty("main.tests", "1");
+		ExperimentButton.setVisible(true);
+	}
+	
+	public void handleTestsOffRadioButtonClick() {
+		ProgramSettingsService.getProperties().setProperty("main.tests", "0");
+		ExperimentButton.setVisible(false);
+	}
+	
+	public void handleExperimentButtonClick() {
+		System.out.println("kek");
 	}
 }

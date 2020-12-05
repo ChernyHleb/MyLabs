@@ -92,3 +92,379 @@ PROGRAM STARTED BY 123
 04.12.2020 6:41:01 APPLICAITON STOPPED
 ~~~
 
+04.12.2020 8:29:03 LOGGER ENABLED
+04.12.2020 8:29:06 Read from userDataBase.txt
+04.12.2020 8:29:06 Read from humanDataBase.txt
+04.12.2020 8:29:06 Read from userDataBase.txt
+04.12.2020 8:29:06 Read from userDataBase.txt
+04.12.2020 8:29:06 
+~~~
+PROGRAM STARTED BY 123
+04.12.2020 8:30:07 APPLICAITON STOPPED
+~~~
+
+04.12.2020 8:43:43 LOGGER ENABLED
+04.12.2020 8:43:48 Read from userDataBase.txt
+04.12.2020 8:43:48 Read from humanDataBase.txt
+04.12.2020 8:43:48 Read from userDataBase.txt
+04.12.2020 8:43:48 Read from userDataBase.txt
+04.12.2020 8:43:48 
+~~~
+PROGRAM STARTED BY 123
+04.12.2020 8:43:51 APPLICAITON STOPPED
+~~~
+
+04.12.2020 8:43:55 LOGGER ENABLED
+04.12.2020 8:43:59 Read from userDataBase.txt
+04.12.2020 8:43:59 Read from humanDataBase.txt
+04.12.2020 8:43:59 Read from userDataBase.txt
+04.12.2020 8:43:59 Read from userDataBase.txt
+04.12.2020 8:43:59 
+~~~
+PROGRAM STARTED BY 123
+04.12.2020 8:44:06 APPLICAITON STOPPED
+~~~
+
+04.12.2020 8:49:50 LOGGER ENABLED
+04.12.2020 8:49:53 Read from userDataBase.txt
+04.12.2020 8:49:53 Read from humanDataBase.txt
+04.12.2020 8:49:53 Read from userDataBase.txt
+04.12.2020 8:49:53 Read from userDataBase.txt
+04.12.2020 8:49:53 
+~~~
+PROGRAM STARTED BY 123
+04.12.2020 8:50:05 APPLICAITON STOPPED
+~~~
+
+04.12.2020 8:50:24 LOGGER ENABLED
+04.12.2020 8:50:38 Write to userDataBase.txt
+04.12.2020 8:50:39 Read from userDataBase.txt
+04.12.2020 8:50:39 Read from humanDataBase.txt
+04.12.2020 8:50:39 Read from userDataBase.txt
+04.12.2020 8:50:39 Read from userDataBase.txt
+04.12.2020 8:50:39 
+~~~
+PROGRAM STARTED BY user
+04.12.2020 8:50:53 APPLICAITON STOPPED
+~~~
+
+04.12.2020 8:50:55 LOGGER ENABLED
+04.12.2020 8:51:08 Write to userDataBase.txt
+04.12.2020 8:51:10 Read from userDataBase.txt
+04.12.2020 8:51:10 Read from humanDataBase.txt
+04.12.2020 8:51:10 Read from userDataBase.txt
+04.12.2020 8:51:10 Read from userDataBase.txt
+04.12.2020 8:51:10 
+~~~
+PROGRAM STARTED BY root
+04.12.2020 8:51:19 APPLICAITON STOPPED
+~~~
+
+04.12.2020 8:54:47 LOGGER ENABLED
+04.12.2020 8:54:58 Read from userDataBase.txt
+04.12.2020 8:54:58 Read from humanDataBase.txt
+04.12.2020 8:54:58 Read from userDataBase.txt
+04.12.2020 8:54:58 Read from userDataBase.txt
+04.12.2020 8:54:58 
+~~~
+PROGRAM STARTED BY user
+04.12.2020 8:55:01 APPLICAITON STOPPED
+~~~
+
+04.12.2020 8:55:04 LOGGER ENABLED
+04.12.2020 8:55:10 Read from userDataBase.txt
+04.12.2020 8:55:10 Read from humanDataBase.txt
+04.12.2020 8:55:10 Read from userDataBase.txt
+04.12.2020 8:55:10 Read from userDataBase.txt
+04.12.2020 8:55:10 
+~~~
+PROGRAM STARTED BY root
+04.12.2020 8:55:22 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:30:59 LOGGER ENABLED
+05.12.2020 6:31:05 Read from userDataBase.txt
+05.12.2020 6:31:05 Read from humanDataBase.txt
+05.12.2020 6:31:05 Read from userDataBase.txt
+05.12.2020 6:31:05 Read from userDataBase.txt
+05.12.2020 6:31:05 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:31:14 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:31:17 LOGGER ENABLED
+05.12.2020 6:31:26 Read from userDataBase.txt
+05.12.2020 6:31:26 Read from humanDataBase.txt
+05.12.2020 6:31:26 Read from userDataBase.txt
+05.12.2020 6:31:26 Read from userDataBase.txt
+05.12.2020 6:31:26 
+~~~
+PROGRAM STARTED BY user
+05.12.2020 6:31:29 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:31:36 LOGGER ENABLED
+05.12.2020 6:31:42 Read from userDataBase.txt
+05.12.2020 6:31:49 Read from userDataBase.txt
+05.12.2020 6:31:49 Read from humanDataBase.txt
+05.12.2020 6:31:49 Read from userDataBase.txt
+05.12.2020 6:31:49 Read from userDataBase.txt
+05.12.2020 6:31:49 
+~~~
+PROGRAM STARTED BY root
+05.12.2020 6:32:09 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:32:12 LOGGER ENABLED
+05.12.2020 6:32:17 Read from userDataBase.txt
+05.12.2020 6:32:17 Read from humanDataBase.txt
+05.12.2020 6:32:17 Read from userDataBase.txt
+05.12.2020 6:32:17 Read from userDataBase.txt
+05.12.2020 6:32:17 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:32:22 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:32:25 LOGGER ENABLED
+05.12.2020 6:32:31 Read from userDataBase.txt
+05.12.2020 6:32:31 Read from humanDataBase.txt
+05.12.2020 6:32:31 Read from userDataBase.txt
+05.12.2020 6:32:31 Read from userDataBase.txt
+05.12.2020 6:32:31 
+~~~
+PROGRAM STARTED BY user
+05.12.2020 6:32:33 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:34:41 LOGGER ENABLED
+05.12.2020 6:34:51 Read from userDataBase.txt
+05.12.2020 6:34:51 Read from humanDataBase.txt
+05.12.2020 6:34:51 Read from userDataBase.txt
+05.12.2020 6:34:51 Read from userDataBase.txt
+05.12.2020 6:34:51 
+~~~
+PROGRAM STARTED BY root
+05.12.2020 6:34:58 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:35:09 LOGGER ENABLED
+05.12.2020 6:35:21 Read from userDataBase.txt
+05.12.2020 6:35:21 Read from humanDataBase.txt
+05.12.2020 6:35:21 Read from userDataBase.txt
+05.12.2020 6:35:21 Read from userDataBase.txt
+05.12.2020 6:35:21 
+~~~
+PROGRAM STARTED BY root
+05.12.2020 6:35:29 LOGGER DISABLED
+05.12.2020 6:37:30 LOGGER ENABLED
+05.12.2020 6:37:51 LOGGER ENABLED
+05.12.2020 6:38:21 LOGGER ENABLED
+05.12.2020 6:38:21 LOGGER ENABLED
+05.12.2020 6:39:10 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:41:51 LOGGER ENABLED
+05.12.2020 6:42:01 Read from userDataBase.txt
+05.12.2020 6:42:10 Read from humanDataBase.txt
+05.12.2020 6:42:32 LOGGER ENABLED
+05.12.2020 6:42:48 LOGGER ENABLED
+05.12.2020 6:42:52 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:43:01 LOGGER ENABLED
+05.12.2020 6:43:07 Read from userDataBase.txt
+05.12.2020 6:43:07 Read from humanDataBase.txt
+05.12.2020 6:43:07 Read from userDataBase.txt
+05.12.2020 6:43:07 Read from userDataBase.txt
+05.12.2020 6:43:07 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:45:18 LOGGER ENABLED
+05.12.2020 6:45:25 Read from userDataBase.txt
+05.12.2020 6:45:25 Read from humanDataBase.txt
+05.12.2020 6:45:25 Read from userDataBase.txt
+05.12.2020 6:45:25 Read from userDataBase.txt
+05.12.2020 6:45:25 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:45:52 LOGGER ENABLED
+05.12.2020 6:45:58 Read from userDataBase.txt
+05.12.2020 6:45:58 Read from humanDataBase.txt
+05.12.2020 6:45:58 Read from userDataBase.txt
+05.12.2020 6:45:58 Read from userDataBase.txt
+05.12.2020 6:45:58 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:47:13 LOGGER ENABLED
+05.12.2020 6:47:22 Read from userDataBase.txt
+05.12.2020 6:47:22 Read from humanDataBase.txt
+05.12.2020 6:47:22 Read from userDataBase.txt
+05.12.2020 6:47:22 Read from userDataBase.txt
+05.12.2020 6:47:22 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:47:37 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:47:39 LOGGER ENABLED
+05.12.2020 6:47:42 Read from userDataBase.txt
+05.12.2020 6:47:42 Read from humanDataBase.txt
+05.12.2020 6:47:42 Read from userDataBase.txt
+05.12.2020 6:47:42 Read from userDataBase.txt
+05.12.2020 6:47:42 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:48:37 LOGGER ENABLED
+05.12.2020 6:48:41 Read from userDataBase.txt
+05.12.2020 6:48:41 Read from humanDataBase.txt
+05.12.2020 6:48:41 Read from userDataBase.txt
+05.12.2020 6:48:41 Read from userDataBase.txt
+05.12.2020 6:48:41 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:48:44 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:48:47 LOGGER ENABLED
+05.12.2020 6:48:50 Read from userDataBase.txt
+05.12.2020 6:48:50 Read from humanDataBase.txt
+05.12.2020 6:48:50 Read from userDataBase.txt
+05.12.2020 6:48:50 Read from userDataBase.txt
+05.12.2020 6:48:50 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:48:52 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:49:11 LOGGER ENABLED
+05.12.2020 6:49:15 Read from userDataBase.txt
+05.12.2020 6:49:15 Read from humanDataBase.txt
+05.12.2020 6:49:15 Read from userDataBase.txt
+05.12.2020 6:49:15 Read from userDataBase.txt
+05.12.2020 6:49:15 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:49:20 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:49:39 LOGGER ENABLED
+05.12.2020 6:49:41 Read from userDataBase.txt
+05.12.2020 6:49:41 Read from humanDataBase.txt
+05.12.2020 6:49:42 Read from userDataBase.txt
+05.12.2020 6:49:42 Read from userDataBase.txt
+05.12.2020 6:49:42 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:49:46 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:50:20 LOGGER ENABLED
+05.12.2020 6:56:04 LOGGER ENABLED
+05.12.2020 6:56:23 LOGGER ENABLED
+05.12.2020 6:56:25 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:56:35 LOGGER ENABLED
+05.12.2020 6:56:38 Read from userDataBase.txt
+05.12.2020 6:56:38 Read from humanDataBase.txt
+05.12.2020 6:56:38 Read from userDataBase.txt
+05.12.2020 6:56:38 Read from userDataBase.txt
+05.12.2020 6:56:38 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:56:44 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:56:51 LOGGER ENABLED
+05.12.2020 6:56:54 Read from userDataBase.txt
+05.12.2020 6:56:54 Read from humanDataBase.txt
+05.12.2020 6:56:54 Read from userDataBase.txt
+05.12.2020 6:56:54 Read from userDataBase.txt
+05.12.2020 6:56:54 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 6:56:59 APPLICAITON STOPPED
+~~~
+
+05.12.2020 6:57:05 APPLICAITON STOPPED
+~~~
+
+05.12.2020 7:01:25 LOGGER ENABLED
+05.12.2020 7:01:29 Read from userDataBase.txt
+05.12.2020 7:01:29 Read from humanDataBase.txt
+05.12.2020 7:01:29 Read from userDataBase.txt
+05.12.2020 7:01:29 Read from userDataBase.txt
+05.12.2020 7:01:29 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 7:01:33 APPLICAITON STOPPED
+~~~
+
+05.12.2020 7:02:31 LOGGER ENABLED
+05.12.2020 7:02:34 Read from userDataBase.txt
+05.12.2020 7:02:34 Read from humanDataBase.txt
+05.12.2020 7:02:34 Read from userDataBase.txt
+05.12.2020 7:02:34 Read from userDataBase.txt
+05.12.2020 7:02:34 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 7:02:36 APPLICAITON STOPPED
+~~~
+
+05.12.2020 7:03:20 LOGGER ENABLED
+05.12.2020 7:03:24 Read from userDataBase.txt
+05.12.2020 7:03:24 Read from humanDataBase.txt
+05.12.2020 7:03:24 Read from userDataBase.txt
+05.12.2020 7:03:24 Read from userDataBase.txt
+05.12.2020 7:03:24 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 7:03:27 APPLICAITON STOPPED
+~~~
+
+05.12.2020 7:06:49 LOGGER ENABLED
+05.12.2020 7:06:52 Read from userDataBase.txt
+05.12.2020 7:06:52 Read from humanDataBase.txt
+05.12.2020 7:06:52 Read from userDataBase.txt
+05.12.2020 7:06:52 Read from userDataBase.txt
+05.12.2020 7:06:52 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 7:06:54 APPLICAITON STOPPED
+~~~
+
+05.12.2020 7:06:57 LOGGER ENABLED
+05.12.2020 7:06:59 Read from userDataBase.txt
+05.12.2020 7:06:59 Read from humanDataBase.txt
+05.12.2020 7:06:59 Read from userDataBase.txt
+05.12.2020 7:06:59 Read from userDataBase.txt
+05.12.2020 7:06:59 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 7:07:06 APPLICAITON STOPPED
+~~~
+
+05.12.2020 7:08:21 LOGGER ENABLED
+05.12.2020 7:08:25 Read from userDataBase.txt
+05.12.2020 7:08:25 Read from humanDataBase.txt
+05.12.2020 7:08:25 Read from userDataBase.txt
+05.12.2020 7:08:25 Read from userDataBase.txt
+05.12.2020 7:08:25 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 7:08:27 APPLICAITON STOPPED
+~~~
+
+05.12.2020 7:08:30 LOGGER ENABLED
+05.12.2020 7:08:32 Read from userDataBase.txt
+05.12.2020 7:08:32 Read from humanDataBase.txt
+05.12.2020 7:08:32 Read from userDataBase.txt
+05.12.2020 7:08:32 Read from userDataBase.txt
+05.12.2020 7:08:32 
+~~~
+PROGRAM STARTED BY 123
+05.12.2020 7:08:38 APPLICAITON STOPPED
+~~~
+

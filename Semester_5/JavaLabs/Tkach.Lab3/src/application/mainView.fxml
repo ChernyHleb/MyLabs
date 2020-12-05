@@ -46,9 +46,11 @@
 				</HBox>
 				<Label text="Tests: "/>
 				<HBox alignment="center">
-			    	<RadioButton fx:id="TestsOn" text="On " toggleGroup="$TestMode"/>
-			    	<RadioButton fx:id="TestsOff" text="Off " toggleGroup="$TestMode"/>
+			    	<RadioButton fx:id="TestsOn" text="On " toggleGroup="$TestMode" onAction="#handleTestsOnRadioButtonClick"/>
+			    	<RadioButton fx:id="TestsOff" text="Off " toggleGroup="$TestMode" onAction="#handleTestsOffRadioButtonClick"/>
 				</HBox>
+				<Button fx:id="ExperimentButton" text="Run Experiment"
+					onAction="#handleExperimentButtonClick"/>
 			</HBox>
 			
 			<!--<Button fx:id="manageUsersButton">Manage Users</Button>-->

@@ -4,3 +4,5 @@
 1d492e8c-e25d-4077-9323-f19a67492224 ElPepe password USER
 e48e3b1e-0846-41e2-8da4-cf96876b25d3 123 123 ROOT
 e2852fae-adf0-4141-aa3d-829c6e85c880 doggo 666 ROOT
+f254e38f-3513-4c69-88ca-ae087aee0296 user user USER
+6efe03cc-0c93-47e9-b3ab-e7991f433d90 root root ROOT
