@@ -25,12 +25,20 @@ std::string Lab4::GetStatistics(int dim)
 	output += "~~Without OpenMP: " + std::to_string(duration) + " nanoSec\n";
 	output += "~~RESULT: " + std::to_string(result) + "\n";
 
-	timerStart = std::chrono::high_resolution_clock::now();
-	result = FuncWithSections(matrixA, matrixB);
+	/*timerStart = std::chrono::high_resolution_clock::now();
+	result = FuncWithLock(matrixA, matrixB);
 	timerStop = std::chrono::high_resolution_clock::now();
 
 	duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timerStop - timerStart).count();
-	output += "~~With Sections: " + std::to_string(duration) + " nanoSec\n";
+	output += "~~With Lock: " + std::to_string(duration) + " nanoSec\n";
+	output += "~~RESULT: " + std::to_string(result) + "\n";*/
+
+	timerStart = std::chrono::high_resolution_clock::now();
+	result = FuncWithBarrier(matrixA, matrixB);
+	timerStop = std::chrono::high_resolution_clock::now();
+
+	duration = std::chrono::duration_cast<std::chrono::nanoseconds>(timerStop - timerStart).count();
+	output += "~~With Barrier: " + std::to_string(duration) + " nanoSec\n";
 	output += "~~RESULT: " + std::to_string(result) + "\n";
 	
 	return output;
@@ -43,6 +51,84 @@ Lab4::~Lab4()
 	if(matrixB != nullptr)
 		delete matrixB;
 }
+
+int64_t Lab4::FuncWithLock(Matrix* matrixA, Matrix* matrixB)
+{
+	int64_t sum = 0;
+	int64_t partitialSum;
+	int i, j, temp;
+	int dim = matrixA->N;
+	int** A, ** B;
+
+	omp_lock_t lock;
+	omp_init_lock(&lock);
+
+	#pragma omp parallel shared(dim, matrixA, matrixB)
+	{
+	#pragma omp for private(i, j, temp, A, B, partitialSum)
+		for (i = 0; i < dim; i++)
+		{
+			partitialSum = 0;
+			A = matrixA->matrix;
+			B = matrixB->matrix;
+			for (j = 0; j < dim; j++)
+			{
+				int a = A[i][j];
+				int b = B[i][j];
+
+				temp = std::max(a + b, 4 * a - b);
+
+				if (temp > 1) {
+					partitialSum += temp;
+				}
+					
+			}
+			omp_set_lock(&lock);
+			sum += partitialSum;
+			omp_unset_lock(&lock);
+		}
+
+	}
+	omp_destroy_lock(&lock);
+	return sum;
+}
+
+int64_t Lab4::FuncWithBarrier(Matrix* matrixA, Matrix* matrixB)
+{
+	int64_t sum = 0;
+	int64_t partitialSum = 0;
+	int i, j, temp;
+	int dim = matrixA->N;
+	int** A, ** B;
+
+#pragma omp parallel shared(dim, matrixA, matrixB) private(partitialSum)
+	{
+#pragma omp for private(i, j, temp, A, B)
+		for (i = 0; i < dim; i++)
+		{
+			partitialSum = 0;
+			A = matrixA->matrix;
+			B = matrixB->matrix;
+			for (j = 0; j < dim; j++)
+			{
+				int a = A[i][j];
+				int b = B[i][j];
+
+				temp = std::max(a + b, 4 * a - b);
+
+				if (temp > 1) {
+					partitialSum += temp;
+				}
+
+			}
+		}
+		#pragma omp barrier
+		sum += partitialSum;
+
+	}
+	return sum;
+}
+
 
 int64_t Lab4::FuncWithReduction(Matrix* matrixA, Matrix* matrixB)
 {

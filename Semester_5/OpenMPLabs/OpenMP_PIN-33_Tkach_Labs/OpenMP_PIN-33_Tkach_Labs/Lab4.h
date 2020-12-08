@@ -25,6 +25,8 @@ protected:
 	int64_t FuncWithoutOpenMP(Matrix* matrixA, Matrix* matrixB);
 	int64_t FuncWithSync(Matrix* matrixA, Matrix* matrixB);
 	int64_t FuncWithSections(Matrix* matrixA, Matrix* MatrixB);
+	int64_t FuncWithLock(Matrix* matrixA, Matrix* matrixB);
+	int64_t FuncWithBarrier(Matrix* matrixA, Matrix* matrixB);
 };
 
 #endif
