@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIN33_Tkach_DB_Lab7", "PIN33_Tkach_DB_Lab7\PIN33_Tkach_DB_Lab7.csproj", "{9A029629-EFF3-44F9-BD66-64CD00F14648}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A029629-EFF3-44F9-BD66-64CD00F14648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A029629-EFF3-44F9-BD66-64CD00F14648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A029629-EFF3-44F9-BD66-64CD00F14648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A029629-EFF3-44F9-BD66-64CD00F14648}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC325C3E-2DEC-48DA-98B4-EDD4D999835B}
+	EndGlobalSection
+EndGlobal
