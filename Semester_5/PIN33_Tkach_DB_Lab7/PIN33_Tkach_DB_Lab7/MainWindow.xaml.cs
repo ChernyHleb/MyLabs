@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,15 @@ namespace PIN33_Tkach_DB_Lab7
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public void BindMainDataGrid(String tableName)
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["study"].ConnectionString;
+            connection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = $"SELECT * FROM [{tableName}]";
         }
     }
 }

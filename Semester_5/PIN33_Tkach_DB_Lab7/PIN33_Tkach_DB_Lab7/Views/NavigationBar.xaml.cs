@@ -24,5 +24,7 @@ namespace PIN33_Tkach_DB_Lab7.Views
         {
             InitializeComponent();
         }
+
+
     }
 }

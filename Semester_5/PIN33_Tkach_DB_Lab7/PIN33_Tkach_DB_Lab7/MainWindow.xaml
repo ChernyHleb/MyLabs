@@ -9,16 +9,17 @@
         
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.12*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Border Padding="3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.08*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <views:NavigationBar Grid.Row="0" x:Name="NavBar"/>
+            <views:NavigationBar Grid.Row="0" x:Name="NavBar"/>
+            <DataGrid Grid.Row="1" x:Name="MainDataGrid">
 
-        <ContentControl x:Name="MainDataTable" Content="{Binding SelectedTable}" 
-                        Grid.Row="1"/>
-
-    </Grid>
+            </DataGrid>
+        </Grid>
+    </Border>
 </Window>
