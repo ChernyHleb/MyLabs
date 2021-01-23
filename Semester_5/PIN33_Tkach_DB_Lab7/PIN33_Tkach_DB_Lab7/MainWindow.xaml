@@ -17,8 +17,13 @@
             </Grid.RowDefinitions>
 
             <views:NavigationBar Grid.Row="0" x:Name="NavBar"/>
-            <DataGrid Grid.Row="1" x:Name="MainDataGrid">
-
+            <DataGrid Grid.Row="1" x:Name="FactoryDataGrid">
+                <!--<DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding number}" Header="number" Width="0.1*"/>
+                    <DataGridTextColumn Binding="{Binding name}" Header="name" Width="0.3*"/>
+                    <DataGridTextColumn Binding="{Binding address}" Header="address" Width="0.3*"/>
+                    <DataGridTextColumn Binding="{Binding boss}" Header="boss" Width="0.3*"/>
+                </DataGrid.Columns>-->
             </DataGrid>
         </Grid>
     </Border>

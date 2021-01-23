@@ -1,9 +1,12 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import Model.Experiment;
+import Model.ExperimentResult;
 import Model.Gender;
 import Model.Human;
 import Model.User;
@@ -17,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -224,6 +228,25 @@ public class mainController implements IController {
 	}
 	
 	public void handleExperimentButtonClick() {
-		loadWindow("experimentView.fxml", "Experiment");
+		ExperimentController controller = (ExperimentController)loadWindow("experimentView.fxml", "Experiment");
+		
+		int expertimentsAmount = 5;
+		Experiment experiment = new Experiment(expertimentsAmount);
+		experiment.Run();
+		
+		ArrayList<ExperimentResult> resultsForArrayList = experiment.get_resultsForArrayList();
+		ArrayList<ExperimentResult> resultsForLinkedList = experiment.get_resultsForLinkedList();
+		
+		XYChart.Series<Long, Long> ArrayListAvgAddTimeAndElements = new XYChart.Series<Long, Long>();
+		XYChart.Series<Long, Long> ArrayListFullAddTimeAndElements = new XYChart.Series<Long, Long>();
+		
+		Long elementsAmount = (long) 10;
+		for(int i = 0; i < expertimentsAmount; i ++) {
+			ArrayListAvgAddTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForArrayList.get(i).getAvgAddTime()));
+			ArrayListFullAddTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForArrayList.get(i).getTotalAddTime()));
+		
+			elementsAmount *= 10;
+		}
+		
 	}
 }

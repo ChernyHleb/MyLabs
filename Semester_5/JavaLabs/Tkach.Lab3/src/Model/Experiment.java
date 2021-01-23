@@ -79,8 +79,9 @@ public class Experiment {
 		// getting results for add operation
 		for(int i = 0; i < elementsAmount; i ++) {
 			addCounter ++;
+			Human tempHuman = Randomiser.rndHuman();
 			totalAddTime += MeasureListOperationExecutionTime(
-								(List<Human> l)->l.add(Randomiser.rndHuman()),
+								(List<Human> l)->l.add(tempHuman),
 								list,
 								"ADD",
 								i,
@@ -127,13 +128,31 @@ public class Experiment {
 		long startTime, stopTime;
 		startTime = System.nanoTime();
 		
-		logger.WriteToLog(operationName, elementIndex, startTime);
 		func.execute(list);
 		
 		stopTime = System.nanoTime();
+		
+		logger.WriteToLog(operationName, elementIndex, stopTime - startTime);
 		return stopTime - startTime;
 		
 	}
+	
+	/*public long MeasureArrayListADDExecutionTime(
+			  ArrayList<Human> list,
+			  int elementIndex,
+			  ExperimentLogger logger) 
+	{
+		long startTime, stopTime;
+		Human human = Randomiser.rndHuman();
+		startTime = System.nanoTime();
+
+		list.add(human);
+
+		stopTime = System.nanoTime();
+
+		logger.WriteToLog("ADD", elementIndex, stopTime - startTime);
+		return stopTime - startTime;
+	}*/
 	
 	public ArrayList<ExperimentLogger> get_loggers() {
 		return _loggers;

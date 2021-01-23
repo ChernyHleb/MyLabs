@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
 
 <VBox alignment="center" xmlns="http://javafx.com/javafx/@"
 		  xmlns:fx="http://javafx.com/fxml"
 		  fx:controller="application.ExperimentController">
-	<Button text="Gay Website"/>
+    
+    <TabPane>
+    	<Tab text = "Graph1">
+	    	<LineChart fx:id="AvgTimeLinechart" 
+	    		layoutX="29.0" layoutY="194.0" 
+	    		prefHeight="416.0" prefWidth="800.0">
+				<xAxis>
+			        <NumberAxis label="Elements Amount"/>
+				</xAxis>
+				
+				<yAxis>
+					<NumberAxis label="Average Time (ns)" 
+						side="LEFT" upperBound="160.0" />
+				</yAxis>
+    		</LineChart>
+    	</Tab>
+    	<Tab text = "Graph2">
+    		<LineChart fx:id="FullTimeLinechart" 
+	    		layoutX="29.0" layoutY="194.0" 
+	    		prefHeight="416.0" prefWidth="800.0">
+				<xAxis>
+			        <NumberAxis label="Elements Amount"/>
+				</xAxis>
+				
+				<yAxis>
+					<NumberAxis label="Full Time (ns)" 
+						side="LEFT" upperBound="1600.0" />
+				</yAxis>
+    		</LineChart>
+    	</Tab>
+    </TabPane>
+	
 </VBox>
 

@@ -13,7 +13,7 @@ public class ExperimentLogger {
 	
 	public void WriteToLog(String operation, int idnex, long time) {
 			String output = String.format(
-					"%s %d %f", 
+					"%s %d %dns", 
 					operation,
 					idnex,
 					time

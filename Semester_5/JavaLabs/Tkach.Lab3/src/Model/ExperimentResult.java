@@ -30,7 +30,13 @@ public class ExperimentResult {
 	}
 	
 	public String ToString() {
-		return String.format("%s\n%d\n%d\n%d\n%d\n%d\n%d", 
+		return String.format("%s\n"
+				+ "AverageAddTime: %dns\n"
+				+ "TotalAddTime: %dns\n"
+				+ "AddCounter: %d\n"
+				+ "AvgRemoveTime: %dns\n"
+				+ "TotalRemoveTime: %dns\n"
+				+ "RemoveCounter: %d", 
 								this.experimentName,
 								this.AvgAddTime,
 								this.TotalAddTime,

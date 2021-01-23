@@ -563,3 +563,278 @@ PROGRAM STARTED BY 123
 06.12.2020 14:14:59 APPLICAITON STOPPED
 ~~~
 
+22.01.2021 9:35:45 LOGGER ENABLED
+22.01.2021 9:35:50 Read from userDataBase.txt
+22.01.2021 9:35:50 Read from humanDataBase.txt
+22.01.2021 9:35:50 Read from userDataBase.txt
+22.01.2021 9:35:50 Read from userDataBase.txt
+22.01.2021 9:35:50 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 9:36:15 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:12:16 LOGGER ENABLED
+22.01.2021 12:12:20 Read from userDataBase.txt
+22.01.2021 12:12:20 Read from humanDataBase.txt
+22.01.2021 12:12:20 Read from userDataBase.txt
+22.01.2021 12:12:20 Read from userDataBase.txt
+22.01.2021 12:12:20 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:12:43 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:14:06 LOGGER ENABLED
+22.01.2021 12:14:10 Read from userDataBase.txt
+22.01.2021 12:14:12 Read from userDataBase.txt
+22.01.2021 12:14:12 Read from humanDataBase.txt
+22.01.2021 12:14:12 Read from userDataBase.txt
+22.01.2021 12:14:12 Read from userDataBase.txt
+22.01.2021 12:14:12 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:14:16 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:16:33 LOGGER ENABLED
+22.01.2021 12:16:35 Read from userDataBase.txt
+22.01.2021 12:16:35 Read from humanDataBase.txt
+22.01.2021 12:16:35 Read from userDataBase.txt
+22.01.2021 12:16:35 Read from userDataBase.txt
+22.01.2021 12:16:35 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:16:39 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:18:24 LOGGER ENABLED
+22.01.2021 12:18:26 Read from userDataBase.txt
+22.01.2021 12:18:26 Read from humanDataBase.txt
+22.01.2021 12:18:26 Read from userDataBase.txt
+22.01.2021 12:18:26 Read from userDataBase.txt
+22.01.2021 12:18:26 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:20:14 LOGGER ENABLED
+22.01.2021 12:20:17 Read from userDataBase.txt
+22.01.2021 12:20:19 Read from userDataBase.txt
+22.01.2021 12:20:19 Read from humanDataBase.txt
+22.01.2021 12:20:19 Read from userDataBase.txt
+22.01.2021 12:20:19 Read from userDataBase.txt
+22.01.2021 12:20:19 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:21:35 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:24:17 LOGGER ENABLED
+22.01.2021 12:24:20 Read from userDataBase.txt
+22.01.2021 12:24:20 Read from humanDataBase.txt
+22.01.2021 12:24:20 Read from userDataBase.txt
+22.01.2021 12:24:20 Read from userDataBase.txt
+22.01.2021 12:24:20 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:25:59 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:26:03 LOGGER ENABLED
+22.01.2021 12:26:07 Read from userDataBase.txt
+22.01.2021 12:26:07 Read from humanDataBase.txt
+22.01.2021 12:26:07 Read from userDataBase.txt
+22.01.2021 12:26:07 Read from userDataBase.txt
+22.01.2021 12:26:07 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:27:55 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:37:08 LOGGER ENABLED
+22.01.2021 12:37:12 Read from userDataBase.txt
+22.01.2021 12:37:12 Read from humanDataBase.txt
+22.01.2021 12:37:12 Read from userDataBase.txt
+22.01.2021 12:37:12 Read from userDataBase.txt
+22.01.2021 12:37:12 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:41:55 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:43:19 LOGGER ENABLED
+22.01.2021 12:43:22 Read from userDataBase.txt
+22.01.2021 12:43:22 Read from humanDataBase.txt
+22.01.2021 12:43:22 Read from userDataBase.txt
+22.01.2021 12:43:22 Read from userDataBase.txt
+22.01.2021 12:43:22 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:44:12 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:46:07 LOGGER ENABLED
+22.01.2021 12:46:11 Read from userDataBase.txt
+22.01.2021 12:46:11 Read from humanDataBase.txt
+22.01.2021 12:46:11 Read from userDataBase.txt
+22.01.2021 12:46:11 Read from userDataBase.txt
+22.01.2021 12:46:11 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 12:47:40 APPLICAITON STOPPED
+~~~
+
+22.01.2021 12:58:48 LOGGER ENABLED
+22.01.2021 12:58:54 Read from userDataBase.txt
+22.01.2021 12:58:54 Read from humanDataBase.txt
+22.01.2021 12:58:54 Read from userDataBase.txt
+22.01.2021 12:58:54 Read from userDataBase.txt
+22.01.2021 12:58:54 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 13:34:11 APPLICAITON STOPPED
+~~~
+
+22.01.2021 20:44:36 LOGGER ENABLED
+22.01.2021 20:44:40 Read from userDataBase.txt
+22.01.2021 20:44:41 Read from humanDataBase.txt
+22.01.2021 20:44:41 Read from userDataBase.txt
+22.01.2021 20:44:41 Read from userDataBase.txt
+22.01.2021 20:44:41 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 20:44:45 APPLICAITON STOPPED
+~~~
+
+22.01.2021 20:45:03 LOGGER ENABLED
+22.01.2021 20:45:05 LOGGER ENABLED
+22.01.2021 20:45:05 LOGGER ENABLED
+22.01.2021 20:45:10 Read from userDataBase.txt
+22.01.2021 20:45:10 Read from humanDataBase.txt
+22.01.2021 20:45:10 Read from userDataBase.txt
+22.01.2021 20:45:10 Read from userDataBase.txt
+22.01.2021 20:45:10 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 20:45:16 APPLICAITON STOPPED
+~~~
+
+22.01.2021 20:45:17 APPLICAITON STOPPED
+~~~
+
+22.01.2021 20:45:24 Read from userDataBase.txt
+22.01.2021 20:45:24 Read from humanDataBase.txt
+22.01.2021 20:45:24 Read from userDataBase.txt
+22.01.2021 20:45:24 Read from userDataBase.txt
+22.01.2021 20:45:24 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 20:46:28 APPLICAITON STOPPED
+~~~
+
+22.01.2021 20:46:36 LOGGER ENABLED
+22.01.2021 20:46:39 Read from userDataBase.txt
+22.01.2021 20:46:39 Read from humanDataBase.txt
+22.01.2021 20:46:39 Read from userDataBase.txt
+22.01.2021 20:46:39 Read from userDataBase.txt
+22.01.2021 20:46:39 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 20:46:43 APPLICAITON STOPPED
+~~~
+
+22.01.2021 20:47:23 LOGGER ENABLED
+22.01.2021 20:47:27 Read from userDataBase.txt
+22.01.2021 20:47:27 Read from humanDataBase.txt
+22.01.2021 20:47:27 Read from userDataBase.txt
+22.01.2021 20:47:27 Read from userDataBase.txt
+22.01.2021 20:47:27 
+~~~
+PROGRAM STARTED BY 123
+22.01.2021 20:47:37 APPLICAITON STOPPED
+~~~
+
+22.01.2021 23:59:58 LOGGER ENABLED
+23.01.2021 0:00:02 Read from userDataBase.txt
+23.01.2021 0:00:03 Read from humanDataBase.txt
+23.01.2021 0:00:03 Read from userDataBase.txt
+23.01.2021 0:00:03 Read from userDataBase.txt
+23.01.2021 0:00:03 
+~~~
+PROGRAM STARTED BY 123
+23.01.2021 0:00:07 APPLICAITON STOPPED
+~~~
+
+23.01.2021 0:00:43 LOGGER ENABLED
+23.01.2021 0:00:46 Read from userDataBase.txt
+23.01.2021 0:00:46 Read from humanDataBase.txt
+23.01.2021 0:00:46 Read from userDataBase.txt
+23.01.2021 0:00:46 Read from userDataBase.txt
+23.01.2021 0:00:46 
+~~~
+PROGRAM STARTED BY 123
+23.01.2021 0:00:56 APPLICAITON STOPPED
+~~~
+
+23.01.2021 0:16:42 LOGGER ENABLED
+23.01.2021 0:16:45 Read from userDataBase.txt
+23.01.2021 0:16:45 Read from humanDataBase.txt
+23.01.2021 0:16:45 Read from userDataBase.txt
+23.01.2021 0:16:45 Read from userDataBase.txt
+23.01.2021 0:16:45 
+~~~
+PROGRAM STARTED BY 123
+23.01.2021 0:17:05 APPLICAITON STOPPED
+~~~
+
+23.01.2021 0:20:18 LOGGER ENABLED
+23.01.2021 0:20:20 Read from userDataBase.txt
+23.01.2021 0:20:20 Read from humanDataBase.txt
+23.01.2021 0:20:20 Read from userDataBase.txt
+23.01.2021 0:20:20 Read from userDataBase.txt
+23.01.2021 0:20:20 
+~~~
+PROGRAM STARTED BY 123
+23.01.2021 0:22:28 LOGGER ENABLED
+23.01.2021 0:22:31 Read from userDataBase.txt
+23.01.2021 0:22:31 Read from humanDataBase.txt
+23.01.2021 0:22:31 Read from userDataBase.txt
+23.01.2021 0:22:31 Read from userDataBase.txt
+23.01.2021 0:22:31 
+~~~
+PROGRAM STARTED BY 123
+23.01.2021 0:22:39 APPLICAITON STOPPED
+~~~
+
+23.01.2021 12:46:08 APPLICAITON STOPPED
+~~~
+
+23.01.2021 14:01:30 LOGGER ENABLED
+23.01.2021 14:01:31 LOGGER ENABLED
+23.01.2021 14:01:35 APPLICAITON STOPPED
+~~~
+
+23.01.2021 14:01:36 APPLICAITON STOPPED
+~~~
+
+23.01.2021 14:01:38 LOGGER ENABLED
+23.01.2021 14:01:41 Read from userDataBase.txt
+23.01.2021 14:01:41 Read from humanDataBase.txt
+23.01.2021 14:01:41 Read from userDataBase.txt
+23.01.2021 14:01:41 Read from userDataBase.txt
+23.01.2021 14:01:41 
+~~~
+PROGRAM STARTED BY 123
+23.01.2021 14:01:53 APPLICAITON STOPPED
+~~~
+
+23.01.2021 14:23:26 LOGGER ENABLED
+23.01.2021 14:23:30 Read from userDataBase.txt
+23.01.2021 14:23:30 Read from humanDataBase.txt
+23.01.2021 14:23:30 Read from userDataBase.txt
+23.01.2021 14:23:30 Read from userDataBase.txt
+23.01.2021 14:23:30 
+~~~
+PROGRAM STARTED BY 123
+23.01.2021 14:24:20 APPLICAITON STOPPED
+~~~
+
