@@ -8,8 +8,8 @@
 		  fx:controller="application.ExperimentController">
     
     <TabPane>
-    	<Tab text = "Graph1">
-	    	<LineChart fx:id="AvgTimeLinechart" 
+    	<Tab text = "Average Add Time">
+	    	<LineChart fx:id="AvgAddTimeLinechart" 
 	    		layoutX="29.0" layoutY="194.0" 
 	    		prefHeight="416.0" prefWidth="800.0">
 				<xAxis>
@@ -22,8 +22,9 @@
 				</yAxis>
     		</LineChart>
     	</Tab>
-    	<Tab text = "Graph2">
-    		<LineChart fx:id="FullTimeLinechart" 
+    	
+    	<Tab text = "Average Remove Time">
+	    	<LineChart fx:id="AvgRemTimeLinechart" 
 	    		layoutX="29.0" layoutY="194.0" 
 	    		prefHeight="416.0" prefWidth="800.0">
 				<xAxis>
@@ -31,7 +32,37 @@
 				</xAxis>
 				
 				<yAxis>
-					<NumberAxis label="Full Time (ns)" 
+					<NumberAxis label="Average Time (ns)" 
+						side="LEFT" upperBound="160.0" />
+				</yAxis>
+    		</LineChart>
+    	</Tab>
+    	
+    	<Tab text = "Total Add Time">
+    		<LineChart fx:id="FullAddTimeLinechart" 
+	    		layoutX="29.0" layoutY="194.0" 
+	    		prefHeight="416.0" prefWidth="800.0">
+				<xAxis>
+			        <NumberAxis label="Elements Amount"/>
+				</xAxis>
+				
+				<yAxis>
+					<NumberAxis label="Total Time (ns)" 
+						side="LEFT" upperBound="1600.0" />
+				</yAxis>
+    		</LineChart>
+    	</Tab>
+    	
+    	<Tab text = "Total Remove Time">
+    		<LineChart fx:id="FullRemTimeLinechart" 
+	    		layoutX="29.0" layoutY="194.0" 
+	    		prefHeight="416.0" prefWidth="800.0">
+				<xAxis>
+			        <NumberAxis label="Elements Amount"/>
+				</xAxis>
+				
+				<yAxis>
+					<NumberAxis label="Total Time (ns)" 
 						side="LEFT" upperBound="1600.0" />
 				</yAxis>
     		</LineChart>

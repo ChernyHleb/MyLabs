@@ -228,25 +228,55 @@ public class mainController implements IController {
 	}
 	
 	public void handleExperimentButtonClick() {
-		ExperimentController controller = (ExperimentController)loadWindow("experimentView.fxml", "Experiment");
-		
+		// getting the controller while loading experiment window
+		ExperimentController experimentController = (ExperimentController)loadWindow("experimentView.fxml", "Experiment");
+		// Running Experiment
 		int expertimentsAmount = 5;
 		Experiment experiment = new Experiment(expertimentsAmount);
 		experiment.Run();
-		
+		// Getting Experiment results
 		ArrayList<ExperimentResult> resultsForArrayList = experiment.get_resultsForArrayList();
 		ArrayList<ExperimentResult> resultsForLinkedList = experiment.get_resultsForLinkedList();
-		
+		// Creating data for graphs
 		XYChart.Series<Long, Long> ArrayListAvgAddTimeAndElements = new XYChart.Series<Long, Long>();
 		XYChart.Series<Long, Long> ArrayListFullAddTimeAndElements = new XYChart.Series<Long, Long>();
+		XYChart.Series<Long, Long> ArrayListAvgRemTimeAndElements = new XYChart.Series<Long, Long>();
+		XYChart.Series<Long, Long> ArrayListFullRemTimeAndElements = new XYChart.Series<Long, Long>();
+		
+		ArrayListAvgAddTimeAndElements.setName("ArrayList");
+		ArrayListFullAddTimeAndElements.setName("ArrayList");
+		ArrayListAvgRemTimeAndElements.setName("ArrayList");
+		ArrayListFullRemTimeAndElements.setName("ArrayList");
+		
+		XYChart.Series<Long, Long> LinkedListAvgAddTimeAndElements = new XYChart.Series<Long, Long>();
+		XYChart.Series<Long, Long> LinkedListFullAddTimeAndElements = new XYChart.Series<Long, Long>();
+		XYChart.Series<Long, Long> LinkedListAvgRemTimeAndElements = new XYChart.Series<Long, Long>();
+		XYChart.Series<Long, Long> LinkedListFullRemTimeAndElements = new XYChart.Series<Long, Long>();
+		
+		LinkedListAvgAddTimeAndElements.setName("LinkedList");
+		LinkedListFullAddTimeAndElements.setName("LinkedList");
+		LinkedListAvgRemTimeAndElements.setName("LinkedList");
+		LinkedListFullRemTimeAndElements.setName("LinkedList");
 		
 		Long elementsAmount = (long) 10;
 		for(int i = 0; i < expertimentsAmount; i ++) {
 			ArrayListAvgAddTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForArrayList.get(i).getAvgAddTime()));
 			ArrayListFullAddTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForArrayList.get(i).getTotalAddTime()));
-		
+			ArrayListAvgRemTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForArrayList.get(i).getAvgRemoveTime()));
+			ArrayListFullRemTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForArrayList.get(i).getTotalRemoveTime()));
+			
+			LinkedListAvgAddTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForLinkedList.get(i).getAvgAddTime()));
+			LinkedListFullAddTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForLinkedList.get(i).getTotalAddTime()));
+			LinkedListAvgRemTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForLinkedList.get(i).getAvgRemoveTime()));
+			LinkedListFullRemTimeAndElements.getData().add(new XYChart.Data<Long, Long>(elementsAmount , resultsForLinkedList.get(i).getTotalRemoveTime()));
+			
+			
 			elementsAmount *= 10;
 		}
-		
+		// filling graphs with data
+		experimentController.AvgAddTimeLinechart.getData().addAll(ArrayListAvgAddTimeAndElements, LinkedListAvgAddTimeAndElements);
+		experimentController.AvgRemTimeLinechart.getData().addAll(ArrayListAvgRemTimeAndElements, LinkedListAvgRemTimeAndElements);
+		experimentController.FullAddTimeLinechart.getData().addAll(ArrayListFullAddTimeAndElements, LinkedListFullAddTimeAndElements);
+		experimentController.FullRemTimeLinechart.getData().addAll(ArrayListFullRemTimeAndElements, LinkedListFullRemTimeAndElements);
 	}
 }
