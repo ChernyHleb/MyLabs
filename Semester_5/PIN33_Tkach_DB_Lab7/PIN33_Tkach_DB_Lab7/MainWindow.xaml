@@ -5,8 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PIN33_Tkach_DB_Lab7"
         
-        xmlns:views="clr-namespace:PIN33_Tkach_DB_Lab7.Views"
-        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Border Padding="3">
@@ -16,7 +14,31 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <views:NavigationBar Grid.Row="0" x:Name="NavBar"/>
+            <Border Padding="3" Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <TextBlock  Text="Current Table:" Margin="0 0 3 0"/>
+                        <ComboBox x:Name="TableSwitchComboBox">
+                            <ComboBoxItem Content="Department"/>
+                            <ComboBoxItem Content="Factory" IsSelected="True"/>
+                            <ComboBoxItem Content="Manufacture Technology"/>
+                            <ComboBoxItem Content="Sparepart" />
+                            <ComboBoxItem Content="Vendor" />
+                            <ComboBoxItem Content="Product"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel >
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
             <DataGrid Grid.Row="1" x:Name="FactoryDataGrid">
                 <!--<DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding number}" Header="number" Width="0.1*"/>
