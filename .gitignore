@@ -3,6 +3,8 @@
 *.out
 *.app
 
+*.vscode
+
 .metadata
 bin/
 tmp/
