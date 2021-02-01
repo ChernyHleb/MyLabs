@@ -17,54 +17,49 @@ import javafx.util.Duration;
 
 public class Main extends Application{
 
-	private static double width;
-	private static double height;
-	private static double player_height;
-	private static double player_width;
-	private static double ball_radius;
+	public static Double width;
+	public static Double height;
+	public static Double player_height;
+	public static Double player_width;
+	public static Double ball_radius;
 	
-	private double ball_XSpeed;
-	private double ball_YSpeed;
-	private double ball_XPosition;
-	private double ball_YPosition;
+	public static Double ball_XSpeed;
+	public static Double ball_YSpeed;
+	public static Double ball_XPosition;
+	public static Double ball_YPosition;
 	
-	private double player1_XPosition;
-	private double player1_YPosition;
-	private int player1_score = 0;
+	public static Double player1_XPosition;
+	public static Double player1_YPosition;
+	public static Integer player1_score = 0;
 	
-	private double player2_XPosition;
-	private double player2_YPosition;
-	private int player2_score = 0;
+	public static Double player2_XPosition;
+	public static Double player2_YPosition;
+	public static Integer player2_score = 0;
 	
-	private boolean game_started;
+	public static Boolean game_started;
+	public Ball ball = new Ball();
 	
 	static {
-		Main.width = 800;
-		Main.height = 600;
-		Main.player_height = 100;
-		Main.player_width = 15;
-		Main.ball_radius = 15;
-	}
-	
-	@Override
-	public void init() throws Exception {
-		// инициализация переменных
-		this.ball_XSpeed = 1;
-		this.ball_YSpeed = 1;
-		this.ball_XPosition =  Main.width / 2;
-		this.ball_YPosition = Main.height / 2;
+		Main.width = 800.0;
+		Main.height = 600.0;
+		Main.player_height = 100.0;
+		Main.player_width = 15.0;
+		Main.ball_radius = 15.0;
 		
-		this.player1_XPosition = 0;
-		this.player1_YPosition = Main.height / 2;
-		this.player1_score = 0;
+		Main.ball_XSpeed = 1.0;
+		Main.ball_YSpeed = 1.0;
+		Main.ball_XPosition =  Main.width / 2;
+		Main.ball_YPosition = Main.height / 2;
 		
-		this.player2_XPosition = Main.width - Main.player_width;
-		this.player2_YPosition = Main.height / 2;
-		this.player2_score = 0;
+		Main.player1_XPosition = 0.0;
+		Main.player1_YPosition = Main.height / 2;
+		Main.player1_score = 0;
 		
-		this.game_started = false;
+		Main.player2_XPosition = Main.width - Main.player_width;
+		Main.player2_YPosition = Main.height / 2;
+		Main.player2_score = 0;
 		
-		super.init();
+		Main.game_started = false;
 	}
 	
 	@Override
@@ -72,7 +67,8 @@ public class Main extends Application{
 		stage.setTitle("Lab7");
 		Canvas canvas = new Canvas(width, height);
 		GraphicsContext  graphicsContext = canvas.getGraphicsContext2D();
-		Timeline timeLine = new Timeline(new KeyFrame(Duration.millis(10), e->run(graphicsContext)));
+		ball.start();
+		Timeline timeLine = new Timeline(new KeyFrame(Duration.millis(10), e->{run(graphicsContext);}));
 		timeLine.setCycleCount(Timeline.INDEFINITE);
 		
 		// контроль мышки
@@ -85,6 +81,7 @@ public class Main extends Application{
 	}
 	
 	private void run(GraphicsContext graphicsContext) {
+		
 		// установка цвета фона
 		graphicsContext.setFill(Color.BLACK);
 		graphicsContext.fillRect(0, 0, Main.width, Main.height);
@@ -103,9 +100,9 @@ public class Main extends Application{
 			if(this.ball_XPosition < Main.width - Main.width / 4) {
 				this.player2_YPosition = this.ball_YPosition - this.player_height / 2;
 			} else {
-				this.player2_YPosition = this.ball_YPosition > this.player2_YPosition + this.player_height / 2 
-						? this.player2_YPosition ++ 
-						: this.player2_YPosition --;
+				this.player2_YPosition = this.ball_YPosition > this.player2_YPosition + this.player_height / 2
+						? this.player2_YPosition + Math.abs(this.ball_YSpeed)
+						: this.player2_YPosition - Math.abs(this.ball_YSpeed);
 			}
 			// отрисовка мяча
 			graphicsContext.fillOval(this.ball_XPosition, 
@@ -113,6 +110,7 @@ public class Main extends Application{
 									 this.ball_radius,
 									 this.ball_radius
 									 );
+			
 		} else {
 			// установка начального текста
 			graphicsContext.setStroke(Color.WHITE);
@@ -124,8 +122,8 @@ public class Main extends Application{
 			this.ball_YPosition = this.height / 2;
 			
 			// скорость и направление
-			this.ball_XSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
-			this.ball_YSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
+			this.ball_XSpeed = new Random().nextInt(2) == 0 ? 1.0 : -1.0;
+			this.ball_YSpeed = new Random().nextInt(2) == 0 ? 1.0 : -1.0;
 		}
 		// мяч должен оставаться на канвасе
 		if (this.ball_YPosition > this.height ||
@@ -146,7 +144,7 @@ public class Main extends Application{
 		}
 			
 		// увеличить скорость мяча
-		if(((this.ball_XPosition + this.ball_radius > this.player2_XPosition) &&
+		/*if(((this.ball_XPosition + this.ball_radius > this.player2_XPosition) &&
 			this.ball_YPosition >= this.player2_YPosition &&
 			this.ball_YPosition <= this.player2_YPosition + this.player_height)
 			||
@@ -154,14 +152,14 @@ public class Main extends Application{
 			this.ball_YPosition >= this.player1_YPosition &&
 			this.ball_YPosition <= this.player1_YPosition + this.player_height)) {
 				
-			this.ball_YSpeed += 1 * Math.signum(this.ball_YSpeed);
-			this.ball_XSpeed += 1 * Math.signum(this.ball_XSpeed);
-			this.ball_YSpeed *= -1;
+			this.ball_YSpeed += 0.5 * Math.signum(this.ball_YSpeed);
+			this.ball_XSpeed += 0.5 * Math.signum(this.ball_XSpeed);
+			//this.ball_YSpeed *= -1;
 			this.ball_XSpeed *= -1;
-		}
+		}*/
 			
 		// отрисовка очков
-		graphicsContext.fillText(this.player1_score + "\t\t\t\t\t\t\t\t" + this.player2_score, 
+		graphicsContext.fillText(this.player1_score + "\t\t\t\t" + "Speed:" + Math.abs(this.ball_YSpeed) + "\t\t\t\t" + this.player2_score, 
 								 this.width / 2, 
 								 100);
 		// отрисовка игроков
@@ -176,6 +174,11 @@ public class Main extends Application{
 				 				 this.player_height
 				 				);
 		
+	}
+	
+	@Override
+	public void stop(){
+		ball.stop();
 	}
 }
 
