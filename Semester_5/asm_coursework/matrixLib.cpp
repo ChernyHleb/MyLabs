@@ -15,3 +15,11 @@ void hello_world()
      cout << res[1] << "lol";
      cin >> a;
 }
+
+float* ArraySum(float* arr1, float* arr2, int len) 
+{
+    asm ( "mov %1,%0 \n"           
+        : "=m"(res[1])                    
+        : "r"(a)
+    );
+}

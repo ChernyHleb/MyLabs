@@ -17,27 +17,26 @@ import javafx.util.Duration;
 
 public class Main extends Application{
 
-	public static Double width;
-	public static Double height;
-	public static Double player_height;
-	public static Double player_width;
-	public static Double ball_radius;
+	public static volatile Double width;
+	public static volatile Double height;
+	public static volatile Double player_height;
+	public static volatile Double player_width;
+	public static volatile Double ball_radius;
 	
-	public static Double ball_XSpeed;
-	public static Double ball_YSpeed;
-	public static Double ball_XPosition;
-	public static Double ball_YPosition;
+	public static volatile Double ball_XSpeed;
+	public static volatile Double ball_YSpeed;
+	public static volatile Double ball_XPosition;
+	public static volatile Double ball_YPosition;
 	
-	public static Double player1_XPosition;
-	public static Double player1_YPosition;
-	public static Integer player1_score = 0;
+	public static volatile Double player1_XPosition;
+	public static volatile Double player1_YPosition;
+	public static volatile Integer player1_score = 0;
 	
-	public static Double player2_XPosition;
-	public static Double player2_YPosition;
-	public static Integer player2_score = 0;
+	public static volatile Double player2_XPosition;
+	public static volatile Double player2_YPosition;
+	public static volatile Integer player2_score = 0;
 	
-	public static Boolean game_started;
-	public Ball ball = new Ball();
+	public static volatile Boolean game_started;
 	
 	static {
 		Main.width = 800.0;
@@ -67,7 +66,7 @@ public class Main extends Application{
 		stage.setTitle("Lab7");
 		Canvas canvas = new Canvas(width, height);
 		GraphicsContext  graphicsContext = canvas.getGraphicsContext2D();
-		ball.start();
+		
 		Timeline timeLine = new Timeline(new KeyFrame(Duration.millis(10), e->{run(graphicsContext);}));
 		timeLine.setCycleCount(Timeline.INDEFINITE);
 		
@@ -81,7 +80,6 @@ public class Main extends Application{
 	}
 	
 	private void run(GraphicsContext graphicsContext) {
-		
 		// установка цвета фона
 		graphicsContext.setFill(Color.BLACK);
 		graphicsContext.fillRect(0, 0, Main.width, Main.height);
@@ -143,8 +141,10 @@ public class Main extends Application{
 			this.game_started = false;
 		}
 			
+		
+			
 		// увеличить скорость м€ча
-		/*if(((this.ball_XPosition + this.ball_radius > this.player2_XPosition) &&
+		if(((this.ball_XPosition + this.ball_radius > this.player2_XPosition) &&
 			this.ball_YPosition >= this.player2_YPosition &&
 			this.ball_YPosition <= this.player2_YPosition + this.player_height)
 			||
@@ -156,7 +156,7 @@ public class Main extends Application{
 			this.ball_XSpeed += 0.5 * Math.signum(this.ball_XSpeed);
 			//this.ball_YSpeed *= -1;
 			this.ball_XSpeed *= -1;
-		}*/
+		}
 			
 		// отрисовка очков
 		graphicsContext.fillText(this.player1_score + "\t\t\t\t" + "Speed:" + Math.abs(this.ball_YSpeed) + "\t\t\t\t" + this.player2_score, 
@@ -178,7 +178,7 @@ public class Main extends Application{
 	
 	@Override
 	public void stop(){
-		ball.stop();
+		
 	}
 }
 
