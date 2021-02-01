@@ -124,9 +124,57 @@ public class Main extends Application{
 			this.ball_YPosition = this.height / 2;
 			
 			// скорость и направление
-			this.ball_XSpeed = new Random().nextDouble() == 0 ? 1 : -1;
-			this.ball_YSpeed = new Random().nextDouble() == 0 ? 1 : -1;
+			this.ball_XSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
+			this.ball_YSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
 		}
+		// мяч должен оставаться на канвасе
+		if (this.ball_YPosition > this.height ||
+			this.ball_YPosition < 0) {
+			this.ball_YSpeed *= -1;
+		}
+			
+		// если мяч упущен то комп получает очко
+		if(this.ball_XPosition < this.player1_XPosition - this.player_width) {
+			this.player2_score ++;
+			this.game_started = false;
+		}
+			
+		// игрок получает очко
+		if(this.ball_XPosition > this.player2_XPosition + this.player_width) {
+			this.player1_score ++;
+			this.game_started = false;
+		}
+			
+		// увеличить скорость мяча
+		if(((this.ball_XPosition + this.ball_radius > this.player2_XPosition) &&
+			this.ball_YPosition >= this.player2_YPosition &&
+			this.ball_YPosition <= this.player2_YPosition + this.player_height)
+			||
+			  ((this.ball_XPosition < this.player1_XPosition + this.player_width) &&
+			this.ball_YPosition >= this.player1_YPosition &&
+			this.ball_YPosition <= this.player1_YPosition + this.player_height)) {
+				
+			this.ball_YSpeed += 1 * Math.signum(this.ball_YSpeed);
+			this.ball_XSpeed += 1 * Math.signum(this.ball_XSpeed);
+			this.ball_YSpeed *= -1;
+			this.ball_XSpeed *= -1;
+		}
+			
+		// отрисовка очков
+		graphicsContext.fillText(this.player1_score + "\t\t\t\t\t\t\t\t" + this.player2_score, 
+								 this.width / 2, 
+								 100);
+		// отрисовка игроков
+		graphicsContext.fillRect(this.player1_XPosition, 
+								 this.player1_YPosition, 
+								 this.player_width,
+								 this.player_height
+								 );
+		graphicsContext.fillRect(this.player2_XPosition, 
+				 				 this.player2_YPosition, 
+				 				 this.player_width,
+				 				 this.player_height
+				 				);
 		
 	}
 }
