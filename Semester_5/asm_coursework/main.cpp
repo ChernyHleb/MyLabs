@@ -13,11 +13,8 @@ void PrintArray(int arr[], int len);
 
 int main() {
     //Test_ArraySum();
-    int matr[3][3] = {{1, 2, 3}, 
-                      {1, 2, 3}, 
-                      {1, 2, 3}};
-
-    hello_world();
+    hello_world_matrix();
+    //hello_world_array();
     getchar();
 }
 
