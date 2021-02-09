@@ -8,7 +8,7 @@ using namespace std;
 // запуск
 // start main.exe
 
-void Test_ArraySum();
+void TestSum();
 void PrintArray(int arr[], int len);
 
 int main() {
@@ -18,12 +18,12 @@ int main() {
     getchar();
 }
 
-void Test_ArraySum()
+void TestSum()
 {
     int len = 3;
     int arr1[] = {1, 2, 3};
     int arr2[] = {4, 5, 6};
-    int* result = ArraySum(arr1, len, arr2, len);
+    int* result = Sum(arr1, len, arr2, len);
     PrintArray(result, len);
 }
 

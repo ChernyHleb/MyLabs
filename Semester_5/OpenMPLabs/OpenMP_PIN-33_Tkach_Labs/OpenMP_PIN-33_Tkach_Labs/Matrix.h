@@ -4,6 +4,7 @@
 #include <omp.h>
 #include <string>
 #include <cstdlib>
+using namespace std;
 
 
 class Matrix
@@ -11,7 +12,7 @@ class Matrix
 public:
 	int **matrix;
 	int N, M;
-	std::string ToString();
+	string ToString();
 	std::string ToShortString();
 	Matrix();
 	Matrix(int dimention);

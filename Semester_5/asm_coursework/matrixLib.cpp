@@ -56,10 +56,9 @@ void hello_world_matrix()
             printf("%d-%d: %d\n", i, j, matr[i][j]);
 }
 
-int* ArraySum(int* p1, int len1, int* p2, int len2) 
+int** Sum(int* p1[], int len1, int* p2[], int len2) 
 {
-   
-        
+          
 
     
     return nullptr;
