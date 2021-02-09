@@ -9,28 +9,32 @@ using namespace std;
 // start main.exe
 
 void Test_ArraySum();
-void PrintArray(float arr[], int len);
+void PrintArray(int arr[], int len);
 
 int main() {
-    Test_ArraySum();
+    //Test_ArraySum();
+    int matr[3][3] = {{1, 2, 3}, 
+                      {1, 2, 3}, 
+                      {1, 2, 3}};
+
+    hello_world();
     getchar();
 }
 
 void Test_ArraySum()
 {
     int len = 3;
-    float array1[] = {1, 2, 3};
-    float array2[] = {4, 5, 6};
-    float result[] = {0, 0, 0};
-
-    PrintArray(array1, len);
+    int arr1[] = {1, 2, 3};
+    int arr2[] = {4, 5, 6};
+    int* result = ArraySum(arr1, len, arr2, len);
+    PrintArray(result, len);
 }
 
-void PrintArray(float* arr, int len)
+void PrintArray(int* arr, int len)
 {
     for(int i = 0; i < len; i ++)
     {
-        printf("%f\t", arr[i]);
+        printf("%d\t", *(arr + i));
     }
     printf("\n");
 }

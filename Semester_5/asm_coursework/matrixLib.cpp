@@ -4,22 +4,39 @@ using namespace std;
 
 void hello_world()
 {
-    int res [] = {0,0};
-    int a=45;
-    cout << res[1];
-    asm ( "mov %1,%0 \n"           
-        : "=m"(res[1])                    
-        : "r"(a)
-    );
+    // тестируем ассемблер
+    int arr[3] = {1, 2, 3};
+    int n = 3;
+    int *p = arr;
+    int *out = (int*) malloc(n * sizeof(int));
 
-     cout << res[1] << "lol";
-     cin >> a;
+    printf("before:\n");
+    for (int i = 0; i < 3; i++){
+        *(out + i) = 0;
+        printf("%d: %d|%d\n", i,*(p + i), *(out + i));
+    }
+
+    asm("xor %%ecx, %%ecx\n\t" //обуляем счетчик
+        "label:\n\t" // метка
+        "add $1, (%0, %%ecx, 4)\n\t" // добавляем единичку в out (адрес, индекс, размер)
+        "add $1, %%ecx \n\t" // инкрементируем счетчик
+        "cmp %%ecx, %1\n\t" // сравниваем
+        "jne label" // если не равны то переход
+        ::"r"(out), "m"(n)
+        
+        );
+
+    printf("after:\n");
+    for(int i = 0; i < 3; i ++){
+        printf("%d: %d|%d\n", i,*(p + i), *(out + i));
+    }
 }
 
-float* ArraySum(float* arr1, float* arr2, int len) 
+int* ArraySum(int* p1, int len1, int* p2, int len2) 
 {
-    asm ( "mov %1,%0 \n"           
-        : "=m"(res[1])                    
-        : "r"(a)
-    );
+   
+        
+
+    
+    return nullptr;
 }
