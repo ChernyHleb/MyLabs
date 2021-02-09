@@ -31,12 +31,8 @@ void hello_world_array()
     }
 }
 // бесполезная функция для изучения ассемблера 2
-void hello_world_matrix()
+void hello_world_matrix(int matr[][12], int n, int m)
 {
-    int matr[3][2] = {{1, 2}, 
-                      {3, 4}, 
-                      {5, 6}};
-    int n = 3, m = 2;
     printf("before:\n");
     for(int i = 0; i < n; i++)
         for(int j = 0; j < m; j++)
@@ -54,12 +50,4 @@ void hello_world_matrix()
     for(int i = 0; i < n; i++)
         for(int j = 0; j < m; j++)
             printf("%d-%d: %d\n", i, j, matr[i][j]);
-}
-
-int** Sum(int* p1[], int len1, int* p2[], int len2) 
-{
-          
-
-    
-    return nullptr;
 }
