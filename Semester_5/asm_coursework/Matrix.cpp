@@ -74,6 +74,8 @@ Matrix* Matrix::Sum(Matrix* m1, Matrix* m2)
     int* matrix2 = m2->GetMatrix();
     int lim = m1->GetN() * m1->GetM();
     int* res = new int[lim];
+    // тк матрица представлена линейным массивом,
+    // просто делаем i++, аналогично для разности
     asm(
         "loop_sum:\n\t"
         "dec %%ecx\n\t"
@@ -123,6 +125,17 @@ Matrix* Matrix::Sub(Matrix* m1, Matrix* m2)
 // умножение матриц
 Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
 {
+    // число столбцов m1 должно равняться числу строк m2
+    // транспонируем матрицу 2 для удобства
+    // (тогда можно просто умножать построчно)
+    Matrix* m2T = Matrix::Tran(m2);
+
+    //схема:
+    //loop N1
+    //  loop M1
+    //    loop lim2
+    //      умножение и сложение
+
     /*asm(
         "i_loop:\n\t"
         "j_loop:\n\t"
@@ -201,6 +214,15 @@ Matrix* Matrix::Tran(Matrix* m)
     int* res = new int[N * M];
     int counter = 0;
     int lim = N * M;
+    int fin = lim - N;
+    //схема:
+    //c_res = lim
+    //loop lim -> fin
+    //  c_mat = lim
+    //  loop N -> 0
+    //    c_res --
+    //    res[c_res] = mat[c_mat]
+    //    c_mat -= M
     asm(
         "movl %5, %%ecx\n\t"
         "loop_tran_m:\n\t"
@@ -229,10 +251,10 @@ Matrix* Matrix::Tran(Matrix* m)
         "cmp $0, %%edx\n\t"
         "jne loop_tran_n\n\t"
 
-        "cmp $1, %%ecx\n\t"
+        "cmp %6, %%ecx\n\t"
         "jne loop_tran_m"
         :
-        :"D"(res), "S"(matrix), "m"(M), "m"(N), "m"(counter), "m"(lim)
+        :"D"(res), "S"(matrix), "m"(M), "m"(N), "m"(counter), "m"(lim), "m"(fin)
         : 
     );
     return new Matrix(res, M, N);

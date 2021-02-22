@@ -31,6 +31,6 @@ int main() {
     //cout << "CMUL: M1 * 3\n" << Matrix::CMul(M1, 3)->ToString();
     //cout << "CMUL: M1 * -5\n" << Matrix::CMul(M1, -5)->ToString();
     cout << "TRAN: (M3)T\n" << Matrix::Tran(M3)->ToString();
-    
+    cout << "TRAN: (M3)T\n" << Matrix::Tran(M1)->ToString();
     getchar();
 }
