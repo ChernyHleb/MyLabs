@@ -125,45 +125,46 @@ Matrix* Matrix::Sub(Matrix* m1, Matrix* m2)
 // умножение матриц
 Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
 {
-    // число столбцов m1 должно равняться числу строк m2
+    // число столбцов m1 k должно равняться числу строк m2 l
     // транспонируем матрицу 2 для удобства
     // (тогда можно просто умножать построчно)
     Matrix* m2T = Matrix::Tran(m2);
-
+    // результирующая матрица
+    int resN = m1->GetN();
+    int resM = m2->GetM();
+    int* res = new int[resN * resM];
+    // исходные матрицы
+    int* matrix1 = m1->GetMatrix();
+    int* matrix2T = m2T->GetMatrix();
+    // вспомогательные переменные и счетчики
+    int N1 = m1->GetN();
+    int M1 = m1->GetM();
+    int lim2 = m2->GetN() * m2->GetM();
+    int c_M1 = 0;
+    int c_lim2 = 0;
+    int sum = 0;
     //схема:
     //loop N1
     //  loop M1
     //    loop lim2
     //      умножение и сложение
 
-    /*asm(
-        "i_loop:\n\t"
-        "j_loop:\n\t"
-
-        "movw %5 ,%%ax\n\t"// i
-        "movw %4 ,%%bx\n\t"// m
-        "mul %%bx\n\t"// i*m
-        "add %6, %%eax\n\t"// i*m + j
-        "movl %%eax, %%ecx\n\t"
-
-        "movl %0, %%ebx\n\t"// результирующий массив
-        // "movl %1, %%esi\n\t"// массив 1
-        // "movl %2, %%edi\n\t"// массив 2
-
-        "movl $0, (%%ebx, %%ecx, 4)\n\t"// обнуляем
+    asm(
         
-        "add $1, %6\n\t"
-        "movl %6, %%edx\n\t"
-        "cmp %%edx, %4\n\t"
-        "jne j_loop\n\t"
+        "loop_n1:\n\t"
 
-        "add $1, %5\n\t"
-        "movl %5, %%edx\n\t"
-        "cmp %%edx, %3\n\t"
-        "jne i_loop"
 
-        ::"m"(res), "m"(matrix1), "m"(matrix2), "m"(n), "m"(m), "m"(i), "m"(j)
-    );*/
+        "loop_m1:\n\t"
+
+
+        "loop_lim2:\n\t"
+
+
+        :
+        :"D"(matrix1), "S"(matrix2T), "c"(res), "m"(N1), "m"(M1), "m"(lim2), "m"(c_M1), "m"(c_lim2), "m"(sum)
+        :
+    );
+    return new Matrix(res, resN, resM);
 }
 // Нахождение детерминанта
 Matrix* Matrix::Det(Matrix* m)
