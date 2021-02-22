@@ -199,7 +199,7 @@ Matrix* Matrix::Tran(Matrix* m)
     int N = m->GetN();
     int M = m->GetM();
     int* res = new int[N * M];
-    int counter;
+    int counter = 0;
     int lim = N * M;
     asm(
         "movl %5, %%ecx\n\t"
@@ -229,7 +229,7 @@ Matrix* Matrix::Tran(Matrix* m)
         "cmp $0, %%edx\n\t"
         "jne loop_tran_n\n\t"
 
-        "cmp $0, %%ecx\n\t"
+        "cmp $1, %%ecx\n\t"
         "jne loop_tran_m"
         :
         :"D"(res), "S"(matrix), "m"(M), "m"(N), "m"(counter), "m"(lim)
