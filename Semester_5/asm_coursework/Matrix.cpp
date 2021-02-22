@@ -132,7 +132,8 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
     // результирующая матрица
     int resN = m1->GetN();
     int resM = m2->GetM();
-    int* res = new int[resN * resM];
+    int res_lim = resN * resM;
+    int* res = new int[res_lim];
     // исходные матрицы
     int* matrix1 = m1->GetMatrix();
     int* matrix2T = m2T->GetMatrix();
@@ -143,25 +144,88 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
     int c_M1 = 0;
     int c_lim2 = 0;
     int sum = 0;
+    int lim1 = N1 * M1;
     //схема:
-    //loop N1
-    //  loop M1
-    //    loop lim2
-    //      умножение и сложение
+    //loop lim1 -> 0
+    //  loop M1 -> 0
+    //    c_m1 --
+    //    lim1 --
+    //    loop lim2 -> 0
+    //      c_lim2 --
+    //      sum += m1[lim1] * m2[lim2] 
 
     asm(
-        
-        "loop_n1:\n\t"
+        "loop_mul_lim1:\n\t"
+            // c_m1 = m1
+            "movl %4, %%eax\n\t"
+            "movl %%eax, %6\n\t"
 
+            "loop_mul_m1:\n\t"
+                // c_m1--
+                "movl %6, %%eax\n\t"
+                "dec %%eax\n\t"
+                "movl %%eax, %6\n\t"
 
-        "loop_m1:\n\t"
+                // lim1 --
+                "movl %3, %%eax\n\t"
+                "dec %%eax\n\t"
+                "movl %%eax, %3\n\t"
 
+                // c_lim2 = lim2
+                "movl %5, %%eax\n\t"
+                "movl %%eax, %7\n\t"
 
-        "loop_lim2:\n\t"
+                // sum = 0;
+                "xor %%eax, %eax\n\t"
+                "movl %%eax, %8\n\t"
+                // ___LOOP LIM2___ //
+                "loop_mul_lim2:\n\t"
+                    // c_lim2--
+                    "movl %7, %%eax\n\t"
+                    "dec %%eax\n\t"
+                    "movl %%eax, %7\n\t"
 
+                    // m1[lim1] * m2[lim2] 
 
+                    "movl %3, %%eax\n\t"
+                    "movw (%%edi, %%eax, 4), %%ax\n\t"
+
+                    "movl %7, %%eax\n\t"
+                    "movw (%%esi, %%eax, 4) ,%%bx\n\t"
+
+                    "imulw %%bx\n\t"// результат в dx:ax
+
+                    "xor %%ebx, %%ebx\n\t"
+                    "movw %%dx, %%bx\n\t"//2 младших байта ebx
+                    "shl $8, %%ebx\n\t"// двигаем значение bx в старшие байты ebx
+                    "movw %%ax, %%bx\n\t"
+
+                    // sum += reselt of imul
+                    "movl %8, %%eax\n\t"
+                    "add %%ebx, %%eax\n\t"
+                    "movl %%eax, %8\n\t"
+
+                "movl %7, %%eax\n\t"
+                "cmp $0, %%eax\n\t"
+                "jne loop_mul_lim2"
+
+                //res_lim--
+                "movl %9, %%eax\n\t"
+                "dec %%eax\n\t"
+                "movl %%eax, %9\n\t"
+
+                // res[] = sum ---------------
+                "movl %8, (%%ecx, %%eax, 4)\n\t"
+
+            "movl %6, %%eax\n\t"
+            "cmp $0, %%eax\n\t"
+            "jne loop_mul_m1"
+
+        "movl %3, %%eax\n\t"
+        "cmp $0, %%eax\n\t"
+        "jne loop_mul_lim1"
         :
-        :"D"(matrix1), "S"(matrix2T), "c"(res), "m"(N1), "m"(M1), "m"(lim2), "m"(c_M1), "m"(c_lim2), "m"(sum)
+        :"D"(matrix1), "S"(matrix2T), "c"(res), "m"(lim1), "m"(M1), "m"(lim2), "m"(c_M1), "m"(c_lim2), "m"(sum), "m"(res_lim)
         :
     );
     return new Matrix(res, resN, resM);
