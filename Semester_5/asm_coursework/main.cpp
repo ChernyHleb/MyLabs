@@ -21,26 +21,33 @@ int main() {
     int arr3[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
     int arr4[6] = {1, 2, 3, 4, 5, 6};
     int arr5[6] = {7, 8, 9, 1, 2, 3};
-    
+    int arr6[4] = {-2, 1, 5, 4};
+    int arr7[2] = {3, -1};
+
     Matrix* M1 = new Matrix(arr1, 3, 2);
     Matrix* M2 = new Matrix(arr2, 3, 2);
     Matrix* M3 = new Matrix(arr3, 4, 3);
     Matrix* M4 = new Matrix(arr4, 2, 3);
     Matrix* M5 = new Matrix(arr5, 3, 2);
+    Matrix* M6 = new Matrix(arr6, 2, 2);
+    Matrix* M7 = new Matrix(arr7, 2, 1);
 
-    //cout <<"M1\n"<< M1->ToString();
+    cout <<"M1\n"<< M1->ToString();
     //cout <<"M2\n"<< M2->ToString();
     //cout <<"M3\n"<< M3->ToString();
-    cout <<"M4\n"<< M4->ToString();
-    cout <<"M5\n"<< M5->ToString();
+    //cout <<"M4\n"<< M4->ToString();
+    //cout <<"M5\n"<< M5->ToString();
+    //cout <<"M6\n"<< M6->ToString();
+    //cout <<"M7\n"<< M7->ToString();
     cout << "-------------------------------\n";
     //cout <<"SUM: M1 + M1\n"<< Matrix::Sum(M1, M1)->ToString();
     //cout <<"SUB: M2 - M1\n"<< Matrix::Sub(M2, M1)->ToString();
-    //cout << "CMUL: M1 * 3\n" << Matrix::CMul(M1, 3)->ToString();
-    //cout << "CMUL: M1 * -5\n" << Matrix::CMul(M1, -5)->ToString();
+    cout << "CMUL: M1 * 3\n" << Matrix::CMul(M1, 3)->ToString();
+    cout << "CMUL: M1 * -5\n" << Matrix::CMul(M1, -5)->ToString();
     //cout << "TRAN: (M3)T\n" << Matrix::Tran(M3)->ToString();
-    //cout << "TRAN: (M3)T\n" << Matrix::Tran(M1)->ToString();
-    cout << "MUL: M4 x M5\n" << Matrix::Mul(M4, M5)->ToString();
+    //cout << "TRAN: (M1)T\n" << Matrix::Tran(M1)->ToString();
+    //cout << "MUL: M4 x M5\n" << Matrix::Mul(M4, M5)->ToString();
+    //cout << "MUL: M6 x M7\n" << Matrix::Mul(M6, M7)->ToString();
     getchar();
 }
 

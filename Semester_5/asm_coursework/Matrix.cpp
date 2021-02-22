@@ -197,7 +197,7 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
 
                     "xor %%ebx, %%ebx\n\t"
                     "movw %%dx, %%bx\n\t"//2 младших байта ebx
-                    "shl $8, %%ebx\n\t"// двигаем значение bx в старшие байты ebx
+                    "shl $16, %%ebx\n\t"// двигаем значение bx в старшие байты ebx
                     "movw %%ax, %%bx\n\t"
 
                     // sum += reselt of imul
@@ -234,7 +234,7 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
 // Нахождение детерминанта
 Matrix* Matrix::Det(Matrix* m)
 {
-
+    // рекурсия пока не получится матрица 1х1 ?
 }
 // Нахождение обратной матрицы
 Matrix* Matrix::Rev(Matrix* m)
@@ -259,7 +259,7 @@ Matrix* Matrix::CMul(Matrix* m, int c)
 
         "xor %%ebx, %%ebx\n\t"
         "movw %%dx, %%bx\n\t"//2 младших байта ebx
-        "shl $8, %%ebx\n\t"// двигаем значение bx в старшие байты ebx
+        "shl $16, %%ebx\n\t"// двигаем значение bx в старшие байты ebx
         "movw %%ax, %%bx\n\t"
         "movl %%ebx, (%%edi, %%ecx, 4)\n\t"
 
