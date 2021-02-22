@@ -176,7 +176,7 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
                 "movl %%eax, %7\n\t"
 
                 // sum = 0;
-                "xor %%eax, %eax\n\t"
+                "xor %%eax, %%eax\n\t"
                 "movl %%eax, %8\n\t"
                 // ___LOOP LIM2___ //
                 "loop_mul_lim2:\n\t"
@@ -207,7 +207,7 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
 
                 "movl %7, %%eax\n\t"
                 "cmp $0, %%eax\n\t"
-                "jne loop_mul_lim2"
+                "jne loop_mul_lim2\n\t"
 
                 //res_lim--
                 "movl %9, %%eax\n\t"
@@ -215,11 +215,12 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
                 "movl %%eax, %9\n\t"
 
                 // res[] = sum ---------------
-                "movl %8, (%%ecx, %%eax, 4)\n\t"
+                "movl %8, %%ebx\n\t"
+                "movl %%ebx, (%%ecx, %%eax, 4)\n\t"
 
             "movl %6, %%eax\n\t"
             "cmp $0, %%eax\n\t"
-            "jne loop_mul_m1"
+            "jne loop_mul_m1\n\t"
 
         "movl %3, %%eax\n\t"
         "cmp $0, %%eax\n\t"
