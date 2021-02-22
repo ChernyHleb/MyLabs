@@ -1,14 +1,16 @@
 #include <iostream>
 #include <stdio.h>
-#include "matrixLib.h"
 #include "Matrix.h"
 using namespace std;
 
 // сборка
-// g++ matrixLib.cpp matrixLib.h main.cpp -o main.exe 
-// g++ matrixLib.cpp matrixLib.h Matrix.cpp Matrix.h main.cpp -o main.exe 
+// g++ Matrix.cpp Matrix.h main.cpp -o main.exe 
 // запуск
 // start main.exe
+
+void hello_world_array();
+void hello_world_matrix(int** matr, int n, int m);
+
 
 void TestSum();
 void PrintArray(int arr[], int len);
@@ -40,4 +42,57 @@ int main() {
     //cout << "TRAN: (M3)T\n" << Matrix::Tran(M1)->ToString();
     cout << "MUL: M4 x M5\n" << Matrix::Mul(M4, M5)->ToString();
     getchar();
+}
+
+
+
+// бесполезная функция для изучения ассемблера 1
+void hello_world_array()
+{   
+    int arr[3] = {1, 2, 3};
+    int n = 3;
+    int *p = arr;
+    int *out = (int*) malloc(n * sizeof(int));
+
+    printf("before:\n");
+    for (int i = 0; i < 3; i++){
+        *(out + i) = 0;
+        printf("%d: %d|%d\n", i,*(p + i), *(out + i));
+    }
+
+    asm("xor %%ecx, %%ecx\n\t" //обуляем счетчик
+        "label:\n\t" // метка
+        "add $1, (%0, %%ecx, 4)\n\t" // добавляем единичку в out (адрес, индекс, размер)
+        "add $1, %%ecx \n\t" // инкрементируем счетчик
+        "cmp %%ecx, %1\n\t" // сравниваем
+        "jne label" // если не равны то переход
+        ::"r"(out), "m"(n)
+        
+        );
+
+    printf("after:\n");
+    for(int i = 0; i < 3; i ++){
+        printf("%d: %d|%d\n", i,*(p + i), *(out + i));
+    }
+}
+// бесполезная функция для изучения ассемблера 2
+void hello_world_matrix(int matr[][12], int n, int m)
+{
+    printf("before:\n");
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++)
+            printf("%d-%d: %d\n", i, j, matr[i][j]);
+
+    asm("xor %%ecx, %%ecx\n\t"
+        "inc %%ecx\n\t"
+        "add $1, (%0, %%ecx,4)\n\t"
+        "inc %%ecx\n\t"
+        "add $1, (%0, %%ecx,4)\n\t"
+        ::"r"(matr), "m"(n), "m"(m)
+    );
+
+    printf("after:\n");
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++)
+            printf("%d-%d: %d\n", i, j, matr[i][j]);
 }
