@@ -43,6 +43,8 @@ public:
     static Matrix* CMul(Matrix* m, int c);
     // Транспонирование
     static Matrix* Tran(Matrix* m);
+    // умножение векторов
+    static int MulVectors(int* arr1, int* arr2, int elementsAmount);
 };
 
 #endif

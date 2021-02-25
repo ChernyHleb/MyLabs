@@ -126,7 +126,7 @@ Matrix* Matrix::Sub(Matrix* m1, Matrix* m2)
     return new Matrix(res, m1->GetN(), m1->GetM());
 }
 // умножение матриц
-Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
+/*Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
 {
     // число столбцов m1 k должно равняться числу строк m2 l
     // транспонируем матрицу 2 для удобства
@@ -234,6 +234,75 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
     );
     return new Matrix(res, resN, resM);
 }
+*/
+
+Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
+{
+    Matrix* m2T = Matrix::Tran(m2);
+    int n = m1->GetN();
+
+    int *matrix1 = m1->GetMatrix();
+    int *matrix2 = m2->GetMatrix();
+    
+    int* str1 = new int[n];
+    int* str2 = new int[n];
+
+    for(int i = 0; i < n; i++)
+    {
+        for(int i2 = 0; i2 < n; i2++)
+        for(int j = 0; j < n; j++)
+        {
+            str1[j] = matrix1[n * i + j];
+            str2[j] = matrix2[n * i2 + j];
+            int res = Matrix::MulVectors(str1, str2, n);
+
+            cout << res << " ";
+        }
+
+        cout << "\n";
+    }
+
+    delete[] str1;
+    delete[] str2;
+
+    return nullptr;
+}
+
+int Matrix::MulVectors(int* arr1, int* arr2, int elementsAmount)
+{
+    int res = 0;
+
+    asm(
+        "loop_mulVectors_lim:\n\t"
+        "dec %%ecx\n\t"
+
+            // m1[lim_counter] * m2[lim_counter] 
+            "movw (%%esi, %%ecx, 4), %%ax\n\t"
+            "movw (%%edi, %%ecx, 4), %%bx\n\t"
+
+            "imulw %%bx\n\t"// результат в dx:ax
+
+            "xor %%ebx, %%ebx\n\t"
+            "movw %%dx, %%bx\n\t"//2 младших байта ebx
+            "shl $16, %%ebx\n\t"// двигаем значение bx в старшие байты ebx
+            "movw %%ax, %%bx\n\t"
+
+            // sum += result of imul
+            "movl %1, %%eax\n\t"
+            "add %%ebx, %%eax\n\t"
+            "movl %%eax, %1\n\t"
+
+        "cmp $0, %%ecx\n\t"
+        "jne loop_mulVectors_lim"
+
+        :"+c"(elementsAmount), "+m"(res)
+        :"S"(arr1), "D"(arr2)
+        :"memory", "cc", "%eax", "%ebx", "%edx"
+    );
+
+    return res;
+}
+
 // Нахождение детерминанта
 Matrix* Matrix::Det(Matrix* m)
 {
