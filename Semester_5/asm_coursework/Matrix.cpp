@@ -1,7 +1,8 @@
 #include "Matrix.h"
-
+// TODO: добавить try catch
 Matrix::Matrix(int* matrix, int n, int m)
 {
+    // TODO: copy elements to new arr
     this->matrix = matrix;
     this->n = n;
     this->m = m;
@@ -62,6 +63,7 @@ int Matrix::GetM()
 
 int* Matrix::GetMatrix()
 {
+    // TODO: копировать элементы в новый массив 
     return this->matrix;
 }
 /*______________________________________
@@ -89,9 +91,10 @@ Matrix* Matrix::Sum(Matrix* m1, Matrix* m2)
         "cmp $0, %%ecx\n\t"
         "jne loop_sum"
 
-        :
-        :"b"(res), "S"(matrix1), "D"(matrix2), "c"(lim)
-        :
+        :"+b"(res), "+c"(lim)// TODO: заполнить выходными
+        // TODO: [X]"r"(var);; %[X]
+        :"S"(matrix1), "D"(matrix2)
+        :"%eax", "memory", "cc"// TODO: заполнить используемыми регистрами
     );
     return new Matrix(res, m1->GetN(), m1->GetM());
 }
@@ -116,9 +119,9 @@ Matrix* Matrix::Sub(Matrix* m1, Matrix* m2)
         "cmp $0, %%ecx\n\t"
         "jne loop_sub"
 
-        :
-        :"b"(res), "S"(matrix1), "D"(matrix2), "c"(lim)
-        :
+        :"+b"(res), "+c"(lim)
+        :"S"(matrix1), "D"(matrix2)
+        :"%eax", "memory", "cc"
     );
     return new Matrix(res, m1->GetN(), m1->GetM());
 }
@@ -225,9 +228,9 @@ Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
         "movl %3, %%eax\n\t"
         "cmp $0, %%eax\n\t"
         "jne loop_mul_lim1"
-        :
-        :"D"(matrix1), "S"(matrix2T), "c"(res), "m"(lim1), "m"(M1), "m"(lim2), "m"(c_M1), "m"(c_lim2), "m"(sum), "m"(res_lim)
-        :
+        :"+c"(res)
+        :"D"(matrix1), "S"(matrix2T), "m"(lim1), "m"(M1), "m"(lim2), "m"(c_M1), "m"(c_lim2), "m"(sum), "m"(res_lim)
+        :"%eax", "%ebx", "%edx", "memory", "cc"
     );
     return new Matrix(res, resN, resM);
 }
@@ -265,9 +268,13 @@ Matrix* Matrix::CMul(Matrix* m, int c)
 
         "cmp $0, %%ecx\n\t"
         "jne loop_cmul"
-        :
-        :"D"(res), "S"(matrix), "c"(lim), "m"(c)
-        : 
+
+        :"+D"(res), "+c"(lim)
+        :"S"(matrix), "m"(c)
+        :"%ebx", "%ax", "memory", "cc" 
+        // перед вставкой значения этих регистров будут
+        // сохранены в стеке, а после вставки они будут
+        // восстановлены
     );
     return new Matrix(res, m->GetN(), m->GetM());
 }
@@ -295,33 +302,34 @@ Matrix* Matrix::Tran(Matrix* m)
         "dec %%ecx\n\t"
         "movl %%ecx, %4\n\t"// счетчик для перемещения по исходному массиву
 
-        "movl %3, %%edx\n\t"
-        "loop_tran_n:\n\t"
-        "dec %%edx\n\t"
+            "movl %3, %%edx\n\t"
+            "loop_tran_n:\n\t"
+            "dec %%edx\n\t"
 
-        //счетчик результирующего массива --
-        "movl %5, %%ebx\n\t"
-        "dec %%ebx\n\t" 
-        "movl %%ebx, %5\n\t"
+                //счетчик результирующего массива --
+                "movl %5, %%ebx\n\t"
+                "dec %%ebx\n\t" 
+                "movl %%ebx, %5\n\t"
 
-        "movl %4, %%ebx\n\t"
-        "movl (%%esi, %%ebx, 4), %%eax\n\t"
-        "movl %5, %%ebx\n\t"
-        "movl %%eax, (%%edi, %%ebx, 4)\n\t"
+                "movl %4, %%ebx\n\t"
+                "movl (%%esi, %%ebx, 4), %%eax\n\t"
+                "movl %5, %%ebx\n\t"
+                "movl %%eax, (%%edi, %%ebx, 4)\n\t"
 
-        // счетчик исходного массива -= M;
-        "movl %4, %%ebx\n\t"
-        "sub %2, %%ebx\n\t"
-        "movl %%ebx, %4\n\t"
+                // счетчик исходного массива -= M;
+                "movl %4, %%ebx\n\t"
+                "sub %2, %%ebx\n\t"
+                "movl %%ebx, %4\n\t"
 
-        "cmp $0, %%edx\n\t"
-        "jne loop_tran_n\n\t"
+            "cmp $0, %%edx\n\t"
+            "jne loop_tran_n\n\t"
 
         "cmp %6, %%ecx\n\t"
         "jne loop_tran_m"
-        :
-        :"D"(res), "S"(matrix), "m"(M), "m"(N), "m"(counter), "m"(lim), "m"(fin)
-        : 
+
+        :"+D"(res)
+        :"S"(matrix), "m"(M), "m"(N), "m"(counter), "m"(lim), "m"(fin)
+        :"%edx", "%ecx", "%ebx", "%eax", "memory", "cc"
     );
     return new Matrix(res, M, N);
 }
