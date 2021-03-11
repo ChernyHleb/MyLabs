@@ -49,7 +49,7 @@ int main() {
     //cout << "MUL: M4 x M5\n" << Matrix::Mul(M4, M5)->ToString();
     //cout << "MUL: M6 x M7\n" << Matrix::Mul(M6, M7)->ToString();
 
-    int arr1[4] = {1, 2, 3, 4};
+    /*int arr1[4] = {1, 2, 3, 4};
     int arr2[4] = {0, -2, 0, 0};
     int arr3[4] = {0, 10, 10, 0};
 
@@ -64,7 +64,7 @@ int main() {
     Matrix* sum_res = Matrix::Sum(M1, M2);
 
     cout <<"SUM: M1 + M2\n"<< sum_res->ToString();
-    Matrix::Mul(sum_res, M3);
+    Matrix::Mul(sum_res, M3);*/
     
    /*int str1[2] = {1, 0};
    int str2[2] = {3, 4};
@@ -77,6 +77,16 @@ int main() {
     cout << "MUL_Vectors 2 and 3: " << Matrix::MulVectors(str2, str3, 2) << endl;
     cout << "MUL_Vectors 2 and 4: " << Matrix::MulVectors(str1, str4, 2) << endl;
     */
+
+   int arr1[9] = {5, 8, -4, 6, 9, -5, 4, 7, -3};
+   int arr2[9] = {3, 2, 5, 4, -1, 3, 9, 6, 5};
+
+   Matrix* M1 = new Matrix(arr1, 3, 3);
+   Matrix* M2 = new Matrix(arr2, 3, 3);
+   cout << M1->ToString() << "MUL\n" << M2->ToString();
+
+   cout << "RESULT:\n" << Matrix::Mul(M1, M2)->ToString();
+
     getchar();
 }
 

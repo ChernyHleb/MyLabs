@@ -239,38 +239,63 @@ Matrix* Matrix::Sub(Matrix* m1, Matrix* m2)
 Matrix* Matrix::Mul(Matrix* m1, Matrix* m2)
 {
     Matrix* m2T = Matrix::Tran(m2);
+    //cout << m2T->ToString();
     int n = m1->GetN();
 
     int *matrix1 = m1->GetMatrix();
-    int *matrix2 = m2->GetMatrix();
+    int *matrix2 = m2T->GetMatrix();
     
-    int* str1 = new int[n];
-    int* str2 = new int[n];
+    int* str1; //= new int[n];
+    int* str2;// = new int[n];
+
+    int* resArr = new int [n*n];
+    int counter = 0;
 
     for(int i = 0; i < n; i++)
     {
-        for(int i2 = 0; i2 < n; i2++)
+        //for(int i2 = 0; i2 < n; i2++){
+            //str1[i2] = matrix1[n * i + i2];
+        //} 
+        str1 = matrix1 + n * i;
+
         for(int j = 0; j < n; j++)
         {
-            str1[j] = matrix1[n * i + j];
-            str2[j] = matrix2[n * i2 + j];
+            //for(int k = 0; k < n; k++){
+              //  str2[k] = matrix2[n * j + k];
+            //}
+            str2 = matrix2 + n * j;
+            
             int res = Matrix::MulVectors(str1, str2, n);
-
-            cout << res << " ";
+            //cout << res << " ";
+            resArr[counter] = res;
+            counter++;
+            
         }
 
-        cout << "\n";
+        //cout << "\n";
     }
 
-    delete[] str1;
-    delete[] str2;
+    //delete[] str1;
+    //delete[] str2;
 
-    return nullptr;
+    return new Matrix(resArr, n, n);
 }
 
 int Matrix::MulVectors(int* arr1, int* arr2, int elementsAmount)
 {
     int res = 0;
+    /*
+    cout << "\nARR1: ";
+    for(int i = 0; i < elementsAmount; i++)
+    {
+        cout << arr1[i] << " ";
+    }
+    cout << "\nARR2: ";
+    for(int i = 0; i < elementsAmount; i++)
+    {
+        cout << arr2[i] << " ";
+    }
+    cout << "\n";*/
 
     asm(
         "loop_mulVectors_lim:\n\t"
