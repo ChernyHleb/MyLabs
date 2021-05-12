@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include "mpi.h"
+#include <string>
+using namespace std;
 // Вариант 1 (Звездочка)
 void DoManagerProcess(int *process_rank, 
 					  int *process_amount, 
@@ -284,6 +286,90 @@ void Star_Lab3(int repeat)
 	return;
 }
 
+struct LongNum
+{
+	int* body;
+	int len;
+};
+
+LongNum *LongMul(LongNum *num1, LongNum *num2)
+{
+	LongNum* res = new LongNum();
+	res->len = num1->len + num2->len;
+	res->body = new int[res->len];
+	res->body[res->len - 1] = 0;
+	for (int i = 0; i < res->len; i++)
+	{
+		res->body[i] = 0;
+	}
+
+	for (int i = 0; i < num1->len; i++)
+		for (int j = 0; j < num2->len; j++)
+			res->body[i + j] += num1->body[i] * num2->body[j];
+
+	for (int i = 0; i < res->len - 1; i++)
+	{
+		res->body[i + 1] += res->body[i] / 10;
+		res->body[i] %= 10;
+	}
+
+	if (res->body[res->len - 1] == 0)
+		res->len--;
+
+	return res;
+}
+
+void PrintLongNum(LongNum *num)
+{
+	printf("%d", num->len == 0 ? 0 : num->body[num->len-1]);
+	for (int i = num->len - 2; i >= 0; i--)
+		printf("%d", num->body[i]);
+}
+
+LongNum* StringToLongNum(string s) 
+{
+	LongNum *num = new LongNum();
+	num->len = s.length();
+	num->body = new int[num->len];
+
+	for (int i = 0; i < num->len; i ++)
+	{
+		num->body[num->len - i - 1] = atoi(s.substr(i, 1).c_str());
+	}
+	
+	return num;
+}
+
+LongNum* RandLongNum(int len)
+{
+	LongNum* num = new LongNum;
+	num->len = len;
+	num->body = new int[len];
+	for (int i = 0; i < len; i++)
+	{
+		num->body[i] = rand() % 10;
+		if (i == len - 1 && num->body[i] == 0)
+			num->body[i] ++;
+	}
+	return num;
+}
+
+void Lab4()
+{
+	LongNum *num = StringToLongNum("111222333444555666");
+	//PrintLongNum(num);
+	//printf("\n");
+	//PrintLongNum(LongMul(num, num));
+	LongNum* num1 = RandLongNum(100);
+	PrintLongNum(num1);
+	printf("\n\n");
+	LongNum* num2 = RandLongNum(100);
+	PrintLongNum(num2);
+	printf("\n\n");
+
+	PrintLongNum(LongMul(num1, num2));
+}
+
 int main(int argc, char* argv[]) {
 	if (argv[1][0] == '1')
 		Star_Lab1(3);
@@ -293,6 +379,9 @@ int main(int argc, char* argv[]) {
 	else
 	if (argv[1][0] == '3')
 		Star_Lab3(3);
+	else
+	if (argv[1][0] == '4')
+		Lab4();
 	else
 		printf("INVALID ARGV! %s\n", argv[1]);
 	return 0;
