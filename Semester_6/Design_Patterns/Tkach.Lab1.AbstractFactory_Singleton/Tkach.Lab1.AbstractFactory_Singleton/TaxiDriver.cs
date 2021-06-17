@@ -9,7 +9,7 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
     class TaxiDriver : Driver
     {
         private static List<Driver> taxiDrivers = null;
-        private static readonly int limit = 1;
+        public static readonly int limit = 1;
         public static int taxiDriverCounter = 0;
         private TaxiDriver()
         {
@@ -18,7 +18,7 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
             this.id = TaxiDriver.taxiDriverCounter;
             this.name = "TaxiDriver" + this.id.ToString();
             this.experience = (new Random()).Next(1, 57);
-
+            TaxiDriver.taxiDrivers.Add(this);
         }
 
         public static List<Driver> GetDrivers()
@@ -39,10 +39,7 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
                 TaxiDriver.taxiDrivers = new List<Driver>();
             }
 
-            TaxiDriver tD = new TaxiDriver();
-            TaxiDriver.taxiDrivers.Add(tD);
-
-            return tD;
+            return new TaxiDriver();
         }
 
         public override string ToString()

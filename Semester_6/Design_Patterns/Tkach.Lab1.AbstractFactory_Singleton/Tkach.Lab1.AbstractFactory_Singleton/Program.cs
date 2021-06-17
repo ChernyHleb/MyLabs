@@ -10,14 +10,18 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
     {
         static void Main(string[] args)
         {
-            for(int i = 0; i < 10; i++)
-            {
-                TaxiDriver.GetNewDriver();
-            }
+            int waitingPassengersAmount = 0;
+            Console.WriteLine("How many passengers do you need to board?");
+            waitingPassengersAmount = Convert.ToInt32(Console.ReadLine());
 
-            foreach(TaxiDriver bd in TaxiDriver.GetDrivers())
+            BoardAnyCar randomBoard = new BoardAnyCar();
+            int boardnum = 0;
+            while (waitingPassengersAmount > 0)
             {
-                Console.WriteLine(bd.ToString());
+                boardnum++;
+                Console.WriteLine("~BOARD-" + boardnum);
+                waitingPassengersAmount -= randomBoard.Board(waitingPassengersAmount);
+                Console.WriteLine("~people waiting:" + waitingPassengersAmount + "\n");
             }
 
             Console.ReadLine();

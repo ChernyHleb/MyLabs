@@ -9,7 +9,7 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
     class BusDriver : Driver
     {
         private static List<Driver> busDrivers = null;
-        private static readonly int limit = 2;
+        public static readonly int limit = 2;
         public static int busDriverCounter = 0;
         private BusDriver()
         {
@@ -18,7 +18,7 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
             this.id = BusDriver.busDriverCounter;
             this.name = "BusDriver" + this.id.ToString();
             this.experience = (Driver.rnd).Next(1, 57);
-
+            BusDriver.busDrivers.Add(this);
         }
 
         public static List<Driver> GetDrivers()
@@ -38,11 +38,8 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
             {
                 BusDriver.busDrivers = new List<Driver>();
             }
-            
-            BusDriver bD = new BusDriver();
-            BusDriver.busDrivers.Add(bD);
 
-            return bD;
+            return new BusDriver();
         }
 
         public override string ToString()
