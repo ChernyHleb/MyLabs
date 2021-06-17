@@ -8,11 +8,47 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
 {
     class TaxiDriver : Driver
     {
-        private static List<TaxiDriver> taxiDriver;
+        private static List<Driver> taxiDrivers = null;
         private static readonly int limit = 1;
-        public override List<Driver> GetDrivers()
+        public static int taxiDriverCounter = 0;
+        private TaxiDriver()
         {
-            
+            TaxiDriver.taxiDriverCounter++;
+
+            this.id = TaxiDriver.taxiDriverCounter;
+            this.name = "TaxiDriver" + this.id.ToString();
+            this.experience = (new Random()).Next(1, 57);
+
+        }
+
+        public static List<Driver> GetDrivers()
+        {
+            return TaxiDriver.taxiDrivers;
+        }
+
+        public static Driver GetNewDriver()
+        {
+            if (TaxiDriver.taxiDriverCounter == TaxiDriver.limit)
+            {
+                Console.WriteLine("There are no more free taxi drivers!");
+                return null;
+            }
+            else
+            if (TaxiDriver.taxiDriverCounter == 0)
+            {
+                TaxiDriver.taxiDrivers = new List<Driver>();
+            }
+
+            TaxiDriver tD = new TaxiDriver();
+            TaxiDriver.taxiDrivers.Add(tD);
+
+            return tD;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("TAXIDRIVER id:{0} name:{1} exp:{2}",
+                this.id.ToString(), this.name, this.experience.ToString());
         }
     }
 }

@@ -17,16 +17,16 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
 
             this.id = BusDriver.busDriverCounter;
             this.name = "BusDriver" + this.id.ToString();
-            this.experience = (new Random()).Next(1, 57);
+            this.experience = (Driver.rnd).Next(1, 57);
 
         }
 
-        public override List<Driver> GetDrivers()
+        public static List<Driver> GetDrivers()
         { 
             return BusDriver.busDrivers;
         }
 
-         public override Driver GetNewDriver()
+         public static Driver GetNewDriver()
         {
             if(BusDriver.busDriverCounter == BusDriver.limit)
             {

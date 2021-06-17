@@ -10,7 +10,16 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello C#!");
+            for(int i = 0; i < 10; i++)
+            {
+                TaxiDriver.GetNewDriver();
+            }
+
+            foreach(TaxiDriver bd in TaxiDriver.GetDrivers())
+            {
+                Console.WriteLine(bd.ToString());
+            }
+
             Console.ReadLine();
         }
     }

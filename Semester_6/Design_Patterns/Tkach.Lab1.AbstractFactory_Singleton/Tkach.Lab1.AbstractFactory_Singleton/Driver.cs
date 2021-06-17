@@ -11,7 +11,6 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
         public int experience;
         public String name;
         public int id;
-        public abstract List<Driver> GetDrivers();
-        public abstract Driver GetNewDriver();
+        protected static Random rnd = new Random();
     }
 }
