@@ -379,6 +379,8 @@ void Lab4()
 
 	PrintLongNum(LongMul(num1, num2));*/
 
+	double t1, t2;
+
 	int process_rank;
 	int process_amount;
 	MPI_Status status;
@@ -390,6 +392,10 @@ void Lab4()
 	MPI_Init(NULL, NULL);
 	MPI_Comm_rank(MPI_COMM_WORLD, &process_rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &process_amount);
+
+	MPI_Barrier(MPI_COMM_WORLD);
+	if (process_rank == 0)
+		t1 = MPI_Wtime();
 	
 	LongNum* num1 = RandLongNum(10);
 	PrintLongNum(num1);
@@ -416,6 +422,11 @@ void Lab4()
 	}
 
 	MPI_Barrier(MPI_COMM_WORLD);
+	if (process_rank == 0)
+	{
+		t2 = MPI_Wtime();
+		printf("\n~TIME4: %f", t2 - t1);
+	}
 
 	MPI_Finalize();
 
@@ -539,7 +550,7 @@ int** strassenMultiply(int** A, int** B, int n)
 
 int* MatrixToArray(int** M, int n)
 {
-
+	return nullptr;
 }
 
 void Lab5()
@@ -572,7 +583,7 @@ void Lab5()
 	int recvbuff[1000];
 	int bufpos = 0;
 
-	int n = 4;
+	//int n = 4;
 
 	MPI_Init(NULL, NULL);
 	MPI_Comm_rank(MPI_COMM_WORLD, &process_rank);
