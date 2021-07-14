@@ -10,6 +10,7 @@ namespace Tkach.Lab3.Composite
     {
         protected List<Unit> parts;
         protected  static Random rnd = new Random();
+        protected int weight = 0;
         public virtual int getLuggageWeight()
         {
             throw new NotImplementedException();

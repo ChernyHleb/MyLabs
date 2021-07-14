@@ -8,8 +8,8 @@ namespace Tkach.Lab3.Composite
 {
     class EconomyClass : Unit
     {
-        private static readonly int luggageWeightLimit = 20;
-        private static readonly int passengerSeatsLimit = 150;
+        public static readonly int luggageWeightLimit = 20;
+        public static readonly int passengerSeatsLimit = 150;
         public EconomyClass()
         {
             this.parts = new List<Unit>();

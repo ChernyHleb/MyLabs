@@ -8,7 +8,7 @@ namespace Tkach.Lab3.Composite
 {
     class FirstClass : Unit
     {
-        private static readonly int passengerSeatsLimit = 10;
+        public static readonly int passengerSeatsLimit = 10;
         public FirstClass()
         {
             this.parts = new List<Unit>();

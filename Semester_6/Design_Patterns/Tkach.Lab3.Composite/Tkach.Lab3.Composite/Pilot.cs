@@ -8,11 +8,14 @@ namespace Tkach.Lab3.Composite
 {
     class Pilot : Unit
     {
-        private static readonly int passengerAmountLimit = 2;
-        public Pilot() { }
+        public static readonly int passengerAmountLimit = 2;
+        public Pilot() 
+        {
+            weight = Unit.rnd.Next(5, 60);
+        }
         public override int getLuggageWeight()
         {
-            return Unit.rnd.Next(5, 60);
+            return weight;
         }
     }
 }
