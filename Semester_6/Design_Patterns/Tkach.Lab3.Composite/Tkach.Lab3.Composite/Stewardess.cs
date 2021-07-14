@@ -11,7 +11,7 @@ namespace Tkach.Lab3.Composite
         public static readonly int passengerAmountLimit = 6;
         public Stewardess() 
         { 
-            weight = Unit.rnd.Next(5, 60); 
+            weight = 0; 
         }
         public override int getLuggageWeight()
         {
