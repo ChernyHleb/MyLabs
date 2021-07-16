@@ -23,6 +23,16 @@ namespace Tkach.Lab4.Proxy
         public MainWindow()
         {
             InitializeComponent();
+
+            Rectangle rec = new Rectangle();
+            rec.Width = 50;
+            rec.Height = 50;
+            rec.Fill = Brushes.Black;
+            Rectangle r = new Rectangle();
+            canvas1.Children.Add(rec);
+            Canvas.SetLeft(rec, 50);
+            Canvas.SetTop(rec, 100);
+            
         }
     }
 }
