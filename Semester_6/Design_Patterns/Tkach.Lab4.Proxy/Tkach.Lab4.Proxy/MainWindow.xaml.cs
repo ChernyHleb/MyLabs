@@ -20,19 +20,22 @@ namespace Tkach.Lab4.Proxy
     /// </summary>
     public partial class MainWindow : Window
     {
+        Box box = new Box();
+
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
 
-            Rectangle rec = new Rectangle();
-            rec.Width = 50;
-            rec.Height = 50;
-            rec.Fill = Brushes.Black;
-            Rectangle r = new Rectangle();
-            canvas1.Children.Add(rec);
-            Canvas.SetLeft(rec, 50);
-            Canvas.SetTop(rec, 100);
-            
+        private void canvas1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            System.Windows.Point position = e.GetPosition(this);
+            double pX = position.X;
+            double pY = position.Y;
+
+            box.Draw(canvas1, pX, pY);
+
         }
     }
 }
