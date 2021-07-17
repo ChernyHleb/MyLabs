@@ -9,9 +9,27 @@ namespace Tkach.Lab5.Interpreter.Models
     class TextEditorInterpreter : IAbstractExpressionInterpreter
     {
         private List<IAbstractExpressionInterpreter> interpreters;
+
+        public TextEditorInterpreter()
+        {
+            interpreters = new List<IAbstractExpressionInterpreter>();
+            interpreters.Add(new MultipleSpacesInterpreter());
+            interpreters.Add(new HyphensDashesInterpreter());
+            interpreters.Add(new QuotesInterpreter());
+            interpreters.Add(new TabsInterpreter());
+            interpreters.Add(new SpacePositionInterpreter());
+            interpreters.Add(new MultipleLineBreakInterpreter());
+        }
+
         public string Interpret(string context)
         {
-            throw new NotImplementedException();
+            string newContext = context;
+            foreach (IAbstractExpressionInterpreter interpreter in interpreters)
+            {
+                newContext = interpreter.Interpret(newContext);
+            }
+
+            return newContext;
         }
     }
 }
