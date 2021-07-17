@@ -69,6 +69,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\HyphensDashesInterpreter.cs" />
+    <Compile Include="Models\IAbstractExpressionInterpreter.cs" />
+    <Compile Include="Models\MultipleLineBreakInterpreter.cs" />
+    <Compile Include="Models\MultipleSpacesInterpreter.cs" />
+    <Compile Include="Models\QuotesInterpreter.cs" />
+    <Compile Include="Models\SpacePositionInterpreter.cs" />
+    <Compile Include="Models\TabsInterpreter.cs" />
+    <Compile Include="Models\TextEditorInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

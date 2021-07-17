@@ -27,7 +27,8 @@
         <Button Grid.Row="2" 
                 x:Name="CorrectionButton" 
                 Margin="40 10" 
-                Content="Correct structure mistakes"/>
+                Content="Correct structure mistakes"
+                Click="CorrectionButton_Click"/>
 
         <TextBlock Grid.Row="3" 
                    Text="Output:" 

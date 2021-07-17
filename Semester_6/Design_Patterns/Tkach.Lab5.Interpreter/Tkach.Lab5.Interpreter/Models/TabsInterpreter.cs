@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tkach.Lab5.Interpreter.Models
 {
-    class TabsInterpreter : IAbstractExpression
+    class TabsInterpreter : IAbstractExpressionInterpreter
     {
         public string Interpret(string context)
         {

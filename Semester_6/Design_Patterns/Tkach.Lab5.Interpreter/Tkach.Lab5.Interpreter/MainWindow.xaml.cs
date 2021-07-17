@@ -20,9 +20,11 @@ namespace Tkach.Lab5.Interpreter
     /// </summary>
     public partial class MainWindow : Window
     {
+        Models.TextEditorInterpreter interpreter;
         public MainWindow()
         {
             InitializeComponent();
+            interpreter = new Models.TextEditorInterpreter();
             inputTextBox.Text =
                 "Cоздать    простейший      интерпретатор\n" +
                 "Разработать UML–диаграммы\n" +
@@ -43,8 +45,11 @@ namespace Tkach.Lab5.Interpreter
                 6   Наличие \nмножественных символов \nперевода строки
             */
             #endregion
+        }
 
-
+        private void CorrectionButton_Click(object sender, RoutedEventArgs e)
+        {
+            outputTextBox.Text = interpreter.Interpret(inputTextBox.Text);
         }
     }
 }
