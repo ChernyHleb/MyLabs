@@ -1,36 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Tkach.Lab4.Proxy
 {
     class Box : IBox
     {
-        TestImage image = null;
-        public void Draw(Canvas canvas, double x, double y)
+        private TestImage image = null;
+        private Rectangle rec;
+        private Canvas canvas;
+        private Point currentPosition;
+
+        private string resource;
+
+        public Box(string resource, Canvas canvas, Point position)
         {
-            if(image is null)
+            this.currentPosition = position;
+            this.resource = resource;
+            this.canvas = canvas;
+
+            rec = new Rectangle();
+            rec.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDoubleClick);
+            BitmapImage bmpImage = new BitmapImage(new Uri(resource, UriKind.Relative));
+            rec.Width = bmpImage.PixelWidth; ;
+            rec.Height = bmpImage.PixelHeight;
+            rec.Fill = Brushes.Black;
+
+            canvas.Children.Clear();
+            canvas.Children.Add(rec);
+            Draw(currentPosition);
+        }
+
+        public void Draw(Point position)
+        {
+            currentPosition = position;
+            if (image is null)
             {
-                canvas.Children.Clear();
-
-                Rectangle rec = new Rectangle();
-                rec.Width = 50;
-                rec.Height = 50;
-                rec.Fill = Brushes.Black;
-                canvas.Children.Add(rec);
-
-                Canvas.SetLeft(rec, x);
-                Canvas.SetTop(rec, y);
+                Canvas.SetLeft(rec, position.X);
+                Canvas.SetTop(rec, position.Y);
             }
             else
             {
-                image.Draw(canvas, x, y);
+                image.Draw(position);
             }
+        }
+
+        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            image = new TestImage(canvas, resource, currentPosition);
         }
     }
 }

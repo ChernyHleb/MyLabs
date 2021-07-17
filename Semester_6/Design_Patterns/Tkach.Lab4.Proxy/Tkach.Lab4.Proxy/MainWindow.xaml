@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tkach.Lab4.Proxy"
         mc:Ignorable="d"
-        Title="Proxy" Height="450" Width="450" MouseMove="canvas1_MouseMove">
-    <Canvas x:Name="canvas1"/>
+        Title="Proxy" Height="700" Width="800" 
+        MouseMove="canvas1_MouseMove">
+
+    <Canvas x:Name="canvas1" Background="LightGray"/>
 
 </Window>
