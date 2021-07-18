@@ -8,14 +8,14 @@ namespace Tkach.Lab6.Observer
 {
     class Teacher : IObservable
     {
-        public string id;
+        public int id;
         private List<IObserver> observers;
         private Report CurrentReport;
 
-        public Teacher(string name)
+        public Teacher(int id)
         {
             observers = new List<IObserver>();
-            this.id = name;
+            this.id = id;
         }
 
         public void NotifyObservers()

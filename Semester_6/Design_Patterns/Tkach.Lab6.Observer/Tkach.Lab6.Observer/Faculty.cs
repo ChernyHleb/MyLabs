@@ -9,9 +9,13 @@ namespace Tkach.Lab6.Observer
     class Faculty : IObserver
     {
         public List<Teacher> currentBadTeachers;
+        public Faculty()
+        {
+            currentBadTeachers = new List<Teacher>();
+        }
         public void Update(object obj)
         {
-            currentBadTeachers = (List<Teacher>)obj;
+            currentBadTeachers.Add((Teacher)obj);
         }
 
         public void PostBadTeachers()
@@ -21,6 +25,7 @@ namespace Tkach.Lab6.Observer
             {
                 Console.WriteLine("TEACHER " + teacher.id.ToString());
             }
+            currentBadTeachers.Clear();
         }
     }
 }

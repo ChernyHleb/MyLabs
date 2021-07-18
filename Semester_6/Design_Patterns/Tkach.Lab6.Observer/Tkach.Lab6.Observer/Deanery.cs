@@ -9,14 +9,13 @@ namespace Tkach.Lab6.Observer
     class Deanery : IObserver, IObservable
     {
         private List<Report> currentReports;
-        private List<Teacher> currentBadTeachers;
+        private Teacher currentBadTeacher;
         private List<Teacher> teachers;
         private List<IObserver> observers;
 
         public Deanery(List<Teacher> teachers)
         {
             currentReports = new List<Report>();
-            currentBadTeachers = new List<Teacher>();
             this.teachers = teachers;
             observers = new List<IObserver>();
         }
@@ -25,7 +24,7 @@ namespace Tkach.Lab6.Observer
         {
             foreach(IObserver observer in observers)
             {
-                observer.Update(currentBadTeachers);
+                observer.Update(currentBadTeacher);
             }
         }
 
@@ -42,6 +41,7 @@ namespace Tkach.Lab6.Observer
         public void Update(object obj)
         {
             currentReports.Add((Report)obj);
+            Console.WriteLine("Deanery: Report from " + ((Report)obj).author.id);
         }
 
         public void CheckTeachersReports()
@@ -51,7 +51,7 @@ namespace Tkach.Lab6.Observer
                 bool isBad = true;
                 foreach (Report report in currentReports)
                 {
-                    if(report.author.id.Equals(teacher.id))
+                    if(report.author.id == teacher.id)
                     {
                         isBad = false;
                         break;
@@ -60,12 +60,11 @@ namespace Tkach.Lab6.Observer
 
                 if (isBad)
                 {
-                    currentBadTeachers.Add(teacher);
+                    currentBadTeacher = teacher;
+                    NotifyObservers();
                 }   
             }
 
-            NotifyObservers();
-            currentBadTeachers.Clear();
             currentReports.Clear();
         }
     }
