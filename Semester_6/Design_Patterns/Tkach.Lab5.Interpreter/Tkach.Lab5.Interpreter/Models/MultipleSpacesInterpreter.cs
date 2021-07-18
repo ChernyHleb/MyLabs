@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Tkach.Lab5.Interpreter.Models
@@ -10,7 +11,15 @@ namespace Tkach.Lab5.Interpreter.Models
     {
         public string Interpret(string context)
         {
-            throw new NotImplementedException();
+            string newContext = context;
+            // несколько пробелов в один
+            newContext = (new Regex("[ ]+")).Replace(newContext, " ");
+            // пробел в начале текста
+            newContext = (new Regex("^[ ]")).Replace(newContext, "");
+            // пробел в конце текста
+            newContext = (new Regex("^[ ]")).Replace(newContext, "");
+
+            return newContext;
         }
     }
 }
