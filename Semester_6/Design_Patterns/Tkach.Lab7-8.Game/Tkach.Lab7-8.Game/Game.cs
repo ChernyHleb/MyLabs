@@ -1,0 +1,153 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace Tkach.Lab7_8.Game
+{
+    class Game
+    {
+        private World world;
+        private Player player;
+
+        public void Start()
+        {
+            //WriteLine("Game is starting...");
+
+            string[,] grid = {
+                { "█", "█", "█", "█", "█", "█", "█", "█", "█", "█"},
+                { "█", " ", " ", "█", " ", " ", " ", " ", " ", "█"},
+                { "█", " ", " ", "█", " ", " ", "█", " ", " ", "█"},
+                { "█", " ", " ", "█", " ", "█", "█", " ", " ", "█"},
+                { "█", " ", " ", "█", " ", " ", "█", " ", " ", "█"},
+                { "█", " ", " ", "█", " ", " ", "█", "█", "█", "█"},
+                { "█", " ", " ", "█", "█", " ", "█", " ", " ", "█"},
+                { "█", " ", " ", " ", " ", " ", " ", " ", " ", "X"},
+                { "█", " ", " ", "█", " ", " ", "█", " ", " ", "█"},
+                { "█", "█", "█", "█", "█", "█", "█", "█", "█", "█"}
+            };
+
+            world = new World(grid);
+
+            player = new Player(1, 1);
+
+            #region stuff
+            /*player1 = new Player(60, 13);
+            player2 = new Player(60, 13);
+            player3 = new Player(60, 13);
+            player4 = new Player(60, 13);
+            player3.PlayerMarker = "P ";
+            player4.PlayerMarker = " P";
+
+            players = new List<Player>
+            { player1, player2, player3, player4 };*/
+            #endregion
+
+            RunGameLoop();
+        }
+
+        //Player player1, player2, player3, player4;
+        //List<Player> players;
+
+        //private void NiVChemNeVinovat()
+        //{
+        //    if (player1.Y > 1) player1.Y -= 1;
+        //    else
+        //    {
+        //        if (player1.X < 86)
+        //            player1.X += 2;
+        //    }
+        //    if (player2.Y < 26) player2.Y += 1;
+        //    else
+        //    {
+        //        if (player2.X > 34) 
+        //            player2.X -= 2;
+        //    }
+        //    if (player3.X > 34) player3.X -= 2;
+        //    else
+        //    {
+        //        if (player3.Y > 1) 
+        //            player3.Y -= 1;
+        //    }
+        //    if (player4.X < 86) player4.X += 2;
+        //    else
+        //    {
+        //       if (player4.Y < 26)
+        //            player4.Y += 1; 
+        //    }
+
+        //    foreach (Player player in players) player.Draw();
+        //}
+
+        private void DrawFrame()
+        {
+            //Clear();
+            world.Draw();
+            player.Draw();
+        }
+
+        private void HandlePlayerInput()
+        {
+            ConsoleKeyInfo keyInfo = ReadKey(true);
+            ConsoleKey key = keyInfo.Key;
+            switch(key)
+            {
+                case ConsoleKey.UpArrow:
+                    if(world.IsPositionWalkable(
+                        player.position.X, 
+                        player.position.Y - 1)
+                    )
+                        player.position.Y -= 1;
+                    break;
+                case ConsoleKey.DownArrow:
+                    if (world.IsPositionWalkable(
+                        player.position.X,
+                        player.position.Y + 1)
+                    )
+                        player.position.Y += 1;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    if (world.IsPositionWalkable(
+                         player.position.X -1,
+                         player.position.Y)
+                     )
+                        player.position.X -= 1;
+                    break;
+                case ConsoleKey.RightArrow:
+                    if (world.IsPositionWalkable(
+                        player.position.X + 1,
+                        player.position.Y )
+                    )
+                        player.position.X += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void RunGameLoop()
+        {
+            while(true)
+            {
+                //draw everything
+                DrawFrame();
+                //GitlerNiVChemNeVinovat();
+
+                //check player input and move player
+                HandlePlayerInput();
+
+                //check if the player reached the exit
+                string elementPlayerPos = world.GetElementAt(
+                    player.position.X, player.position.Y);
+                if(elementPlayerPos == "X") {
+                    break;
+                }
+
+                // give as Console a chance to render
+                System.Threading.Thread.Sleep(20);
+            }
+        }
+    }
+}

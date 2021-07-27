@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Tkach.Lab7_8.Game
 {
-    class Program
+    class Coin : Item
     {
-        static void Main(string[] args)
+        public Coin(int x, int y) : base(x, y)
         {
-            Game currentGame = new Game();
-            currentGame.Start();
         }
     }
 }

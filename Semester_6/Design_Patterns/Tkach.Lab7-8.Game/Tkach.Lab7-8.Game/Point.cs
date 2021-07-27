@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Tkach.Lab7_8.Game
 {
-    class Program
+    class Point
     {
-        static void Main(string[] args)
+        public int X;
+        public int Y;
+
+        public Point(int x, int y)
         {
-            Game currentGame = new Game();
-            currentGame.Start();
+            X = x;
+            Y = y;
         }
     }
 }
