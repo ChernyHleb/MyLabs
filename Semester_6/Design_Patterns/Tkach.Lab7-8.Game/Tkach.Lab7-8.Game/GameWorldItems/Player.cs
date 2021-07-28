@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Console;
+﻿using Tkach.Lab7_8.Game.DataStructures;
+using Tkach.Lab7_8.Game.FrameMaker;
 
 namespace Tkach.Lab7_8.Game
 {
-    class Player
+    class Player : Item, IDrawable
     {
-        public Point position;
-        public string PlayerMarker;
-        public ConsoleColor PlayerColor;
-
-        public Player(int initialX, int initialY)
+        public Player(int initialX, int initialY) : base(initialX, initialY)
         {
-            position = new Point(initialX, initialY);
-            PlayerMarker = "P";
-            PlayerColor = ConsoleColor.Red;
+            symbol = 'P';
+            isActive = true;
+        }
+        public Matrix<char> Draw(Matrix<char> canvas)
+        {
+            canvas.matrix[position.Y, position.X] = symbol;
+            return canvas;
         }
 
-        public void Draw()
+        bool IDrawable.IsActive()
         {
-            
+            return isActive;
         }
     }
 }

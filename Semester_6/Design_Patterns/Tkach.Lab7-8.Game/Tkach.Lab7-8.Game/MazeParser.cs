@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
+using Tkach.Lab7_8.Game.DataStructures;
 
 namespace Tkach.Lab7_8.Game
 {
     class MazeParser
     {
-        public static string[,] ParseFileToArray(string filePath)
+        public static Matrix<char> ParseFileToArray(string filePath)
         {
             string[] lines = File.ReadAllLines(filePath);
             string firstLine = lines[0];
             int rows = lines.Length;
             int cols = firstLine.Length;
-            string[,] grid = new string[rows, cols];
+            char[,] grid = new char[rows, cols];
 
             for (int y = 0; y < rows; y++)
             {
@@ -27,11 +23,13 @@ namespace Tkach.Lab7_8.Game
                     {
                         sym = '█';
                     }
-                    grid[y, x] = sym.ToString();
+                    grid[y, x] = sym;
                 }
             }
 
-            return grid;
+            Matrix<char> matrix = new Matrix<char>(grid, new Point(cols, rows));
+
+            return matrix;
         }
     }
 }
