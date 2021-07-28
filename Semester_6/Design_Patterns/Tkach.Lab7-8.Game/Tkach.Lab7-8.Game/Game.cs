@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Figgle;
+using Tkach.Lab7_8.Game.DataStructures;
 using Tkach.Lab7_8.Game.FrameMaker;
 using Tkach.Lab7_8.Game.GameWorldRepresentators;
 using Tkach.Lab7_8.Game.LevelManagement;
@@ -8,26 +9,28 @@ namespace Tkach.Lab7_8.Game
 {
     class Game
     {
-        private LevelManager levelManager;
+        private static LevelManager levelManager;
         private GameWorldRepresentator gameWorldRepresentator;
 
         public static bool IsPositionWalkable(int x, int y)
         {
+            Matrix<char> matr = levelManager.GetLevel().maze.matrix;
             //check world bounds
-            if (x < 0 || y < 0 || x >= cols || y >= rows)
+            if (x < 0 || y < 0 || x >= matr.dimentions.X || y >= matr.dimentions.Y)
             {
                 return false;
             }
 
             //ceck if the tile is walkable
-            return grid[y, x] == " " || grid[y, x] == "X";
+            return matr.matrix[y, x] == ' '
+                || matr.matrix[y, x] == 'D'
+                || matr.matrix[y, x] == 'o';
         }
 
         public void Start()
         {
             //DisplayIntro();
             //ReadKey();
-
 
             #region defaultMaze
             //string[,] grid = {
@@ -44,14 +47,14 @@ namespace Tkach.Lab7_8.Game
             //};
             #endregion
 
+            levelManager = new LevelManager();
+            levelManager.SetLevelBuilder(new EasyLevelBuilder());
+            levelManager.CreateLevel();
+            Level level = levelManager.GetLevel();
 
-            //world = new World(grid);
-
-            maze = new Maze();
-            player = new Player(1, 1);
             FrameMaker.FrameMaker frameMaker = new FrameMaker.FrameMaker(
-                maze, 
-                player, 
+                level.maze, 
+                level.player, 
                 new List<IDrawable>()
             );
             gameWorldRepresentator = new GameWorldRepresentator(

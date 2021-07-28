@@ -18,7 +18,7 @@ namespace Tkach.Lab7_8.Game.LevelManagement
 
         public void CreateLevel()
         {
-            builder.GetLevel();
+            builder.CreateLevel();
             builder.CreateMaze();
             builder.CreatePlayer();
             builder.CreateItems();
