@@ -5,20 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 using Figgle;
+using Tkach.Lab7_8.Game.FrameMaker;
+using Tkach.Lab7_8.Game.GameWorldRepresentators;
 
 namespace Tkach.Lab7_8.Game
 {
     class Game
     {
-        private World world;
+        //private World world;
         private Player player;
+        private Maze maze;
+        private GameWorldRepresentator gameWorldRepresentator;
 
         public void Start()
         {
-            DisplayIntro();
-            ReadKey();
+            //DisplayIntro();
+            //ReadKey();
 
-            string[,] grid = MazeParser.ParseFileToArray("map easy lvl.txt");
 
             #region defaultMaze
             //string[,] grid = {
@@ -35,9 +38,20 @@ namespace Tkach.Lab7_8.Game
             //};
             #endregion
 
-            world = new World(grid);
 
+            //world = new World(grid);
+
+            maze = new Maze();
             player = new Player(1, 1);
+            FrameMaker.FrameMaker frameMaker = new FrameMaker.FrameMaker(
+                maze, 
+                player, 
+                new List<IDrawable>()
+            );
+            gameWorldRepresentator = new GameWorldRepresentator(
+                frameMaker, 
+                new ConsoleRepresentator()
+            );
 
             #region stuff
             /*player1 = new Player(60, 13);
@@ -51,7 +65,7 @@ namespace Tkach.Lab7_8.Game
             { player1, player2, player3, player4 };*/
             #endregion
 
-            //RunGameLoop();
+            RunGameLoop();
         }
 
         #region trash
@@ -89,74 +103,68 @@ namespace Tkach.Lab7_8.Game
         //}
         #endregion
 
-        private void DrawFrame()
-        {
-            //Clear();
-            world.Draw();
-            player.Draw();
-        }
+        //private void HandlePlayerInput()
+        //{
+        //    ConsoleKey key;
+        //    do // wait until last key pressed
+        //    {
+        //        ConsoleKeyInfo keyInfo = ReadKey(true);
+        //        key = keyInfo.Key;
+        //    } while (Console.KeyAvailable);
 
-        private void HandlePlayerInput()
-        {
-            ConsoleKey key;
-            do // wait until last key pressed
-            {
-                ConsoleKeyInfo keyInfo = ReadKey(true);
-                key = keyInfo.Key;
-            } while (Console.KeyAvailable);
-
-            switch(key)
-            {
-                case ConsoleKey.UpArrow:
-                    if(world.IsPositionWalkable(
-                        player.position.X, 
-                        player.position.Y - 1)
-                    )
-                        player.position.Y -= 1;
-                    break;
-                case ConsoleKey.DownArrow:
-                    if (world.IsPositionWalkable(
-                        player.position.X,
-                        player.position.Y + 1)
-                    )
-                        player.position.Y += 1;
-                    break;
-                case ConsoleKey.LeftArrow:
-                    if (world.IsPositionWalkable(
-                         player.position.X -1,
-                         player.position.Y)
-                     )
-                        player.position.X -= 1;
-                    break;
-                case ConsoleKey.RightArrow:
-                    if (world.IsPositionWalkable(
-                        player.position.X + 1,
-                        player.position.Y )
-                    )
-                        player.position.X += 1;
-                    break;
-                default:
-                    break;
-            }
-        }
+        //    switch(key)
+        //    {
+        //        case ConsoleKey.UpArrow:
+        //            if(world.IsPositionWalkable(
+        //                player.position.X, 
+        //                player.position.Y - 1)
+        //            )
+        //                player.position.Y -= 1;
+        //            break;
+        //        case ConsoleKey.DownArrow:
+        //            if (world.IsPositionWalkable(
+        //                player.position.X,
+        //                player.position.Y + 1)
+        //            )
+        //                player.position.Y += 1;
+        //            break;
+        //        case ConsoleKey.LeftArrow:
+        //            if (world.IsPositionWalkable(
+        //                 player.position.X -1,
+        //                 player.position.Y)
+        //             )
+        //                player.position.X -= 1;
+        //            break;
+        //        case ConsoleKey.RightArrow:
+        //            if (world.IsPositionWalkable(
+        //                player.position.X + 1,
+        //                player.position.Y )
+        //            )
+        //                player.position.X += 1;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
         private void RunGameLoop()
         {
             while(true)
             {
                 //draw everything
-                DrawFrame();
+                gameWorldRepresentator.DrawFrame();
+                gameWorldRepresentator.DisplayRepresentation();
                 //GitlerNiVChemNeVinovat();
 
                 //check player input and move player
-                HandlePlayerInput();
+                //HandlePlayerInput();
 
                 //check if the player reached the exit
-                string elementPlayerPos = world.GetElementAt(
-                    player.position.X, player.position.Y); 
-                if(elementPlayerPos == "X") {
-                    break;
-                }
+                //string elementPlayerPos = world.GetElementAt(
+                //    player.position.X, player.position.Y); 
+                //if(elementPlayerPos == "X") {
+                //    break;
+                //}
 
                 // give as Console a chance to render
                 System.Threading.Thread.Sleep(20);

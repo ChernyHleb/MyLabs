@@ -14,7 +14,7 @@ namespace Tkach.Lab7_8.Game.GameWorldRepresentators
             symbolColor.Add('P', ConsoleColor.Red);
             symbolColor.Add('o', ConsoleColor.Yellow);
             symbolColor.Add('█', ConsoleColor.Gray);
-            symbolColor.Add('D', ConsoleColor.White);
+            symbolColor.Add('D', ConsoleColor.DarkGreen);
         }
         public void Represent(Matrix<char> gameWorldCanvas)
         {
@@ -23,7 +23,11 @@ namespace Tkach.Lab7_8.Game.GameWorldRepresentators
                 for (int x = 0; x < gameWorldCanvas.dimentions.X; x++)
                 {
                     char element = gameWorldCanvas.matrix[y, x];
-                    ForegroundColor = symbolColor[element];
+                    ConsoleColor color;
+                    if (symbolColor.TryGetValue(element, out color))
+                    {
+                        ForegroundColor = symbolColor[element];
+                    }
                     SetCursorPosition(x, y);
                     Write(element);
                     ResetColor();

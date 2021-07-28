@@ -47,14 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coin.cs" />
+    <Compile Include="FrameMaker\FrameMaker.cs" />
+    <Compile Include="FrameMaker\IDrawable.cs" />
+    <Compile Include="GameWorldItems\Coin.cs" />
     <Compile Include="DataStructures\Matrix.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameWorldRepresentators\GameWorldRepresentator.cs" />
     <Compile Include="GameWorldRepresentators\ConsoleRepresentator.cs" />
     <Compile Include="GameWorldRepresentators\IGameWorldRepresentator.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="GameWorldItems\Item.cs" />
+    <Compile Include="Maze.cs" />
     <Compile Include="MazeParser.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GameWorldItems\Player.cs" />
     <Compile Include="DataStructures\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

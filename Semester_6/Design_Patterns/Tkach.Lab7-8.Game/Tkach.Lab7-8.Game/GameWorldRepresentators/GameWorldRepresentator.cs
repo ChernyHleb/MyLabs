@@ -13,6 +13,12 @@ namespace Tkach.Lab7_8.Game.GameWorldRepresentators
         private FrameMaker.FrameMaker frameMaker;
         private Matrix<char> currentFrame;
 
+        public GameWorldRepresentator(FrameMaker.FrameMaker frameMaker, IGameWorldRepresentator representationAlgorythm)
+        {
+            this.frameMaker = frameMaker;
+            this.representationAlgorythm = representationAlgorythm;
+        }
+
         public Matrix<char> DrawFrame()
         {
             currentFrame = frameMaker.Draw(new Matrix<char>());
