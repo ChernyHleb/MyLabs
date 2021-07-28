@@ -11,6 +11,7 @@ namespace Tkach.Lab7_8.Game
     {
         private static LevelManager levelManager;
         private GameWorldRepresentator gameWorldRepresentator;
+        private static InputHandler inputHandler; 
 
         public static bool IsPositionWalkable(int x, int y)
         {
@@ -30,7 +31,6 @@ namespace Tkach.Lab7_8.Game
         public void Start()
         {
             //DisplayIntro();
-            //ReadKey();
 
             #region defaultMaze
             //string[,] grid = {
@@ -47,11 +47,17 @@ namespace Tkach.Lab7_8.Game
             //};
             #endregion
 
+            // создание моделей игрового мира и самого уровня, состоящего из них
             levelManager = new LevelManager();
             levelManager.SetLevelBuilder(new EasyLevelBuilder());
             levelManager.CreateLevel();
             Level level = levelManager.GetLevel();
 
+
+            // создание компоновщика моделей игрового мира в матрицу, 
+            // отображающую взаимное расположение игровых объектов на карте
+            // и создание репрезентатора, который будет выводить мир на экран
+            // определенным образом
             FrameMaker.FrameMaker frameMaker = new FrameMaker.FrameMaker(
                 level.maze, 
                 level.player, 
@@ -61,6 +67,11 @@ namespace Tkach.Lab7_8.Game
                 frameMaker, 
                 new ConsoleRepresentator()
             );
+
+
+            // создание обработчика нажатия клавиш
+            inputHandler = new InputHandler();
+            inputHandler.RegisterObserver(level.player);
 
             #region stuff
             /*player1 = new Player(60, 13);
@@ -73,7 +84,7 @@ namespace Tkach.Lab7_8.Game
             players = new List<Player>
             { player1, player2, player3, player4 };*/
             #endregion
-
+            // запуск игрового процесса
             RunGameLoop();
         }
 
@@ -112,11 +123,6 @@ namespace Tkach.Lab7_8.Game
         //}
         #endregion
 
-        //private void HandlePlayerInput()
-        //{
-        //    
-        //}
-
         private void RunGameLoop()
         {
             while(true)
@@ -124,15 +130,16 @@ namespace Tkach.Lab7_8.Game
                 //draw everything
                 gameWorldRepresentator.DrawFrame();
                 gameWorldRepresentator.DisplayRepresentation();
-                //GitlerNiVChemNeVinovat();
 
                 //check player input and move player
-                //HandlePlayerInput();
+                inputHandler.HandleInput();
 
                 //check if the player reached the exit
-                //string elementPlayerPos = world.GetElementAt(
-                //    player.position.X, player.position.Y); 
-                //if(elementPlayerPos == "X") {
+                //char elementPlayerPos = 
+                //    levelManager.GetLevel().maze.matrix.matrix[
+                //    levelManager.GetLevel().player.position.X,
+                //    levelManager.GetLevel().player.position.Y]; 
+                //if(elementPlayerPos == 'D') {
                 //    break;
                 //}
 

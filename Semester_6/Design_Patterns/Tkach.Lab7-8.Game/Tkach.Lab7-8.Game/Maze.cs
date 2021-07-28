@@ -16,7 +16,9 @@ namespace Tkach.Lab7_8.Game
 
         public Matrix<char> Draw(Matrix<char> canvas)
         {
-            return matrix;
+            // use deep copy!
+
+            return matrix.DeepCopy();
         }
 
         public bool IsActive()
