@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Tkach.Lab7_8.Game
 {
-    class Item
+    abstract class Item
     {
+        public bool isActive;
         public Point position;
+        public char symbol;
+
         public Item(int x, int y)
         {
             position = new Point(x, y);

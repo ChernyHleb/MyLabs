@@ -22,10 +22,7 @@ namespace Tkach.Lab7_8.Game
 
         public void Draw()
         {
-            ForegroundColor = PlayerColor;
-            SetCursorPosition(position.X, position.Y);
-            Write(PlayerMarker);
-            ResetColor();
+            
         }
     }
 }

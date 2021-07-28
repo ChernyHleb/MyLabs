@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
+using Figgle;
 
 namespace Tkach.Lab7_8.Game
 {
@@ -14,7 +15,8 @@ namespace Tkach.Lab7_8.Game
 
         public void Start()
         {
-            //WriteLine("Game is starting...");
+            DisplayIntro();
+            ReadKey();
 
             string[,] grid = MazeParser.ParseFileToArray("map easy lvl.txt");
 
@@ -47,7 +49,7 @@ namespace Tkach.Lab7_8.Game
             { player1, player2, player3, player4 };*/
             #endregion
 
-            RunGameLoop();
+            //RunGameLoop();
         }
 
         //Player player1, player2, player3, player4;
@@ -147,7 +149,7 @@ namespace Tkach.Lab7_8.Game
 
                 //check if the player reached the exit
                 string elementPlayerPos = world.GetElementAt(
-                    player.position.X, player.position.Y);
+                    player.position.X, player.position.Y); 
                 if(elementPlayerPos == "X") {
                     break;
                 }
@@ -155,6 +157,13 @@ namespace Tkach.Lab7_8.Game
                 // give as Console a chance to render
                 System.Threading.Thread.Sleep(20);
             }
+        }
+
+        private void DisplayIntro()
+        {
+            WriteLine(Figgle.FiggleFonts.Larry3d.Render("PIAPS Lab 7-8"));
+
+
         }
     }
 }

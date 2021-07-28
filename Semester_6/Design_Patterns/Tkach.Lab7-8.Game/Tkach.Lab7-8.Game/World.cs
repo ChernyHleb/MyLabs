@@ -22,15 +22,7 @@ namespace Tkach.Lab7_8.Game
 
         public void Draw()
         {
-            for (int y = 0; y < rows; y++)
-            {
-                for (int x = 0; x < cols; x++)
-                {
-                    string element = grid[y, x];
-                    SetCursorPosition(x, y);
-                    Write(element);
-                }
-            }
+            
         }
 
         public string GetElementAt(int x, int y)

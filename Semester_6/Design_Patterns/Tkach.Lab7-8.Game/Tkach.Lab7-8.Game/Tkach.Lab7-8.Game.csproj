@@ -33,8 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Figgle, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Figgle.0.4.0\lib\net45\Figgle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,17 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coin.cs" />
+    <Compile Include="DataStructures\Matrix.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameWorldRepresentators\ConsoleRepresentator.cs" />
+    <Compile Include="GameWorldRepresentators\IGameWorldRepresentator.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="MazeParser.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="DataStructures\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="map easy lvl.txt">
