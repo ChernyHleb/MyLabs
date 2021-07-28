@@ -10,5 +10,10 @@
             this.dimentions = dimentions;
             this.matrix = matrix;
         }
+
+        public Matrix()
+        {
+
+        }
     }
 }

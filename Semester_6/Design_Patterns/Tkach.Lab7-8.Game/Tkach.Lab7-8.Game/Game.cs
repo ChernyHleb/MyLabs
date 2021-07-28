@@ -20,6 +20,7 @@ namespace Tkach.Lab7_8.Game
 
             string[,] grid = MazeParser.ParseFileToArray("map easy lvl.txt");
 
+            #region defaultMaze
             //string[,] grid = {
             //    { "█", "█", "█", "█", "█", "█", "█", "█", "█", "█"},
             //    { "█", " ", " ", "█", " ", " ", " ", " ", " ", "█"},
@@ -32,6 +33,7 @@ namespace Tkach.Lab7_8.Game
             //    { "█", " ", " ", "█", " ", " ", "█", " ", " ", "█"},
             //    { "█", "█", "█", "█", "█", "█", "█", "█", "█", "█"}
             //};
+            #endregion
 
             world = new World(grid);
 
@@ -52,6 +54,7 @@ namespace Tkach.Lab7_8.Game
             //RunGameLoop();
         }
 
+        #region trash
         //Player player1, player2, player3, player4;
         //List<Player> players;
 
@@ -84,6 +87,7 @@ namespace Tkach.Lab7_8.Game
 
         //    foreach (Player player in players) player.Draw();
         //}
+        #endregion
 
         private void DrawFrame()
         {
