@@ -27,17 +27,17 @@ namespace Tkach.Lab7_8.Game.FrameMaker
                 canvas = maze.Draw(canvas);
             }   
             
-            if (player.IsActive())
-            {
-                canvas = player.Draw(canvas);
-            }  
-            
             foreach(IDrawable item in items)
             {
                 if (item.IsActive())
                 {
                     canvas = item.Draw(canvas);
                 }
+            }
+
+            if (player.IsActive())
+            {
+                canvas = player.Draw(canvas);
             }
 
             return canvas;

@@ -1,21 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Console;
+﻿using System.Collections.Generic;
 using Figgle;
 using Tkach.Lab7_8.Game.FrameMaker;
 using Tkach.Lab7_8.Game.GameWorldRepresentators;
+using Tkach.Lab7_8.Game.LevelManagement;
 
 namespace Tkach.Lab7_8.Game
 {
     class Game
     {
-        //private World world;
-        private Player player;
-        private Maze maze;
+        private LevelManager levelManager;
         private GameWorldRepresentator gameWorldRepresentator;
+
+        public static bool IsPositionWalkable(int x, int y)
+        {
+            //check world bounds
+            if (x < 0 || y < 0 || x >= cols || y >= rows)
+            {
+                return false;
+            }
+
+            //ceck if the tile is walkable
+            return grid[y, x] == " " || grid[y, x] == "X";
+        }
 
         public void Start()
         {
@@ -105,46 +111,7 @@ namespace Tkach.Lab7_8.Game
 
         //private void HandlePlayerInput()
         //{
-        //    ConsoleKey key;
-        //    do // wait until last key pressed
-        //    {
-        //        ConsoleKeyInfo keyInfo = ReadKey(true);
-        //        key = keyInfo.Key;
-        //    } while (Console.KeyAvailable);
-
-        //    switch(key)
-        //    {
-        //        case ConsoleKey.UpArrow:
-        //            if(world.IsPositionWalkable(
-        //                player.position.X, 
-        //                player.position.Y - 1)
-        //            )
-        //                player.position.Y -= 1;
-        //            break;
-        //        case ConsoleKey.DownArrow:
-        //            if (world.IsPositionWalkable(
-        //                player.position.X,
-        //                player.position.Y + 1)
-        //            )
-        //                player.position.Y += 1;
-        //            break;
-        //        case ConsoleKey.LeftArrow:
-        //            if (world.IsPositionWalkable(
-        //                 player.position.X -1,
-        //                 player.position.Y)
-        //             )
-        //                player.position.X -= 1;
-        //            break;
-        //        case ConsoleKey.RightArrow:
-        //            if (world.IsPositionWalkable(
-        //                player.position.X + 1,
-        //                player.position.Y )
-        //            )
-        //                player.position.X += 1;
-        //            break;
-        //        default:
-        //            break;
-        //    }
+        //    
         //}
 
         private void RunGameLoop()
@@ -173,7 +140,7 @@ namespace Tkach.Lab7_8.Game
 
         private void DisplayIntro()
         {
-            WriteLine(Figgle.FiggleFonts.Larry3d.Render("PIAPS Lab 7-8"));
+            //WriteLine(Figgle.FiggleFonts.Larry3d.Render("PIAPS Lab 7-8"));
 
 
         }
