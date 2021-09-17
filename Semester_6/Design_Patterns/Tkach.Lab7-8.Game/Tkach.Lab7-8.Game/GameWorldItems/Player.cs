@@ -53,6 +53,8 @@ namespace Tkach.Lab7_8.Game
                 default:
                     break;
             }
+
+            Game.FindAndSolveIntersection(position);
         }
 
         bool IDrawable.IsActive()

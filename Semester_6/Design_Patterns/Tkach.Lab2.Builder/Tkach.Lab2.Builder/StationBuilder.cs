@@ -17,10 +17,10 @@ namespace Tkach.Lab2.Builder
 
         public virtual void CreateTaxies() { }
                        
-        public virtual void CreateBusDrivers() { }              
-                       
-        public virtual void CreateTaxiDrivers() { }
+        public virtual void CreateDrivers() { }
 
+        public virtual void CreateExtraEquipment() { }
+                       
         public virtual void CreateMaturePassengers() { }
 
         public virtual void CreateChildPassengers() { }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tkach.Lab7_8.Game.LevelManagement
+﻿namespace Tkach.Lab7_8.Game.LevelManagement
 {
     class LevelManager
     {
@@ -19,11 +13,12 @@ namespace Tkach.Lab7_8.Game.LevelManagement
         public void CreateLevel()
         {
             builder.CreateLevel();
-            builder.CreateMaze();
             builder.CreatePlayer();
             builder.CreateItems();
             builder.CreateEnemies();
             builder.CreateTraps();
+            builder.CreateMaze();
+            builder.CreateMissionManager();
 
             level = builder.GetLevel();
         }

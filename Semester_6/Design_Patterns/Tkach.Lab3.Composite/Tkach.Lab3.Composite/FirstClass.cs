@@ -30,7 +30,15 @@ namespace Tkach.Lab3.Composite
 
         public override void removeUnit(int index)
         {
+            denyUnit(index);
             parts.RemoveAt(index);
+        }
+
+        public override void denyUnit(int index)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Passenger " + index + " denied");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

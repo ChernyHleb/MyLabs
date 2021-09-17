@@ -25,5 +25,10 @@ namespace Tkach.Lab3.Composite
         {
             throw new NotImplementedException();
         }
+
+        public virtual void denyUnit(int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

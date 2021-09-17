@@ -13,8 +13,8 @@ namespace Tkach.Lab2.Builder
 
         public int busesAmount;
         public int taxiesAmount;
-        public int busDriversAmount;
-        public int taxiDriversAmount;
+        public int driversAmount;
+        public int extraEquipmentAmount;
         public int maturePassengersAmount;
         public int childPassengersAmount;
         public int lgotnyPassengersAmount;
@@ -29,17 +29,17 @@ namespace Tkach.Lab2.Builder
         public override string ToString()
         {
             return String.Format("STATION INFO:\n" +
-                "busesAmount: {0}\n" +
-                "taxiesAmount: {1}\n" +
-                "busDriversAmount: {2}\n" +
-                "taxiDriversAmount: {3}\n" +
-                "maturePassengersAmount: {4}\n" +
-                "childPassengersAmount: {5}\n" +
-                "lgotnyPassengersAmount: {6}\n",
+                "buses: {0}\n" +
+                "taxies: {1}\n" +
+                "drivers: {2}\n" +
+                "extra equipment: {3}\n" +
+                "mature passengers: {4}\n" +
+                "child passengers: {5}\n" +
+                "lgotny passengers: {6}\n",
                 busesAmount,
                 taxiesAmount,
-                busDriversAmount,
-                taxiDriversAmount,
+                driversAmount,
+                extraEquipmentAmount,
                 maturePassengersAmount,
                 childPassengersAmount,
                 lgotnyPassengersAmount

@@ -20,9 +20,14 @@ namespace Tkach.Lab2.Builder
             base.station.taxiesAmount = rnd.Next(0, 10);
         }
 
-        public override void CreateTaxiDrivers()
+        public override void CreateDrivers()
         {
-            base.station.taxiDriversAmount = rnd.Next(0, 10);
+            base.station.driversAmount = rnd.Next(0, 10);
+        }
+
+        public override void CreateExtraEquipment()
+        {
+            base.station.extraEquipmentAmount = rnd.Next(0, 10);
         }
 
         public override void CreateMaturePassengers()

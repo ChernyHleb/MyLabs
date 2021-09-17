@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tkach.Lab1.AbstractFactory_Singleton
 {
@@ -15,11 +11,11 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
             
         }
 
-        public override int Board(int passengersAmount)
+        public override int Board(int passengersAmount, Driver driver)
         {
             int boardedPassengers = 0;
             int boardedDrivers = 0;
-            boardedDrivers += BoardDriver();
+            boardedDrivers += BoardDriver(driver);
             boardedPassengers += BoardPassengers(passengersAmount);
 
             if (boardedDrivers == 0)
@@ -35,19 +31,18 @@ namespace Tkach.Lab1.AbstractFactory_Singleton
             return boardedPassengers + boardedDrivers;
         }
 
-        protected override int BoardDriver()
+        public override int BoardDriver(Driver driver)
         {
-            Driver bD = BusDriver.GetNewDriver();
-            if (bD == null)
+            if (driver == null)
                 return 0;
             else
             {
-                Console.WriteLine(bD);
+                Console.WriteLine(driver);
             }
             return 1;
         }
 
-        protected override int BoardPassengers(int amount)
+        public override int BoardPassengers(int amount)
         {
             int boardedPassengers = 0;
             if (amount <= BoardBus.passengerPlaces)

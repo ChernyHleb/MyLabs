@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Figgle;
 using Tkach.Lab7_8.Game.DataStructures;
 using Tkach.Lab7_8.Game.FrameMaker;
@@ -11,6 +12,7 @@ namespace Tkach.Lab7_8.Game
     {
         private static LevelManager levelManager;
         private GameWorldRepresentator gameWorldRepresentator;
+        private GameWorldRepresentator textRepresentator;
         private static InputHandler inputHandler; 
 
         public static bool IsPositionWalkable(int x, int y)
@@ -22,30 +24,31 @@ namespace Tkach.Lab7_8.Game
                 return false;
             }
 
-            //ceck if the tile is walkable
+            //check if the tile is walkable
             return matr.matrix[y, x] == ' '
                 || matr.matrix[y, x] == 'D'
                 || matr.matrix[y, x] == 'o';
         }
 
+        public static void FindAndSolveIntersection(Point position)
+        {
+            foreach(Item item in levelManager.GetLevel().items)
+            {
+                if(item.position.X == position.X && item.position.Y == position.Y)
+                {
+                    if(item.symbol == 'o')
+                    {
+                        item.isActive = false;
+                        Coin coin = (Coin)item;
+                        coin.NotifyObservers();
+                    }
+                }
+            }
+        }
+
         public void Start()
         {
             //DisplayIntro();
-
-            #region defaultMaze
-            //string[,] grid = {
-            //    { "█", "█", "█", "█", "█", "█", "█", "█", "█", "█"},
-            //    { "█", " ", " ", "█", " ", " ", " ", " ", " ", "█"},
-            //    { "█", " ", " ", "█", " ", " ", "█", " ", " ", "█"},
-            //    { "█", " ", " ", "█", " ", "█", "█", " ", " ", "█"},
-            //    { "█", " ", " ", "█", " ", " ", "█", " ", " ", "█"},
-            //    { "█", " ", " ", "█", " ", " ", "█", "█", "█", "█"},
-            //    { "█", " ", " ", "█", "█", " ", "█", " ", " ", "█"},
-            //    { "█", " ", " ", " ", " ", " ", " ", " ", " ", "X"},
-            //    { "█", " ", " ", "█", " ", " ", "█", " ", " ", "█"},
-            //    { "█", "█", "█", "█", "█", "█", "█", "█", "█", "█"}
-            //};
-            #endregion
 
             // создание моделей игрового мира и самого уровня, состоящего из них
             levelManager = new LevelManager();
@@ -58,11 +61,7 @@ namespace Tkach.Lab7_8.Game
             // отображающую взаимное расположение игровых объектов на карте
             // и создание репрезентатора, который будет выводить мир на экран
             // определенным образом
-            FrameMaker.FrameMaker frameMaker = new FrameMaker.FrameMaker(
-                level.maze, 
-                level.player, 
-                new List<IDrawable>()
-            );
+            FrameMaker.FrameMaker frameMaker = new FrameMaker.FrameMaker(level);
             gameWorldRepresentator = new GameWorldRepresentator(
                 frameMaker, 
                 new ConsoleRepresentator()
@@ -125,6 +124,8 @@ namespace Tkach.Lab7_8.Game
 
         private void RunGameLoop()
         {
+            Console.CursorVisible = false;
+
             while(true)
             {
                 //draw everything
@@ -134,14 +135,11 @@ namespace Tkach.Lab7_8.Game
                 //check player input and move player
                 inputHandler.HandleInput();
 
-                //check if the player reached the exit
-                //char elementPlayerPos = 
-                //    levelManager.GetLevel().maze.matrix.matrix[
-                //    levelManager.GetLevel().player.position.X,
-                //    levelManager.GetLevel().player.position.Y]; 
-                //if(elementPlayerPos == 'D') {
-                //    break;
-                //}
+
+                //проверка миссий
+                if(levelManager.GetLevel().missionManager.AreMissionsPassed())
+                    break;
+                
 
                 // give as Console a chance to render
                 System.Threading.Thread.Sleep(20);

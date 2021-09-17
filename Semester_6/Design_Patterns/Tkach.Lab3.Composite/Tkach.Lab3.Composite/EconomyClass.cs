@@ -10,6 +10,7 @@ namespace Tkach.Lab3.Composite
     {
         public static readonly int luggageWeightLimit = 20;
         public static readonly int passengerSeatsLimit = 150;
+
         public EconomyClass()
         {
             this.parts = new List<Unit>();
@@ -31,7 +32,17 @@ namespace Tkach.Lab3.Composite
 
         public override void removeUnit(int index)
         {
-            parts.RemoveAt(index);
+            denyUnit(index - delta);
+            parts.RemoveAt(index - delta);
+            delta++;
+        }
+
+        int delta = 0;
+        public override void denyUnit(int index)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Passenger " + (index + delta) + " denied");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

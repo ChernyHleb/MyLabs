@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tkach.Lab7_8.Game.DataStructures;
+using Tkach.Lab7_8.Game.LevelManagement;
 
 namespace Tkach.Lab7_8.Game.FrameMaker
 {
     class FrameMaker : IDrawable
     {
-        public FrameMaker(IDrawable maze, IDrawable player, List<IDrawable> items)
+        public FrameMaker(Level level)
         {
-            this.maze = maze;
-            this.items = items;
-            this.player = player;
+            this.maze = level.maze;
+            this.items = new List<IDrawable>();
+            foreach(Item item in level.items)
+            {
+                this.items.Add(item);
+            }
+            this.player = level.player;
         }
 
         private IDrawable maze;
         private IDrawable player;
         private List<IDrawable> items;
+        private List<IDrawable> missions;
 
         public Matrix<char> Draw(Matrix<char> canvas)
         {
@@ -41,6 +44,21 @@ namespace Tkach.Lab7_8.Game.FrameMaker
             }
 
             return canvas;
+        }
+
+        public List<string> Draw()
+        {
+            List<string> output = new List<string>();
+            foreach(IDrawable mission in missions)
+            {
+                output.Add(mission.Draw());
+            }
+            return output;
+        }
+
+        public Matrix<char> MakeFrame()
+        {
+            return Draw(new Matrix<char>());
         }
 
         public bool IsActive()

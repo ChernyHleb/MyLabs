@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tkach.Lab7_8.Game.DataStructures;
+﻿using Tkach.Lab7_8.Game.DataStructures;
+using Tkach.Lab7_8.Game.FrameMaker;
 
 namespace Tkach.Lab7_8.Game
 {
-    abstract class Item
+    abstract class Item : IDrawable
     {
         public bool isActive;
         public Point position;
@@ -16,6 +12,16 @@ namespace Tkach.Lab7_8.Game
         public Item(int x, int y)
         {
             position = new Point(x, y);
+        }
+
+        public Matrix<char> Draw(Matrix<char> canvas)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool IsActive()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

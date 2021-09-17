@@ -12,9 +12,18 @@ namespace Tkach.Lab3.Composite
         public static int deniedLuggage = 0;
         public static int luggageWeightLimit = 4500;
 
+        static FirstClass firstClass;
+        static BusinessClass businessClass;
+        static EconomyClass economyClass;
+
         public enum passengerType { FC, BC, EC }
 
-        public static void WriteLuggageWeight(Unit passenger, int lim, passengerType type)
+        public static void DenyPassenger(int index, Unit container)
+        {
+                container.removeUnit(index);
+        }
+
+        public static void WriteLuggageWeight(Unit passenger, int lim, passengerType type, int index, Unit container)
         {   // business and economy classes 
             // green - ok, red - overweight, dark magenta - denied
             int weight = passenger.getLuggageWeight();
@@ -23,6 +32,8 @@ namespace Tkach.Lab3.Composite
             if (type == passengerType.EC && luggageWeightLimit < 0)
             {
                 deniedLuggage++;
+                if (container != null) 
+                    container.removeUnit(index);
                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
             }
             else
@@ -46,7 +57,7 @@ namespace Tkach.Lab3.Composite
             Console.WriteLine("PILOTS SEATS");
             for (int i = 0; i < Pilot.passengerAmountLimit; i++)
             {
-                WriteLuggageWeight(new Pilot(), 0, passengerType.FC);
+                WriteLuggageWeight(new Pilot(), 0, passengerType.FC, i, null);
             }
             Console.WriteLine();
 
@@ -55,14 +66,14 @@ namespace Tkach.Lab3.Composite
             Console.WriteLine("\nSTEWARDESS SEATS");
             for (int i = 0; i < Stewardess.passengerAmountLimit; i++)
             {
-                WriteLuggageWeight(new Stewardess(), 0, passengerType.FC);
+                WriteLuggageWeight(new Stewardess(), 0, passengerType.FC, i, null);
             }
             Console.WriteLine();
 
             //FIRST CLASS 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nFIRST CLASS");
-            FirstClass firstClass = new FirstClass();
+            firstClass = new FirstClass();
             for (int i = 0; i < FirstClass.passengerSeatsLimit; i++)
             {
                 if (i % 6 == 0 && i != 0)
@@ -70,8 +81,8 @@ namespace Tkach.Lab3.Composite
                     Console.WriteLine("\n");
                 }
                 Passenger passenger = new Passenger();
-                WriteLuggageWeight(passenger, 0, passengerType.FC);
                 firstClass.addUnit(passenger);
+                WriteLuggageWeight(passenger, 0, passengerType.FC, i, firstClass);
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\ntotal: " + firstClass.getLuggageWeight().ToString());
@@ -80,7 +91,7 @@ namespace Tkach.Lab3.Composite
             //BUSINESS CLASS 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nBUSINESS CLASS");
-            BusinessClass businessClass = new BusinessClass();
+            businessClass = new BusinessClass();
             for (int i = 0; i < BusinessClass.passengerSeatsLimit; i++)
             {
                 if (i % 6 == 0 && i != 0)
@@ -88,8 +99,8 @@ namespace Tkach.Lab3.Composite
                     Console.WriteLine("\n");
                 }
                 Passenger passenger = new Passenger();
-                WriteLuggageWeight(passenger, BusinessClass.luggageWeightLimit, passengerType.BC);
                 businessClass.addUnit(passenger);
+                WriteLuggageWeight(passenger, BusinessClass.luggageWeightLimit, passengerType.BC, i, businessClass);
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\ntotal: " + businessClass.getLuggageWeight().ToString());
@@ -99,7 +110,7 @@ namespace Tkach.Lab3.Composite
             //ECONOMY CLASS 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nECONOMY CLASS");
-            EconomyClass economyClass = new EconomyClass();
+            economyClass = new EconomyClass();
             for (int i = 0; i < EconomyClass.passengerSeatsLimit; i++)
             {
                 if (i % 6 == 0 && i != 0)
@@ -107,8 +118,9 @@ namespace Tkach.Lab3.Composite
                     Console.WriteLine("\n");
                 }
                 Passenger passenger = new Passenger();
-                WriteLuggageWeight(passenger, EconomyClass.luggageWeightLimit, passengerType.EC);
                 economyClass.addUnit(passenger);
+                if (i == 6) DenyPassenger(6, economyClass);
+                WriteLuggageWeight(passenger, EconomyClass.luggageWeightLimit, passengerType.EC, i, economyClass);
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\ntotal: " + economyClass.getLuggageWeight().ToString());

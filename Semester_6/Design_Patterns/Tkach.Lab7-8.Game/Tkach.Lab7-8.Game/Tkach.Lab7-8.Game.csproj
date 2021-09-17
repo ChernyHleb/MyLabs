@@ -66,11 +66,17 @@
     <Compile Include="LevelManagement\Level.cs" />
     <Compile Include="LevelManagement\LevelBuilder.cs" />
     <Compile Include="LevelManagement\LevelManager.cs" />
-    <Compile Include="LevelManagement\MediumLevelBuilder.cs" />
-    <Compile Include="Maze.cs" />
-    <Compile Include="MazeParser.cs" />
+    <Compile Include="MissionManager\GatherItemsMission.cs" />
+    <Compile Include="MissionManager\Mission.cs" />
+    <Compile Include="MissionManager\MissionManager.cs" />
+    <Compile Include="MissionManager\ReachExitMission.cs" />
+    <Compile Include="WorldMatrix\DefaultWorldMatrixCreator.cs" />
+    <Compile Include="WorldMatrix\IWorldMatrixCreator.cs" />
+    <Compile Include="GameWorldItems\Maze.cs" />
+    <Compile Include="WorldMatrix\WorldMatrixFromTxtCreator.cs" />
     <Compile Include="GameWorldItems\Player.cs" />
     <Compile Include="DataStructures\Point.cs" />
+    <Compile Include="WorldMatrix\RandomWorldMatrixCreator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

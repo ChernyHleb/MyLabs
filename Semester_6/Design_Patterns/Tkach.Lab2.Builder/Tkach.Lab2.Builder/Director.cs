@@ -19,8 +19,8 @@ namespace Tkach.Lab2.Builder
             builder.CreateStation();
             builder.CreateBuses();
             builder.CreateTaxies();
-            builder.CreateBusDrivers();
-            builder.CreateTaxiDrivers();
+            builder.CreateDrivers();
+            builder.CreateExtraEquipment();
             builder.CreateMaturePassengers();
             builder.CreateChildPassengers();
             builder.CreateLgotnyPassengers();

@@ -20,9 +20,9 @@ namespace Tkach.Lab2.Builder
             base.station.busesAmount = rnd.Next(0, 10);
         }
 
-        public override void CreateBusDrivers()
+        public override void CreateDrivers()
         {
-            base.station.busDriversAmount = rnd.Next(0, 10);
+            base.station.driversAmount = rnd.Next(0, 10);
         }
 
         public override void CreateMaturePassengers()

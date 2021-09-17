@@ -31,6 +31,7 @@ namespace Tkach.Lab6.Observer
             Console.WriteLine("WEEK1");
             teachers[0].CreateReport();
             teachers[2].CreateReport();
+            teachers.RemoveAt(1);
             deanery.CheckTeachersReports();
             faculty.PostBadTeachers();
 
@@ -44,6 +45,8 @@ namespace Tkach.Lab6.Observer
             teachers[2].CreateReport();
             deanery.CheckTeachersReports();
             faculty.PostBadTeachers();
+
+            // 10:40 3112
 
             Console.ReadKey();
         }

@@ -21,7 +21,7 @@ namespace Tkach.Lab7_8.Game.GameWorldRepresentators
 
         public Matrix<char> DrawFrame()
         {
-            currentFrame = frameMaker.Draw(new Matrix<char>());
+            currentFrame = frameMaker.MakeFrame();
             return currentFrame;
         }
 
