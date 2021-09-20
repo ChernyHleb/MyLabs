@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator.models
 {
@@ -10,31 +6,47 @@ namespace Calculator.models
     {
         interfaces.ICalculatorView view;
         interfaces.ICalculator model;
+
+        private double result;
         
         public CalculatorPresenter(interfaces.ICalculatorView view)
         {
             this.view = view;
             this.model = new Calculator();
+            this.result = 0;
+        }
+
+        public double getResult()
+        {
+            return result;
         }
 
         public void onDivideClicked()
         {
-            throw new NotImplementedException();
+            result = model.divide(Convert.ToDouble(view.getArg1()),
+                                  Convert.ToDouble(view.getArg2())
+                                  );
         }
 
         public void onMinusClicked()
         {
-            throw new NotImplementedException();
+            result = model.subtract(Convert.ToDouble(view.getArg1()),
+                                    Convert.ToDouble(view.getArg2())
+                                    );
         }
 
         public void onMultiplyClicked()
         {
-            throw new NotImplementedException();
+            result = model.multiply(Convert.ToDouble(view.getArg1()),
+                                    Convert.ToDouble(view.getArg2())
+                                    );
         }
 
         public void onPlusClicked()
         {
-            throw new NotImplementedException();
+            result = model.sum(Convert.ToDouble(view.getArg1()),
+                               Convert.ToDouble(view.getArg2())
+                               );
         }
     }
 }

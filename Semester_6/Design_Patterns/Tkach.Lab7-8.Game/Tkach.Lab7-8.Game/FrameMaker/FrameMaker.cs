@@ -16,6 +16,11 @@ namespace Tkach.Lab7_8.Game.FrameMaker
                 this.items.Add(item);
             }
             this.player = level.player;
+            missions = new List<IDrawable>();
+            foreach(IDrawable mission in level.missionManager.missions)
+            {
+                this.missions.Add(mission);
+            }
         }
 
         private IDrawable maze;
@@ -64,6 +69,23 @@ namespace Tkach.Lab7_8.Game.FrameMaker
         public bool IsActive()
         {
             throw new NotImplementedException();
+        }
+
+        string IDrawable.Draw()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DrawMissions()
+        {
+            string output = "";
+            foreach(IDrawable mission in missions)
+            {
+                if (!mission.IsActive())
+                    continue;
+                output += mission.Draw() + "\n";
+            }
+            return output;
         }
     }
 }

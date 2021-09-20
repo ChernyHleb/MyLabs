@@ -28,6 +28,7 @@ namespace Tkach.Lab7_8.Game.GameWorldRepresentators
         public void DisplayRepresentation()
         {
             representationAlgorythm.Represent(currentFrame);
+            Console.WriteLine(frameMaker.DrawMissions());
         }
     }
 }

@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Calculator
 {
@@ -50,6 +40,8 @@ namespace Calculator
 
         public string getFirstArgumentAsString()
         {
+            arg2 = "";
+            oper = "";
             string text = InputBox.Text;
             arg1 = text;
             ExpressionBox.Text = String.Format("{0} {1} {2}" ,arg1, oper, arg2);
@@ -76,9 +68,6 @@ namespace Calculator
             e.Handled = (!IsTextAllowed(e.Text, @"[^0-9.]"));
         }
 
-
-
-
         private void ButtonSum_Click(object sender, RoutedEventArgs e)
         {
             if(arg1 == "")
@@ -97,7 +86,25 @@ namespace Calculator
 
         private void ButtonEq_Click(object sender, RoutedEventArgs e)
         {
+            arg2 = InputBox.Text;
+            interfaces.ICalculatorPresenter presenter = new models.CalculatorPresenter(this);
+            switch(oper)
+            {
+                case "+":
+                    presenter.onPlusClicked();
+                    break;
+                case "-":
+                    presenter.onMinusClicked();
+                    break;
+                case "*":
+                    presenter.onMultiplyClicked();
+                    break;
+                case "/":
+                    presenter.onDivideClicked();
+                    break;
+            }
 
+            InputBox.Text = presenter.getResult().ToString();
         }
 
         private void ButtonMul_Click(object sender, RoutedEventArgs e)
@@ -128,6 +135,16 @@ namespace Calculator
             oper = "";
             InputBox.Text = "";
             ExpressionBox.Text = "";
+        }
+
+        public string getArg1()
+        {
+            return arg1;
+        }
+
+        public string getArg2()
+        {
+            return arg2;
         }
     }
 }

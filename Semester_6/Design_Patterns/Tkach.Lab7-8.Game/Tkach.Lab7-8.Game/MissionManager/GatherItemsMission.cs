@@ -38,6 +38,7 @@ namespace Tkach.Lab7_8.Game.MissionManager
         public void Update(object obj)
         {
             items.Remove((T)obj);
+            currentScore = score - items.Count;
             if (items.Count == 0)
                 NotifyObservers();
         }
@@ -54,6 +55,8 @@ namespace Tkach.Lab7_8.Game.MissionManager
 
         public bool IsActive()
         {
+            if (observers.Count == 0)
+                return false;
             return isActive;
         }
     }

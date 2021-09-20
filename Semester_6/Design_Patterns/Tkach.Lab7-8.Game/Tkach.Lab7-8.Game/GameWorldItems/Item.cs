@@ -19,6 +19,11 @@ namespace Tkach.Lab7_8.Game
             throw new System.NotImplementedException();
         }
 
+        public string Draw()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public bool IsActive()
         {
             throw new System.NotImplementedException();

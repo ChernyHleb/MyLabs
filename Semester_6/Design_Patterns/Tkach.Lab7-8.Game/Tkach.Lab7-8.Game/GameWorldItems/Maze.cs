@@ -22,6 +22,11 @@ namespace Tkach.Lab7_8.Game.GameWorldItems
             return matrix.DeepCopy();
         }
 
+        public string Draw()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public bool IsActive()
         {
             return isActive;

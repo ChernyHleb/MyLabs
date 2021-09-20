@@ -24,5 +24,9 @@ namespace Calculator.interfaces
          * Возвращает значение, введенное в поле второго аргументы
          */
         String getSecondArgumentAsString();
+
+        String getArg1();
+
+        String getArg2();
     }
 }
