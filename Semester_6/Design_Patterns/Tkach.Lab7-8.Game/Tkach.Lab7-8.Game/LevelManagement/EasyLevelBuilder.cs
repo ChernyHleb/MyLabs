@@ -1,4 +1,5 @@
-﻿using Tkach.Lab7_8.Game.MissionManager;
+﻿using Tkach.Lab7_8.Game.GameWorldItems;
+using Tkach.Lab7_8.Game.MissionManager;
 using Tkach.Lab7_8.Game.WorldMatrix;
 
 namespace Tkach.Lab7_8.Game.LevelManagement
@@ -73,6 +74,21 @@ namespace Tkach.Lab7_8.Game.LevelManagement
                     mission.items.Add(coin);
                     mission.score++;
                     coin.RegisterObserver(mission);
+                }
+            }
+        }
+
+        public override void CreateDoors()
+        {
+            for (int x = 0; x < worldMatrix.dimentions.X; x++)
+            {
+                for (int y = 0; y < worldMatrix.dimentions.Y; y++)
+                {
+                    if (worldMatrix.matrix[y, x] == 'D')
+                    {
+                        base.level.doors.Add(new Door(x, y));
+                        worldMatrix.matrix[y, x] = ' ';
+                    }
                 }
             }
         }

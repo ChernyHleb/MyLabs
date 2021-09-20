@@ -52,6 +52,7 @@
     <Compile Include="GameWorldItems\Coin.cs" />
     <Compile Include="DataStructures\Matrix.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameWorldItems\Door.cs" />
     <Compile Include="GameWorldItems\Enemy.cs" />
     <Compile Include="GameWorldItems\Trap.cs" />
     <Compile Include="GameWorldRepresentators\GameWorldRepresentator.cs" />

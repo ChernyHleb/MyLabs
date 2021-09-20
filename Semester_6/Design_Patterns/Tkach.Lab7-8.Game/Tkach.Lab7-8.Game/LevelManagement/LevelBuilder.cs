@@ -16,6 +16,7 @@ namespace Tkach.Lab7_8.Game.LevelManagement
         public virtual void CreateItems() { }
         public virtual void CreateMaze() { }
         public virtual void CreateTraps() { }
+        public virtual void CreateDoors() { }
         public virtual void CreateMissionManager() { }
 
         public virtual Level GetLevel()

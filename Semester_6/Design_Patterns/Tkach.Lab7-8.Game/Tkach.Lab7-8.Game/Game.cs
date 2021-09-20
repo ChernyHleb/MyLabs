@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Figgle;
 using Tkach.Lab7_8.Game.DataStructures;
 using Tkach.Lab7_8.Game.FrameMaker;
+using Tkach.Lab7_8.Game.GameWorldItems;
 using Tkach.Lab7_8.Game.GameWorldRepresentators;
 using Tkach.Lab7_8.Game.LevelManagement;
 
@@ -13,7 +14,8 @@ namespace Tkach.Lab7_8.Game
         private static LevelManager levelManager;
         private GameWorldRepresentator gameWorldRepresentator;
         private GameWorldRepresentator textRepresentator;
-        private static InputHandler inputHandler; 
+        private static InputHandler inputHandler;
+        private static bool isActive = true;
 
         public static bool IsPositionWalkable(int x, int y)
         {
@@ -32,6 +34,17 @@ namespace Tkach.Lab7_8.Game
 
         public static void FindAndSolveIntersection(Point position)
         {
+            foreach(Door door in levelManager.GetLevel().doors)
+            {
+                if (door.position.X == position.X && door.position.Y == position.Y)
+                {
+                    if(levelManager.GetLevel().missionManager.AreMissionsPassed())
+                    {
+                        isActive = false;
+                    }
+                }
+            }
+
             foreach(Item item in levelManager.GetLevel().items)
             {
                 if(item.position.X == position.X && item.position.Y == position.Y)
@@ -126,7 +139,7 @@ namespace Tkach.Lab7_8.Game
         {
             Console.CursorVisible = false;
 
-            while(true)
+            while(isActive)
             {
                 //draw everything
                 gameWorldRepresentator.DrawFrame();
@@ -138,7 +151,10 @@ namespace Tkach.Lab7_8.Game
 
                 //проверка миссий
                 if(levelManager.GetLevel().missionManager.AreMissionsPassed())
-                    break;
+                {
+                    Console.WriteLine("Reach the exit");
+                }
+                    
                 
 
                 // give as Console a chance to render

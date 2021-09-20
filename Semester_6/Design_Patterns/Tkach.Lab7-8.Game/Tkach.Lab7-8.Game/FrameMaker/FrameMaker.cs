@@ -21,11 +21,17 @@ namespace Tkach.Lab7_8.Game.FrameMaker
             {
                 this.missions.Add(mission);
             }
+            doors = new List<IDrawable>();
+            foreach (IDrawable door in level.doors)
+            {
+                this.doors.Add(door);
+            }
         }
 
         private IDrawable maze;
         private IDrawable player;
         private List<IDrawable> items;
+        private List<IDrawable> doors;
         private List<IDrawable> missions;
 
         public Matrix<char> Draw(Matrix<char> canvas)
@@ -40,6 +46,14 @@ namespace Tkach.Lab7_8.Game.FrameMaker
                 if (item.IsActive())
                 {
                     canvas = item.Draw(canvas);
+                }
+            }
+
+            foreach (IDrawable door in doors)
+            {
+                if (door.IsActive())
+                {
+                    canvas = door.Draw(canvas);
                 }
             }
 

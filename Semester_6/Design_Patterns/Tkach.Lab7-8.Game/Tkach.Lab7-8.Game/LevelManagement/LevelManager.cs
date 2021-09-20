@@ -17,6 +17,7 @@
             builder.CreateItems();
             builder.CreateEnemies();
             builder.CreateTraps();
+            builder.CreateDoors();
             builder.CreateMaze();
             builder.CreateMissionManager();
 
