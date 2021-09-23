@@ -13,7 +13,6 @@ namespace Tkach.Lab7_8.Game
     {
         private static LevelManager levelManager;
         private GameWorldRepresentator gameWorldRepresentator;
-        private GameWorldRepresentator textRepresentator;
         private static InputHandler inputHandler;
         private static bool isActive = true;
 
