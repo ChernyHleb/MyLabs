@@ -44,13 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArythmeticExpressionChecker.cs" />
-    <Compile Include="ExpresionClasses\Braket.cs" />
-    <Compile Include="ExpresionClasses\ExpressionUnit.cs" />
-    <Compile Include="ExpresionClasses\Number.cs" />
-    <Compile Include="ExpresionClasses\Operation.cs" />
+    <Compile Include="ExpressionChecker\ArythmeticExpressionChecker.cs" />
+    <Compile Include="ExpressionChecker\NumTokens.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StackCalculator.cs" />
+    <Compile Include="ExpressionChecker\Tokens.cs" />
     <Compile Include="TranslatorToRPN.cs" />
   </ItemGroup>
   <ItemGroup>

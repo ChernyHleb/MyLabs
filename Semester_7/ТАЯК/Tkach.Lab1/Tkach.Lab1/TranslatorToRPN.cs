@@ -62,9 +62,12 @@ namespace Tkach.Lab1
 
                 //опеpация выталкивает из стека все опеpации с 
                 //большим или pавным пpиоpитетом в выходную стpоку
+                if(stack.Count != 0)
                 while(operationPriority[stack.Peek()] >= operationPriority[elem])
                 {
                     RPN.Add(stack.Pop());
+                    if (stack.Count == 0)
+                        break;
                 }
 
                 stack.Push(elem);
