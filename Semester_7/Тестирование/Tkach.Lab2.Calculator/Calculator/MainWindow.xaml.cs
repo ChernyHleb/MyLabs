@@ -19,6 +19,7 @@ namespace Calculator
         public string arg1 = "";
         public string arg2 = "";
         public string oper = "";
+        public string lastop = "none";
 
         private static bool IsTextAllowed(string Text, string AllowedRegex)
         {
@@ -68,11 +69,23 @@ namespace Calculator
             e.Handled = (!IsTextAllowed(e.Text, @"[^0-9.]"));
         }
 
+        private string getOper(object sender)
+        {
+            string oper = ((Button)sender).Content.ToString();
+            if(arg2 != "")
+            {
+                arg1 = InputBox.Text;
+                arg2 = "";
+            }
+            
+            return oper;
+        }
+
         private void ButtonSum_Click(object sender, RoutedEventArgs e)
         {
             if(arg1 == "")
                 getFirstArgumentAsString();
-            oper = ((Button)sender).Content.ToString();
+            oper = getOper(sender);
             ExpressionBox.Text = String.Format("{0} {1} {2}", arg1, oper, arg2);
         }
 
@@ -80,13 +93,21 @@ namespace Calculator
         {
             if (arg1 == "") 
                 getFirstArgumentAsString();
-            oper = ((Button)sender).Content.ToString();
+            oper = getOper(sender);
             ExpressionBox.Text = String.Format("{0} {1} {2}", arg1, oper, arg2);
         }
 
         private void ButtonEq_Click(object sender, RoutedEventArgs e)
         {
-            arg2 = InputBox.Text;
+            if(lastop != oper)
+            {
+                arg2 = InputBox.Text;
+                lastop = oper;
+            }
+            else
+                arg1 = InputBox.Text;
+
+
             interfaces.ICalculatorPresenter presenter = new models.CalculatorPresenter(this);
             switch(oper)
             {
@@ -104,6 +125,7 @@ namespace Calculator
                     break;
             }
 
+            ExpressionBox.Text = String.Format("{0} {1} {2} =", arg1, oper, arg2);
             InputBox.Text = presenter.getResult().ToString();
         }
 
@@ -111,7 +133,7 @@ namespace Calculator
         {
             if (arg1 == "") 
                 getFirstArgumentAsString();
-            oper = ((Button)sender).Content.ToString();
+            oper = getOper(sender);
             ExpressionBox.Text = String.Format("{0} {1} {2}", arg1, oper, arg2);
         }
 
@@ -119,7 +141,7 @@ namespace Calculator
         {
             if (arg1 == "") 
                 getFirstArgumentAsString();
-            oper = ((Button)sender).Content.ToString();
+            oper = getOper(sender);
             ExpressionBox.Text = String.Format("{0} {1} {2}", arg1, oper, arg2);
         }
 
