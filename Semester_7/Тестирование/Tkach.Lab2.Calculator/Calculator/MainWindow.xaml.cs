@@ -36,7 +36,11 @@ namespace Calculator
 
         public void displayError(string message)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(message, 
+                            "Ошибка",
+                            MessageBoxButton.OK, 
+                            MessageBoxImage.Error
+            );
         }
 
         public string getFirstArgumentAsString()
@@ -109,6 +113,10 @@ namespace Calculator
 
 
             interfaces.ICalculatorPresenter presenter = new models.CalculatorPresenter(this);
+
+            if (CheckForErrors())
+                return;
+
             switch(oper)
             {
                 case "+":
@@ -127,6 +135,39 @@ namespace Calculator
 
             ExpressionBox.Text = String.Format("{0} {1} {2} =", arg1, oper, arg2);
             InputBox.Text = presenter.getResult().ToString();
+        }
+
+        private bool CheckForErrors()
+        {
+            if (arg1 == "")
+            {
+                displayError("arg1 is empty");
+                return true;
+            }
+            else
+            if (arg2 == "")
+            {
+                displayError("arg2 is empty");
+                return true;
+            }
+            else
+            if (oper == "/" && arg2 == "0")
+            {
+                displayError("0 dividion");
+                return true;
+            }
+
+            try
+            {
+                Convert.ToDouble(arg1);
+                Convert.ToDouble(arg2);
+            }
+            catch(Exception e)
+            {
+                displayError(e.Message);
+                return true;
+            }
+            return false;
         }
 
         private void ButtonMul_Click(object sender, RoutedEventArgs e)
