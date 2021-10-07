@@ -62,6 +62,73 @@ namespace OTIK.Lab2
             }
 
         }
+        public TextData() { }
+        public string GetPiecesResult(string inputText)
+        {
+            List<char> rusSym = new List<char>();
+            List<int> rusSymCount = new List<int>();
+            List<double> rusSymCountFreq = new List<double>();
+            int rusSymCountTotal = 0;
+
+            foreach (char c in inputText.ToCharArray())
+            {
+                char lc = Char.ToLower(c);
+                if (!(lc >= 'а' && lc <= 'я'))
+                    continue;
+                if (rusSym.Contains(lc))
+                {
+                    for (int i = 0; i < rusSym.Count; i++)
+                    {
+                        if (rusSym[i] == lc)
+                        {
+                            rusSymCount[i]++;
+                            rusSymCountTotal++;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    rusSym.Add(lc);
+                    rusSymCount.Add(1);
+                    rusSymCountTotal++;
+                }
+            }
+
+
+            string result = "СИМВОЛ\tЧАСТОТА\n";
+            foreach (int i in rusSymCount)
+                rusSymCountFreq.Add((double)i / (double)rusSymCountTotal);
+
+            for (int i = 0; i < rusSymCountFreq.Count; i++)
+            {
+                for (int j = i; j < rusSymCountFreq.Count; j++)
+                {
+                    if (rusSymCountFreq[i] < rusSymCountFreq[j])
+                    {
+                        var a = rusSymCountFreq[i];
+                        rusSymCountFreq[i] = rusSymCountFreq[j];
+                        rusSymCountFreq[j] = a;
+
+                        var b = rusSymCount[i];
+                        rusSymCount[i] = rusSymCount[j];
+                        rusSymCount[j] = b;
+                        var c = rusSym[i];
+                        rusSym[i] = rusSym[j];
+                        rusSym[j] = c;
+                    }
+                }
+            }
+
+            for (int i = 0; i < rusSym.Count; i++)
+            {
+                result += rusSym[i] + "\t" 
+                   + rusSymCountFreq[i] + "\t" 
+                   + Environment.NewLine;
+            }
+            
+            return result;
+        }
 
         public string GetTextResult()
         {
