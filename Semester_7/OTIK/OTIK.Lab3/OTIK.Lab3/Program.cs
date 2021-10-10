@@ -10,6 +10,8 @@ namespace OTIK.Lab3
     {
         static void Main(string[] args)
         {
+            Compressor compressor = new Compressor(null, null);
+            compressor.getFiles();
         }
     }
 }

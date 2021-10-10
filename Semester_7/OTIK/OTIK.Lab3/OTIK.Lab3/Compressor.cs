@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace OTIK.Lab3
 {
@@ -28,7 +26,24 @@ namespace OTIK.Lab3
 
         public void getFiles()
         {
+            string[] filePaths = Directory.GetFiles(@".\input\");
 
+            foreach (string s in filePaths)
+            {
+                byte[] fileContent = File.ReadAllBytes(s);
+                Console.WriteLine(s);
+                string[] hexFileContent = BitConverter.ToString(fileContent).Split('-');
+
+                for (int i = 0; i < hexFileContent.Length; i++)
+                {
+                    Console.Write(hexFileContent[i] + ' ');
+                    if ((i + 1) % 16 == 0)
+                        Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
         }
 
         public void Encrypt()
@@ -38,7 +53,7 @@ namespace OTIK.Lab3
 
         public void Decrypt()
         {
-
+            
         }
     }
 }
