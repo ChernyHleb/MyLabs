@@ -12,6 +12,7 @@ namespace OTIK.Lab3
         {
             Compressor compressor = new Compressor(null, null);
             compressor.getFiles();
+            Console.ReadKey();
         }
     }
 }

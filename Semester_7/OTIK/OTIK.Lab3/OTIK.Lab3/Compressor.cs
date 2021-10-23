@@ -8,6 +8,10 @@ namespace OTIK.Lab3
     {
         string inputDir;
         string outputDir;
+
+        List<InnerFile> innerFiles = new List<InnerFile>();
+        List<byte[]> filesBinary = new List<byte[]>();
+
         public Compressor(string inputDir, string outputDir)
         {
             this.inputDir = inputDir;
@@ -31,24 +35,30 @@ namespace OTIK.Lab3
             foreach (string s in filePaths)
             {
                 byte[] fileContent = File.ReadAllBytes(s);
-                Console.WriteLine(s);
-                string[] hexFileContent = BitConverter.ToString(fileContent).Split('-');
 
-                for (int i = 0; i < hexFileContent.Length; i++)
-                {
-                    Console.Write(hexFileContent[i] + ' ');
-                    if ((i + 1) % 16 == 0)
-                        Console.WriteLine();
-                }
-                Console.WriteLine();
+                innerFiles.Add(Encrypt(fileContent));
+                FilesToConsole(s);
+                
             }
-
-            Console.ReadKey();
         }
 
-        public void Encrypt()
+        public void FilesToConsole(string s)
         {
+            Console.WriteLine(s);
+            string[] hexFileContent = BitConverter.ToString(fileContent).Split('-');
 
+            for (int i = 0; i < hexFileContent.Length; i++)
+            {
+                Console.Write(hexFileContent[i] + ' ');
+                if ((i + 1) % 16 == 0)
+                    Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+
+        public InnerFile Encrypt(byte[] file)
+        {
+            return null;
         }
 
         public void Decrypt()
