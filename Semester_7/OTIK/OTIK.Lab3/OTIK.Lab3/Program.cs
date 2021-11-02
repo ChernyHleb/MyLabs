@@ -37,9 +37,7 @@ namespace OTIK.Lab3
 
             Compressor compressor = new Compressor(@".\input\", @".\output\");
             compressor.getFiles();
-
-
-
+            compressor.Compress(compressor.FormVSAS(), "pornArchive.vsas");
 
             Console.ReadKey();
         }

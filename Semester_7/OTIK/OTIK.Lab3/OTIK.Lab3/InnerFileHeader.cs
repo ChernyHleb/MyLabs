@@ -1,4 +1,6 @@
-﻿namespace OTIK.Lab3
+﻿using System.Collections.Generic;
+
+namespace OTIK.Lab3
 {
     class InnerFileHeader
     {
@@ -13,5 +15,20 @@
         public byte[] tail = new byte[3];
 
         public InnerFileHeader() { }
+
+        public List<byte> ToBytes()
+        {
+            List<byte> arr = new List<byte>();
+            foreach (byte b in signature) arr.Add(b);
+            foreach (byte b in compressedSize) arr.Add(b);
+            foreach (byte b in uncompressedSize) arr.Add(b);
+            arr.Add(fileNameLength);
+            foreach (byte b in encryptionInfoHeaderOffset) arr.Add(b);
+            foreach (byte b in fileDataOffset) arr.Add(b);
+            foreach (byte b in fileName) arr.Add(b);
+            foreach (byte b in tail) arr.Add(b);
+
+            return arr;
+        }
     }
 }

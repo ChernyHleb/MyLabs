@@ -10,6 +10,7 @@ namespace OTIK.Lab3
         public VSAS(VSAS_Header header, List<InnerFile> files)
         {
             this.header = header;
+            this.files = files;
         }
     }
 }

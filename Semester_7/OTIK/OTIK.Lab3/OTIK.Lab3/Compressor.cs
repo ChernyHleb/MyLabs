@@ -18,9 +18,30 @@ namespace OTIK.Lab3
             this.outputDir = outputDir;
         }
 
-        public VSAS Compress(string archiveName, bool compress)
+        public VSAS FormVSAS()
         {
-            return null;
+            VSAS_Header header = new VSAS_Header();
+            header.algNumContextCompression = 0;
+            header.algNumEntropyCompression = 0;
+            header.algNumNoiseProtection = 0;
+            header.algNumEncryption = 0;
+            header.filesAmount = BitConverter.GetBytes(innerFiles.Count)[0];
+
+            return new VSAS(header, innerFiles);
+        }
+
+        public void Compress(VSAS fileArchive, string name)
+        {
+            List<byte> arr = new List<byte>();
+            arr.AddRange(fileArchive.header.ToBytes());
+            foreach(InnerFile file in fileArchive.files)
+            {
+                arr.AddRange(file.header.ToBytes());
+                arr.AddRange(file.data);
+            }
+
+            string archivePath = outputDir + name;
+            File.WriteAllBytes(archivePath, arr.ToArray());
         }
 
         public void Extract()
