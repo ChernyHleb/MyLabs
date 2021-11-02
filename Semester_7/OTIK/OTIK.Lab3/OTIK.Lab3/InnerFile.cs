@@ -8,22 +8,11 @@ namespace OTIK.Lab3
         public byte[] encryptionHeader;
         public byte[] data;
 
-        public InnerFile(InnerFileHeader header, byte[] encryptionHeader)
+        public InnerFile(InnerFileHeader header, byte[] encryptionHeader, byte[] data)
         {
             this.header = header;
             this.encryptionHeader = encryptionHeader;
-
-            UInt32 compressedSize = BitConverter.ToUInt32(header.compressedSize, 0);
-            UInt32 uncompressedSize = BitConverter.ToUInt32(header.uncompressedSize, 0);
-
-            if (compressedSize != 0)
-            {
-                data = new byte[compressedSize];
-            }
-            else
-            {
-                data = new byte[uncompressedSize];
-            }
+            this.data = data;
         }
     }
 }
