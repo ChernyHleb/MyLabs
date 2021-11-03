@@ -13,6 +13,7 @@ namespace OTIK.Lab3
 
         public List<InnerFile> filesToCompress = new List<InnerFile>();
         public List<VSAS> filesToExtract = new List<VSAS>();
+        Random rnd = new Random();
 
         public Compressor(string inputDir, string outputDir)
         {
@@ -32,13 +33,19 @@ namespace OTIK.Lab3
             return new VSAS(header, filesToCompress);
         }
 
-        public void Compress(VSAS fileArchive, string name)
+        public void Compress(VSAS fileArchive, string name, bool encrypt)
         {
+            if (encrypt)
+                fileArchive.header.algNumEncryption = 1;
+            else
+                fileArchive.header.algNumEncryption = 0;
+
             Console.WriteLine("INPUT FILES COMPRESSED:");
             List<byte> arr = new List<byte>();
             arr.AddRange(fileArchive.header.ToBytes());
             foreach(InnerFile file in fileArchive.files)
             {
+                Encrypt(file);
                 arr.AddRange(file.header.ToBytes());
                 arr.AddRange(file.data);
             }
@@ -177,16 +184,40 @@ namespace OTIK.Lab3
         //    Console.WriteLine();
         //}
         
-        /*
-        public InnerFile Encrypt(byte[] file)
+        
+        protected void Encrypt(InnerFile file)
         {
-            return null;
+            int dataSize = BitConverter.ToInt32(file.header.uncompressedSize, 0);
+            List<byte> data = new List<byte>(file.data);
+            List<byte> encryptionHeader = new List<byte>();
+            List<byte> encryptedData = new List<byte>();
+            int blockCounter = 0;
+
+            for (int counter = 0; counter < dataSize; blockCounter++)
+            {
+                int blockLength = rnd.Next(1, 17);
+                if (counter + blockLength > dataSize)
+                    blockLength = dataSize - counter;
+                encryptionHeader.Add((byte)blockLength);
+                encryptionHeader.Add((byte)'q');
+                encryptedData.AddRange(data.GetRange(counter, blockLength));
+                counter += blockLength; // индекс исходных данных
+                encryptedData.Add((byte)'q');
+                // 4 байта отвечают за порядковый номер блока
+                encryptedData.AddRange(BitConverter.GetBytes(blockCounter)); 
+            }
+
+            file.data = encryptedData.ToArray();
+            file.encryptionHeader = encryptionHeader.ToArray();
+            file.header.compressedSize = BitConverter.GetBytes(encryptedData.Count);
+            file.header.fileDataOffset = BitConverter.GetBytes(encryptionHeader.Count);
+            file.header.encryptionInfoHeaderOffset = BitConverter.GetBytes(InnerFileHeader.size);
         }
 
         public void Decrypt()
         {
             
         }
-        */
+       
     }
 }

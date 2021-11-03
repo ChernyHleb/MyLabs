@@ -38,7 +38,7 @@ namespace OTIK.Lab3
             Compressor compressor = new Compressor(@".\input\", @".\output\");
             compressor.getFiles();
 
-            compressor.Compress(compressor.FormVSAS(), "pornArchive.vsas");
+            compressor.Compress(compressor.FormVSAS(), "pornArchive.vsas", true);
 
             foreach (VSAS file in compressor.filesToExtract) 
                 compressor.Extract(file);
