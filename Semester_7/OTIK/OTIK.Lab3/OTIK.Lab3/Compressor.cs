@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace OTIK.Lab3
@@ -10,7 +11,8 @@ namespace OTIK.Lab3
         string inputDir;
         string outputDir;
 
-        List<InnerFile> innerFiles = new List<InnerFile>();
+        public List<InnerFile> filesToCompress = new List<InnerFile>();
+        public List<VSAS> filesToExtract = new List<VSAS>();
 
         public Compressor(string inputDir, string outputDir)
         {
@@ -25,13 +27,14 @@ namespace OTIK.Lab3
             header.algNumEntropyCompression = 0;
             header.algNumNoiseProtection = 0;
             header.algNumEncryption = 0;
-            header.filesAmount = BitConverter.GetBytes(innerFiles.Count)[0];
+            header.filesAmount = BitConverter.GetBytes(filesToCompress.Count)[0];
 
-            return new VSAS(header, innerFiles);
+            return new VSAS(header, filesToCompress);
         }
 
         public void Compress(VSAS fileArchive, string name)
         {
+            Console.WriteLine("INPUT FILES COMPRESSED:");
             List<byte> arr = new List<byte>();
             arr.AddRange(fileArchive.header.ToBytes());
             foreach(InnerFile file in fileArchive.files)
@@ -41,12 +44,21 @@ namespace OTIK.Lab3
             }
 
             string archivePath = outputDir + name;
+            Console.WriteLine(archivePath);
             File.WriteAllBytes(archivePath, arr.ToArray());
         }
 
-        public void Extract()
+        public void Extract(VSAS fileArchive)
         {
-
+            Console.WriteLine("EXTRACTED FILES:");
+            foreach(InnerFile file in fileArchive.files)
+            {
+                string filepath = outputDir;
+                foreach (byte b in file.header.fileName.Take(file.header.fileNameLength).ToArray())
+                    filepath += (char)b;
+                Console.WriteLine(filepath);
+                File.WriteAllBytes(filepath, file.data);
+            }
         }
 
         public void getFiles()
@@ -57,25 +69,34 @@ namespace OTIK.Lab3
             {
                 byte[] fileContent = File.ReadAllBytes(s);
                 string fileName = s.Split('\\')[s.Split('\\').Length - 1];
-                innerFiles.Add(ToInnerFile(fileContent, fileName));                
+                if (fileContent.Length >= 3 &&
+                    fileContent[0] == 239 &&
+                    fileContent[1] == 187 &&
+                    fileContent[2] == 191)
+                {
+                    filesToCompress.Add(TxtToInnerFile(fileContent, fileName));
+                }
+                else
+                if(fileContent.Length >= 4 &&
+                    fileContent[0] == (byte)'V' &&
+                    fileContent[1] == (byte)'S' &&
+                    fileContent[2] == (byte)'A' &&
+                    fileContent[3] == (byte)'S')
+                {
+                    filesToExtract.Add(BytesToVSAS(fileContent));
+                }
             }
         }
 
-        private InnerFile ToInnerFile(byte[] file, string filename)
+        private InnerFile TxtToInnerFile(byte[] file, string filename)
         {
-            // определение и заполнение сигнатуры
-            //UTF8 signature EF BB BF <--> 239 187 191
+            //  заполнение сигнатуры
+            //  UTF8 signature EF BB BF <--> 239 187 191
             InnerFileHeader innerFileHeader = new InnerFileHeader();
-            if(file.Length >= 3 && 
-               file[0] == 239 && 
-               file[1] == 187 && 
-               file[2] == 191)
-            {
-                innerFileHeader.signature[0] = 0;
-                innerFileHeader.signature[1] = 239;
-                innerFileHeader.signature[2] = 187;
-                innerFileHeader.signature[3] = 191;
-            }
+            innerFileHeader.signature[0] = 0;
+            innerFileHeader.signature[1] = 239;
+            innerFileHeader.signature[2] = 187;
+            innerFileHeader.signature[3] = 191;
             // размер файла
             innerFileHeader.uncompressedSize = BitConverter.GetBytes(file.Length);
             // заполнение имени и длины имени
@@ -89,6 +110,57 @@ namespace OTIK.Lab3
             innerFileHeader.fileDataOffset = BitConverter.GetBytes(InnerFileHeader.size);
 
             return new InnerFile(innerFileHeader, null, file);
+        }
+
+        private VSAS BytesToVSAS(byte[] file)
+        {
+            //VSAS archive = new VSAS();
+            VSAS_Header archiveHeader = new VSAS_Header();
+            List<InnerFile> innerFiles = new List<InnerFile>();
+            int counter = 4;
+
+            archiveHeader.algNumEntropyCompression = file[counter];
+            counter++;
+            archiveHeader.algNumContextCompression = file[counter];
+            counter++;
+            archiveHeader.algNumNoiseProtection = file[counter];
+            counter++;
+            archiveHeader.algNumEncryption = file[counter];
+            counter++;
+            archiveHeader.filesAmount = file[counter];
+            counter++;
+            archiveHeader.tail = file.Skip(counter).Take(7).ToArray();
+            counter += 7;
+
+            for(int i = 0; i < archiveHeader.filesAmount; i++)
+            {
+                InnerFileHeader innerFileHeader = new InnerFileHeader();
+                innerFileHeader.signature = file.Skip(counter).Take(4).ToArray();
+                counter += 4;
+                innerFileHeader.compressedSize = file.Skip(counter).Take(4).ToArray();
+                counter += 4;
+                innerFileHeader.uncompressedSize = file.Skip(counter).Take(4).ToArray();
+                counter += 4;
+                innerFileHeader.fileNameLength = file[counter];
+                counter ++;
+                innerFileHeader.encryptionInfoHeaderOffset = file.Skip(counter).Take(4).ToArray();
+                counter += 4;
+                innerFileHeader.fileDataOffset = file.Skip(counter).Take(4).ToArray();
+                counter += 4;
+                innerFileHeader.fileName = file.Skip(counter).Take(104).ToArray();
+                counter += 104;
+                innerFileHeader.tail = file.Skip(counter).Take(3).ToArray();
+                counter += 3;
+
+                int dataSize = BitConverter.ToInt32(innerFileHeader.uncompressedSize, 0);
+                byte[] data = new byte[dataSize];
+                data = file.Skip(counter).Take(dataSize).ToArray();
+                counter += dataSize;
+
+                innerFiles.Add(new InnerFile(innerFileHeader, null, data));
+            }
+
+            return new VSAS(archiveHeader, innerFiles);
         }
 
         //public void FilesToConsole(string s)

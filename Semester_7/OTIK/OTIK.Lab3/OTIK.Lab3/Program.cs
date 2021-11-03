@@ -12,32 +12,36 @@ namespace OTIK.Lab3
         static void Main(string[] args)
         {
             #region gay party
-            string[] filePaths = Directory.GetFiles(@".\input\");
+            //string[] filePaths = Directory.GetFiles(@".\input\");
 
 
-            foreach (string s in filePaths)
-            {
-                byte[] fileContent = File.ReadAllBytes(s);
+            //foreach (string s in filePaths)
+            //{
+            //    byte[] fileContent = File.ReadAllBytes(s);
 
-                byte[] fileLen = BitConverter.GetBytes(fileContent.Length);
+            //    byte[] fileLen = BitConverter.GetBytes(fileContent.Length);
 
-                string[] hexFileContent = BitConverter.ToString(fileContent).Split('-');
+            //    string[] hexFileContent = BitConverter.ToString(fileContent).Split('-');
 
-                for (int i = 0; i < hexFileContent.Length; i++)
-                {
-                    Console.Write(fileContent[i].ToString() + ' ');
-                    if ((i + 1) % 16 == 0)
-                        Console.WriteLine();
-                }
+            //    for (int i = 0; i < hexFileContent.Length; i++)
+            //    {
+            //        Console.Write(fileContent[i].ToString() + ' ');
+            //        if ((i + 1) % 16 == 0)
+            //            Console.WriteLine();
+            //    }
 
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+            //    Console.WriteLine();
+            //    Console.WriteLine();
+            //}
             #endregion
 
             Compressor compressor = new Compressor(@".\input\", @".\output\");
             compressor.getFiles();
+
             compressor.Compress(compressor.FormVSAS(), "pornArchive.vsas");
+
+            foreach (VSAS file in compressor.filesToExtract) 
+                compressor.Extract(file);
 
             Console.ReadKey();
         }
