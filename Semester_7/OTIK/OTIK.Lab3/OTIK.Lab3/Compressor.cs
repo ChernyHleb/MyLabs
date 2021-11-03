@@ -40,13 +40,17 @@ namespace OTIK.Lab3
             else
                 fileArchive.header.algNumEncryption = 0;
 
-            Console.WriteLine("INPUT FILES COMPRESSED:");
+            Console.WriteLine("INPUT FILES COMPRESSION");
+            if (encrypt)
+                Console.WriteLine("INPUT FILES ENCRYPTION");
+            Console.WriteLine("TO:");
             List<byte> arr = new List<byte>();
             arr.AddRange(fileArchive.header.ToBytes());
             foreach(InnerFile file in fileArchive.files)
             {
                 Encrypt(file);
                 arr.AddRange(file.header.ToBytes());
+                arr.AddRange(file.encryptionHeader);
                 arr.AddRange(file.data);
             }
 
@@ -159,31 +163,41 @@ namespace OTIK.Lab3
                 innerFileHeader.tail = file.Skip(counter).Take(3).ToArray();
                 counter += 3;
 
-                int dataSize = BitConverter.ToInt32(innerFileHeader.uncompressedSize, 0);
-                byte[] data = new byte[dataSize];
-                data = file.Skip(counter).Take(dataSize).ToArray();
-                counter += dataSize;
+                byte[] encryptionHeader = null;
+                if(archiveHeader.algNumEncryption == 1)
+                {
+                    int len = BitConverter.ToInt32(innerFileHeader.fileDataOffset, 0);
+                    encryptionHeader = file.Skip(counter).Take(len).ToArray();
+                    counter += len;
+                }
 
-                innerFiles.Add(new InnerFile(innerFileHeader, null, data));
+                int dataSize = 0;
+                byte[] data = null;
+                if (archiveHeader.algNumEncryption == 1)
+                {/// РАСШИФРОВКА ДАННЫХ
+                    List<byte> encryptedData = new List<byte>();
+                    dataSize = BitConverter.ToInt32(innerFileHeader.compressedSize, 0);
+                    foreach(byte blockLen in encryptionHeader)
+                    {
+                        encryptedData.AddRange(file.Skip(counter).Take(blockLen).ToArray());
+                        counter += blockLen + 5;
+                    }
+
+                    data = encryptedData.ToArray();
+                }
+                else
+                {
+                    dataSize = BitConverter.ToInt32(innerFileHeader.uncompressedSize, 0);
+                    data = new byte[dataSize];
+                    data = file.Skip(counter).Take(dataSize).ToArray();
+                    counter += dataSize;
+                }
+
+                innerFiles.Add(new InnerFile(innerFileHeader, encryptionHeader, data));
             }
 
             return new VSAS(archiveHeader, innerFiles);
         }
-
-        //public void FilesToConsole(string s)
-        //{
-        //    Console.WriteLine(s);
-        //    string[] hexFileContent = BitConverter.ToString(fileContent).Split('-');
-
-        //    for (int i = 0; i < hexFileContent.Length; i++)
-        //    {
-        //        Console.Write(hexFileContent[i] + ' ');
-        //        if ((i + 1) % 16 == 0)
-        //            Console.WriteLine();
-        //    }
-        //    Console.WriteLine();
-        //}
-        
         
         protected void Encrypt(InnerFile file)
         {
@@ -199,7 +213,6 @@ namespace OTIK.Lab3
                 if (counter + blockLength > dataSize)
                     blockLength = dataSize - counter;
                 encryptionHeader.Add((byte)blockLength);
-                encryptionHeader.Add((byte)'q');
                 encryptedData.AddRange(data.GetRange(counter, blockLength));
                 counter += blockLength; // индекс исходных данных
                 encryptedData.Add((byte)'q');
@@ -213,11 +226,5 @@ namespace OTIK.Lab3
             file.header.fileDataOffset = BitConverter.GetBytes(encryptionHeader.Count);
             file.header.encryptionInfoHeaderOffset = BitConverter.GetBytes(InnerFileHeader.size);
         }
-
-        public void Decrypt()
-        {
-            
-        }
-       
     }
 }
