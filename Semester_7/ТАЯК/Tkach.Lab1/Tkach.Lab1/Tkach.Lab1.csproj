@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArythmeticExpressionChecker.cs" />
     <Compile Include="ExpressionChecker\ArythmeticExpressionChecker.cs" />
     <Compile Include="ExpressionChecker\NumTokens.cs" />
     <Compile Include="Program.cs" />
