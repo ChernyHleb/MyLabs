@@ -11,7 +11,7 @@ namespace OTIK.Lab3
     {
         static void Main(string[] args)
         {
-            #region gay party
+            #region всвсвсвс
             //string[] filePaths = Directory.GetFiles(@".\input\");
 
 
@@ -38,7 +38,7 @@ namespace OTIK.Lab3
             Compressor compressor = new Compressor(@".\input\", @".\output\");
             compressor.getFiles();
 
-            compressor.Compress(compressor.FormVSAS(), "pornArchive.vsas", true);
+            compressor.Compress(compressor.FormVSAS(), "Archive.vsas", true);
 
             foreach (VSAS file in compressor.filesToExtract) 
                 compressor.Extract(file);

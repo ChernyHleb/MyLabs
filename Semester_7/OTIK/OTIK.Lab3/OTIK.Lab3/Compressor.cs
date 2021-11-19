@@ -80,14 +80,11 @@ namespace OTIK.Lab3
             {
                 byte[] fileContent = File.ReadAllBytes(s);
                 string fileName = s.Split('\\')[s.Split('\\').Length - 1];
-                if (fileContent.Length >= 3 &&
-                    fileContent[0] == 239 &&
-                    fileContent[1] == 187 &&
-                    fileContent[2] == 191)
-                {
-                    filesToCompress.Add(TxtToInnerFile(fileContent, fileName));
-                }
-                else
+                //if (fileContent.Length >= 3 &&
+                //    fileContent[0] == 239 &&
+                //    fileContent[1] == 187 &&
+                //    fileContent[2] == 191)
+                //{
                 if(fileContent.Length >= 4 &&
                     fileContent[0] == (byte)'V' &&
                     fileContent[1] == (byte)'S' &&
@@ -95,6 +92,10 @@ namespace OTIK.Lab3
                     fileContent[3] == (byte)'S')
                 {
                     filesToExtract.Add(BytesToVSAS(fileContent));
+                }
+                else
+                {
+                    filesToCompress.Add(TxtToInnerFile(fileContent, fileName));
                 }
             }
         }
@@ -104,10 +105,10 @@ namespace OTIK.Lab3
             //  заполнение сигнатуры
             //  UTF8 signature EF BB BF <--> 239 187 191
             InnerFileHeader innerFileHeader = new InnerFileHeader();
-            innerFileHeader.signature[0] = 0;
-            innerFileHeader.signature[1] = 239;
-            innerFileHeader.signature[2] = 187;
-            innerFileHeader.signature[3] = 191;
+            //innerFileHeader.signature[0] = 0;
+            //innerFileHeader.signature[1] = 239;
+            //innerFileHeader.signature[2] = 187;
+            //innerFileHeader.signature[3] = 191;
             // размер файла
             innerFileHeader.uncompressedSize = BitConverter.GetBytes(file.Length);
             // заполнение имени и длины имени
