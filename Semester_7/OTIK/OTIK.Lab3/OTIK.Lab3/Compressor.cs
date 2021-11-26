@@ -33,12 +33,17 @@ namespace OTIK.Lab3
             return new VSAS(header, filesToCompress);
         }
 
-        public void Compress(VSAS fileArchive, string name, bool encrypt)
+        public void Archive(VSAS fileArchive, string name, bool encrypt, bool compress)
         {
             if (encrypt)
                 fileArchive.header.algNumEncryption = 1;
             else
                 fileArchive.header.algNumEncryption = 0;
+
+            if (compress)
+                fileArchive.header.algNumContextCompression = 1;
+            else
+                fileArchive.header.algNumContextCompression = 0;
 
             Console.WriteLine("INPUT FILES COMPRESSION");
             if (encrypt)
@@ -48,9 +53,9 @@ namespace OTIK.Lab3
             arr.AddRange(fileArchive.header.ToBytes());
             foreach(InnerFile file in fileArchive.files)
             {
-                Encrypt(file);
+                if(encrypt) Encrypt(file);
                 arr.AddRange(file.header.ToBytes());
-                arr.AddRange(file.encryptionHeader);
+                if (encrypt) arr.AddRange(file.encryptionHeader);
                 arr.AddRange(file.data);
             }
 
@@ -123,7 +128,8 @@ namespace OTIK.Lab3
 
             return new InnerFile(innerFileHeader, null, file);
         }
-
+        
+        /// РАСШИФРОВКА ЗДЕСЬ!!! VVV
         private VSAS BytesToVSAS(byte[] file)
         {
             //VSAS archive = new VSAS();
@@ -226,6 +232,21 @@ namespace OTIK.Lab3
             file.header.compressedSize = BitConverter.GetBytes(encryptedData.Count);
             file.header.fileDataOffset = BitConverter.GetBytes(encryptionHeader.Count);
             file.header.encryptionInfoHeaderOffset = BitConverter.GetBytes(InnerFileHeader.size);
+        }
+
+        protected void Compress(InnerFile file)
+        {
+            int dataSize = 0;
+
+            int compressedSize = BitConverter.ToInt32(file.header.compressedSize, 0);
+            if (compressedSize == 0)
+                dataSize = BitConverter.ToInt32(file.header.uncompressedSize, 0);
+            else
+                dataSize = compressedSize;
+
+
+
+            List<byte> data = new List<byte>(file.data);
         }
     }
 }

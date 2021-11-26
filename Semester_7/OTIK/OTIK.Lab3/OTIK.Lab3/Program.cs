@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OTIK.Lab3
 {
@@ -38,10 +33,10 @@ namespace OTIK.Lab3
             Compressor compressor = new Compressor(@".\input\", @".\output\");
             compressor.getFiles();
 
-            compressor.Compress(compressor.FormVSAS(), "Archive.vsas", true);
+            compressor.Archive(compressor.FormVSAS(), "Archive.vsas", true, true);
 
-            foreach (VSAS file in compressor.filesToExtract) 
-                compressor.Extract(file);
+            //foreach (VSAS file in compressor.filesToExtract) 
+              //  compressor.Extract(file);
 
             Console.ReadKey();
         }
