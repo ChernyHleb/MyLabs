@@ -46,7 +46,7 @@
     <Compile Include="Compressor.cs" />
     <Compile Include="InnerFile.cs" />
     <Compile Include="InnerFileHeader.cs" />
-    <Compile Include="Lab4 ShannonFano\ShannonFanoCompressor.cs" />
+    <Compile Include="Lab4 ShannonFano\ShannonFano.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VSAS.cs" />

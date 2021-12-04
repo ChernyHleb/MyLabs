@@ -9,7 +9,7 @@ namespace OTIK.Lab3
         public byte[] compressedSize = new byte[4];
         public byte[] uncompressedSize = new byte[4];
         public byte fileNameLength;
-        public byte[] encryptionInfoHeaderOffset = new byte[4];
+        public byte[] symTableOffset = new byte[4];
         public byte[] fileDataOffset = new byte[4];
         public byte[] fileName = new byte[104];
         public byte[] tail = new byte[3];
@@ -23,7 +23,7 @@ namespace OTIK.Lab3
             foreach (byte b in compressedSize) arr.Add(b);
             foreach (byte b in uncompressedSize) arr.Add(b);
             arr.Add(fileNameLength);
-            foreach (byte b in encryptionInfoHeaderOffset) arr.Add(b);
+            foreach (byte b in symTableOffset) arr.Add(b);
             foreach (byte b in fileDataOffset) arr.Add(b);
             foreach (byte b in fileName) arr.Add(b);
             foreach (byte b in tail) arr.Add(b);
