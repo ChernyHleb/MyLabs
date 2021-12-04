@@ -1,9 +1,11 @@
-﻿using System;
+﻿using OTIK.Lab3.Lab4_ShannonFano;
+using System;
 
 namespace OTIK.Lab3
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             #region всвсвсвс
@@ -30,13 +32,21 @@ namespace OTIK.Lab3
             //}
             #endregion
 
-            Compressor compressor = new Compressor(@".\input\", @".\output\");
-            compressor.getFiles();
+            //Compressor compressor = new Compressor(@".\input\", @".\output\");
+            //compressor.getFiles();
 
-            compressor.Archive(compressor.FormVSAS(), "Archive.vsas", true, true);
+            //compressor.Archive(compressor.FormVSAS(), "Archive.vsas", true, true);
 
-            //foreach (VSAS file in compressor.filesToExtract) 
-              //  compressor.Extract(file);
+            ////foreach (VSAS file in compressor.filesToExtract) 
+            //  //  compressor.Extract(file);
+
+            ShannonFanoCompressor sfc = new ShannonFanoCompressor();
+            sfc.Sort();
+            sfc.Fano(0, 32);
+            for (int i = 0; i < 33; i++)
+            {
+                Console.WriteLine(sfc.Alpha[i] + " " + sfc.Res[i]);
+            }
 
             Console.ReadKey();
         }

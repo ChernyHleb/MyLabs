@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OTIK.Lab3.Lab4_ShannonFano;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -45,10 +46,13 @@ namespace OTIK.Lab3
             else
                 fileArchive.header.algNumContextCompression = 0;
 
-            Console.WriteLine("INPUT FILES COMPRESSION");
+            if(compress)
+                Console.WriteLine("INPUT FILES COMPRESSION");
             if (encrypt)
                 Console.WriteLine("INPUT FILES ENCRYPTION");
             Console.WriteLine("TO:");
+
+            // ЗАШИФРОВКА И УПАКОВКА
             List<byte> arr = new List<byte>();
             arr.AddRange(fileArchive.header.ToBytes());
             foreach(InnerFile file in fileArchive.files)
@@ -57,6 +61,19 @@ namespace OTIK.Lab3
                 arr.AddRange(file.header.ToBytes());
                 if (encrypt) arr.AddRange(file.encryptionHeader);
                 arr.AddRange(file.data);
+
+                if(compress)
+                {
+                    ShannonFanoCompressor sfc = new ShannonFanoCompressor();
+                    sfc.Sort();
+                    sfc.Fano(0, 32);
+                    for (int i = 0; i < 33; i++)
+                    {
+                        Console.WriteLine(sfc.Alpha[i] + " " + sfc.Res[i]);
+                    }
+
+                    Console.ReadKey();
+                }
             }
 
             string archivePath = outputDir + name;
