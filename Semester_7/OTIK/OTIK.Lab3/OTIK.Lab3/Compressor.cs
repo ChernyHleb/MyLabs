@@ -59,13 +59,12 @@ namespace OTIK.Lab3
             foreach(InnerFile file in fileArchive.files)
             {
                 if(encrypt) Encrypt(file);
+                if (compress) Compress(file);
+                
                 arr.AddRange(file.header.ToBytes());
                 if (encrypt) arr.AddRange(file.encryptionHeader);
+                if (compress) arr.AddRange(file.symCodeTable);
 
-                if(compress)
-                {
-                    Compress(file);
-                }
 
                 arr.AddRange(file.data);
             }
@@ -189,16 +188,90 @@ namespace OTIK.Lab3
                     counter += len;
                 }
 
+                byte[] symCodeTable = null;
+                if (archiveHeader.algNumContextCompression == 1)
+                {
+                    int len = BitConverter.ToInt32(innerFileHeader.fileDataOffset, 0);
+                    symCodeTable = file.Skip(counter).Take(len).ToArray();
+                    counter += len;
+                }
+
+
+                Dictionary<string, byte> codeSym = new Dictionary<string, byte>();
+                // формирование таблицы кодов в виде словаря
+                if (archiveHeader.algNumContextCompression == 1)
+                {
+                    int scCounter = 0;
+                    while(scCounter < symCodeTable.Length)
+                    {
+                        byte sym = symCodeTable.Skip(scCounter).Take(1).ToArray()[0];
+                        scCounter++;
+                        int len = symCodeTable.Skip(scCounter).Take(1).ToArray()[0];
+                        scCounter++;
+                        byte[] code = symCodeTable.Skip(scCounter).Take(len).ToArray();
+                        scCounter += len;
+
+                        string strcode = "";
+                        foreach (byte b in code)
+                        {
+                            strcode += (char)b;
+                        }
+                        codeSym.Add(strcode, sym);
+                    }
+                }
+
                 int dataSize = 0;
                 byte[] data = null;
+
+
+
+                byte[] uncompressedData = null;
+                int uncompressedDataCounter = 0;
+                //Расшифровка Фано РАЗЖАТИЕ :)
+                if (archiveHeader.algNumContextCompression == 1)
+                {
+                    List<byte> uncompressedDataList = new List<byte>();
+                    dataSize = BitConverter.ToInt32(innerFileHeader.compressedSize, 0);
+
+                    BitArray bits = new BitArray(file.Skip(counter).Take(dataSize).ToArray());
+                    counter += dataSize;
+
+                    
+                    string code = "";
+                    foreach(bool bit in bits)
+                    {
+                        if (bit == true)
+                            code += '1';
+                        else
+                            code += '0';
+                       
+                        if(codeSym.ContainsKey(code))
+                        {
+                            uncompressedDataList.Add(codeSym[code]);
+                            code = "";
+                        }
+                    }
+
+                    innerFileHeader.compressedSize = BitConverter.GetBytes(uncompressedDataList.Count);
+                    uncompressedData = uncompressedDataList.ToArray();
+                }
+
                 if (archiveHeader.algNumEncryption == 1)
                 {/// РАСШИФРОВКА ДАННЫХ
                     List<byte> encryptedData = new List<byte>();
                     dataSize = BitConverter.ToInt32(innerFileHeader.compressedSize, 0);
                     foreach(byte blockLen in encryptionHeader)
                     {
-                        encryptedData.AddRange(file.Skip(counter).Take(blockLen).ToArray());
-                        counter += blockLen + 5;
+                        if(archiveHeader.algNumContextCompression != 1)
+                        {
+                            encryptedData.AddRange(file.Skip(counter).Take(blockLen).ToArray());
+                            counter += blockLen + 5;
+                        }
+                        else
+                        {
+                            encryptedData.AddRange(uncompressedData.Skip(uncompressedDataCounter).Take(blockLen).ToArray());
+                            uncompressedDataCounter += blockLen + 5;
+                        }
                     }
 
                     data = encryptedData.ToArray();
