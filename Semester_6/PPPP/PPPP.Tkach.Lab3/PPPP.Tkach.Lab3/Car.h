@@ -1,18 +1,12 @@
 #pragma once
 #include <tuple>
+#include "Vehicle.h"
 
-class Car
+class Car : Vehicle
 {
-	int carSpeed;
-	int carVolume;
-	double carPrice;
-	int distance;
 public:
 	Car();
 	Car(std::tuple<int, int, double>, int);
 	~Car();
-	double sumCost(int, int);
-	double sumTime(int);
-	int getDistance();
 };
 

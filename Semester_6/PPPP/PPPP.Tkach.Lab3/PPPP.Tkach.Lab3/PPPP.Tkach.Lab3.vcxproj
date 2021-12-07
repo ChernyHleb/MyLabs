@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
-    <ClCompile Include="Info.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PPPP.Tkach.Lab3.cpp" />
@@ -153,6 +152,7 @@
     <ClInclude Include="Order.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Track.h" />
+    <ClInclude Include="TrackBuilder.h" />
     <ClInclude Include="Train.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
