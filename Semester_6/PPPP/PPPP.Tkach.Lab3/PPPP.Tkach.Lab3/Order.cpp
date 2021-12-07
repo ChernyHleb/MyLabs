@@ -7,6 +7,11 @@
 #include <algorithm>
 #include <map>
 #include "Info.h"
+#include "TrackBuilder.h"
+#include "TrackBuilder_1.h"
+#include "TrackBuilder_3.h"
+#include "TrackBuilder_5.h"
+#include "TrackBuilder_7.h"
 
 Order::Order()
 {
@@ -31,6 +36,21 @@ Order::Order(Type deliv, std::string startP, std::string finishP, int vol)
 Order::~Order()
 {
 
+}
+
+Track Order::ConstructTrack()
+{
+	builder.BuildTrack();
+	builder.BuildCars();
+	builder.BuildTrains();
+	builder.BuildPlanes();
+
+	return builder.getTrack();
+}
+
+void Order::SetTrackBuilder(TrackBuilder b)
+{
+	builder = b;
 }
 
 Track Order::best(std::string startP, std::string finishP, Type deliv, int volume)
@@ -61,193 +81,24 @@ Track Order::best(std::string startP, std::string finishP, Type deliv, int volum
 			break;
 		}
 	}
+
 	switch (count)
 	{
-	case 1:
-	{
-		Car car1 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[0]]))
-			{
-				car1 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[0]][path[1]]);
-			}
-		}
-
-		Track track = Track(car1, volume);
-		return track;
-	}
-	case 3:
-	{
-		Car car1 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[0]]))
-			{
-				car1 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[0]][path[1]]);
-			}
-		}
-
-		Car car2 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[2]]))
-			{
-				car2 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[2]][path[3]]);
-			}
-		}
-
-		Train train1 = Train();
-		Plane plane1 = Plane();
-		Track track = Track();
-
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[1]]) && info->points[path[1]].find("TS"))
-			{
-				train1 = Train(info->tableCost[(*it).second * 3 + 1], info->matrixDist[path[1]][path[2]]);
-				track = Track(car1, car2, train1, volume);
-			}
-
-			if ((*it).first.find(info->points[path[1]]) && info->points[path[1]].find("AP"))
-			{
-				plane1 = Plane(info->tableCost[(*it).second * 3], info->matrixDist[path[1]][path[2]]);
-				track = Track(car1, car2, plane1, volume);
-			}
-		}
-
-		return track;
-	}
-	case 5:
-	{
-
-		Car car1 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[0]]))
-			{
-				car1 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[0]][path[1]]);
-			}
-		}
-
-		Train train1 = Train();
-		Plane plane1 = Plane();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[1]]) && info->points[path[1]].find("TS"))
-			{
-				train1 = Train(info->tableCost[(*it).second * 3 + 1], info->matrixDist[path[1]][path[2]]);
-			}
-			if ((*it).first.find(info->points[path[1]]) && info->points[path[1]].find("AP"))
-			{
-				plane1 = Plane(info->tableCost[(*it).second * 3], info->matrixDist[path[1]][path[2]]);
-			}
-		}
-
-		Car car2 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[2]]))
-			{
-				car2 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[2]][path[3]]);
-			}
-		}
-
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[3]]) && info->points[path[3]].find("AP"))
-			{
-				plane1 = Plane(info->tableCost[(*it).second * 3], info->matrixDist[path[3]][path[4]]);
-			}
-			if ((*it).first.find(info->points[path[3]]) && info->points[path[3]].find("TS"))
-			{
-				train1 = Train(info->tableCost[(*it).second * 3 + 1], info->matrixDist[path[3]][path[4]]);
-			}
-		}
-
-		Car car3 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[4]]))
-			{
-				car3 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[4]][path[5]]);
-			}
-		}
-
-		Track track = Track(car1, car2, car3, train1, plane1, volume);
-		return track;
+		case 1:
+			SetTrackBuilder(TrackBuilder_1(path, volume));
+			break;
+		case 3:
+			SetTrackBuilder(TrackBuilder_3(path, volume));
+			break;
+		case 5:
+			SetTrackBuilder(TrackBuilder_5(path, volume));
+			break;
+		case 7:
+			SetTrackBuilder(TrackBuilder_7(path, volume));
+			break;
 	}
 
-	case 7:
-	{
-		Car car1 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[0]]))
-			{
-				car1 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[0]][path[1]]);
-			}
-		}
-
-		Train train1 = Train();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[1]]))
-			{
-				train1 = Train(info->tableCost[(*it).second * 3 + 1], info->matrixDist[path[1]][path[2]]);
-			}
-		}
-
-		Car car2 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[2]]))
-			{
-				car2 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[2]][path[3]]);
-			}
-		}
-
-		Plane plane1 = Plane();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[3]]))
-			{
-				plane1 = Plane(info->tableCost[(*it).second * 3], info->matrixDist[path[3]][path[4]]);
-			}
-		}
-
-		Car car3 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[4]]))
-			{
-				car3 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[4]][path[5]]);
-			}
-		}
-
-		Train train2 = Train();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[5]]))
-			{
-				train2 = Train(info->tableCost[(*it).second * 3 + 1], info->matrixDist[path[5]][path[6]]);
-			}
-		}
-
-		Car car4 = Car();
-		for (auto it = info->table.begin(); it != info->table.end(); it++)
-		{
-			if ((*it).first.find(info->points[path[6]]))
-			{
-				car4 = Car(info->tableCost[(*it).second * 3 + 2], info->matrixDist[path[6]][path[7]]);
-			}
-		}
-
-		Track track = Track(car1, car2, car3, car4, train1, train2, plane1, volume);
-
-		return track;
-	}
-	}
+	return ConstructTrack();
 }
 
 int** Order::matrixUpd(Type type)

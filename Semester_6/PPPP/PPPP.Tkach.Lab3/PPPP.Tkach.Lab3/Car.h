@@ -2,7 +2,7 @@
 #include <tuple>
 #include "Vehicle.h"
 
-class Car : Vehicle
+class Car : public Vehicle
 {
 public:
 	Car();

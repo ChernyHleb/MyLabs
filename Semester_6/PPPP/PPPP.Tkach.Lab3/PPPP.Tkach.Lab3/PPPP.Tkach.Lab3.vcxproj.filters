@@ -13,18 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Vehicles">
+      <UniqueIdentifier>{c1091fe0-27d8-4b4c-ab9a-1333bee45cb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Vehicles">
+      <UniqueIdentifier>{b7a513a9-3dd6-4188-8c1a-3507829f3220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TrackBuilder">
+      <UniqueIdentifier>{bfdab068-2447-4232-bc90-45f328ebfba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TrackBuilder">
+      <UniqueIdentifier>{7994b281-83cc-4069-91b5-57855f80da78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PPPP.Tkach.Lab3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Train.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Track.cpp">
@@ -33,17 +36,32 @@
     <ClCompile Include="Order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Source Files\Vehicles</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Source Files\Vehicles</Filter>
+    </ClCompile>
+    <ClCompile Include="Train.cpp">
+      <Filter>Source Files\Vehicles</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle.cpp">
+      <Filter>Source Files\Vehicles</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackBuilder_3.cpp">
+      <Filter>Source Files\TrackBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackBuilder_1.cpp">
+      <Filter>Source Files\TrackBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackBuilder_5.cpp">
+      <Filter>Source Files\TrackBuilder</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackBuilder_7.cpp">
+      <Filter>Source Files\TrackBuilder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Train.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Plane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Car.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Track.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -53,8 +71,32 @@
     <ClInclude Include="Info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Car.h">
+      <Filter>Header Files\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Header Files\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Train.h">
+      <Filter>Header Files\Vehicles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Header Files\Vehicles</Filter>
+    </ClInclude>
     <ClInclude Include="TrackBuilder.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\TrackBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackBuilder_1.h">
+      <Filter>Header Files\TrackBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackBuilder_3.h">
+      <Filter>Header Files\TrackBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackBuilder_5.h">
+      <Filter>Header Files\TrackBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackBuilder_7.h">
+      <Filter>Header Files\TrackBuilder</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

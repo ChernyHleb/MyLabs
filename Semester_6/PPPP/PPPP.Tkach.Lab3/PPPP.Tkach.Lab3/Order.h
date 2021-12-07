@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Track.h"
+#include "TrackBuilder.h"
 
 enum Type { Turbo, Standart, Economy };
 
@@ -12,6 +13,7 @@ class Order
 	std::string finishPoint;
 	enum::Type type;
 	Track track;
+	TrackBuilder builder;
 public:
 	Order();
 	Order(Type, std::string, std::string, int);
@@ -20,5 +22,7 @@ public:
 	int** matrixUpd(Type);
 	int* optim(int**, int, int);
 	Track best(std::string, std::string, Type, int);
+	Track ConstructTrack();
+	void SetTrackBuilder(TrackBuilder);
 };
 
