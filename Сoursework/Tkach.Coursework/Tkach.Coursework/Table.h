@@ -3,6 +3,7 @@
 #include <vector>
 #include "Row.h"
 #include "Column.h"
+
 class Table
 {
 public:
@@ -15,6 +16,7 @@ public:
 	Table(std::string, std::vector<Row*>, std::vector<Column*>);
 	Table(std::string, std::vector<Row*>, std::vector<Column*>, 
 		std::vector<std::vector<Cell*>>);
+	Table(std::vector<std::vector<Cell*>>);
 	~Table();
 };
 

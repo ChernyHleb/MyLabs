@@ -4,5 +4,6 @@ enum DataType
     DATETIME,
     INTEGER,
     DOUBLE,
-    STRING
+    STRING,
+    EMPTY
 };
