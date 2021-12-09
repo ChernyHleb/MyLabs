@@ -22,3 +22,13 @@ Column::~Column()
 {
 	// cells уда€л€ютс€ в Table
 }
+
+std::string Column::ToString()
+{
+	std::string output = name + ": ";
+	
+	for (int i = 0; i < cells.size(); i++)
+	{
+		output += cells[i]->ToString() + "\t";
+	}
+}

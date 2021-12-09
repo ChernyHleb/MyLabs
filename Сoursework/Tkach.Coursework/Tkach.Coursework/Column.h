@@ -15,5 +15,7 @@ public:
 	Column(std::string, DataType);
 	Column(std::string, DataType, std::vector<Cell*>);
 	~Column();
+
+	std::string ToString();
 };
 

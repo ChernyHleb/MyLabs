@@ -14,3 +14,8 @@ Cell::~Cell()
 {
 
 }
+
+std::string Cell::ToString()
+{
+	return value;
+}

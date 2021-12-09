@@ -13,5 +13,7 @@ public:
 	Row(std::string);
 	Row(std::string, std::vector<Cell*>);
 	~Row();
+
+	std::string ToString();
 };
 

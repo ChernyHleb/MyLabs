@@ -13,10 +13,14 @@ public:
 	std::vector<std::vector<Cell*>> cells;
 
 	Table();
-	Table(std::string, std::vector<Row*>, std::vector<Column*>);
-	Table(std::string, std::vector<Row*>, std::vector<Column*>, 
+	Table(std::string, 
+		std::vector<Row*>, std::vector<Column*>);
+	Table(std::string, 
+		std::vector<Row*>, std::vector<Column*>, 
 		std::vector<std::vector<Cell*>>);
-	Table(std::vector<std::vector<Cell*>>);
+	Table(std::string, std::vector<Column*>);
 	~Table();
+
+	std::string ToString();
 };
 

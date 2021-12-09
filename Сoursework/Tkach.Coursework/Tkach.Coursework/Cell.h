@@ -9,5 +9,7 @@ public:
 	Cell();
 	Cell(std::string);
 	~Cell();
+
+	std::string ToString();
 };
 
