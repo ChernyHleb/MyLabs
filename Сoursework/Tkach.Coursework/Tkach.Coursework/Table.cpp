@@ -75,4 +75,6 @@ std::string Table::ToString()
 		}
 		output += "\n";
 	}
+
+	return output;
 }

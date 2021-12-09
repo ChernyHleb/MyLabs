@@ -31,4 +31,6 @@ std::string Column::ToString()
 	{
 		output += cells[i]->ToString() + "\t";
 	}
+
+	return output;
 }

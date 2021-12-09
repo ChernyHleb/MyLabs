@@ -29,4 +29,5 @@ std::string Row::ToString()
 	{
 		output += cells[i]->ToString() + "\t";
 	}
+	return output;
 }
