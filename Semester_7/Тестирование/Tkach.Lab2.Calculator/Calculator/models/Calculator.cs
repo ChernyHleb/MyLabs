@@ -6,7 +6,10 @@
         {
 
         }
-
+        /**
+         * Вычисляет отношение числа а к числу b.
+         * Должен выбросить {@link java.lang.ArithmeticException} если |b| < 10e-8
+         */
         public double divide(double a, double b)
         {
             return a / b;

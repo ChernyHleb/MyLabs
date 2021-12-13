@@ -70,7 +70,7 @@ namespace Calculator
 
         private void InputBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = (!IsTextAllowed(e.Text, @"[^0-9.]"));
+            e.Handled = (!IsTextAllowed(e.Text, @"[^0-9,]"));
         }
 
         private string getOper(object sender)

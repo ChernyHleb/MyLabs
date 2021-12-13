@@ -2,16 +2,11 @@
 
 Row::Row()
 {
-	name = "";
+
 }
 
-Row::Row(std::string name)
-{
-	this->name = name;
-}
 
-Row::Row(std::string name, std::vector<Cell*> cells)
-	: Row(name)
+Row::Row(std::vector<Cell*> cells)
 {
 	this->cells = cells;
 }
@@ -23,7 +18,7 @@ Row::~Row()
 
 std::string Row::ToString()
 {
-	std::string output = "";
+	std::string output;
 
 	for (int i = 0; i < cells.size(); i++)
 	{

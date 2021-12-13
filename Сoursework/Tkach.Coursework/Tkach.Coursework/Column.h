@@ -14,7 +14,8 @@ public:
 	Column();
 	Column(std::string, DataType);
 	Column(std::string, DataType, std::vector<Cell*>);
-	~Column();
+	// TODO: сделать передачу вектора по ссылке
+	virtual ~Column();// TODO: сделать virtual
 
 	std::string ToString();
 };

@@ -1,9 +1,8 @@
 #include "Column.h"
 
-Column::Column()
+Column::Column() : type(DataType::EMPTY) // в остальных сделать так же
 {
-	name = "";
-	type = DataType::EMPTY;
+
 }
 
 Column::Column(std::string name, DataType type) 
@@ -13,7 +12,6 @@ Column::Column(std::string name, DataType type)
 }
 
 Column::Column(std::string name, DataType type, std::vector<Cell*> cells)
-	: Column(name, type)
 { 
 	this->cells = cells;
 }
