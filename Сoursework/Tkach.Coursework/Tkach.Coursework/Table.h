@@ -10,16 +10,16 @@ public:
 	std::string name;
 	std::vector<Row*> rows;
 	std::vector<Column*> columns;
-	std::vector<Cell*> cells;// TODO : сделать одномерным
+	std::vector<Cell*> cells;
 
 	Table();
 	Table(std::string, 
-		std::vector<Row*>, std::vector<Column*>);
-	Table(std::string, 
-		std::vector<Row*>, std::vector<Column*>, 
-		std::vector<std::vector<Cell*>>);
-	Table(std::string, std::vector<Column*>);
-	~Table();// TODO : сделать через итераторы
+		  std::vector<std::string> &, 
+		  std::vector<DataType> &,
+		  std::vector<Cell*> &
+	);
+	Table(std::string, std::vector<Column*> &);
+	virtual ~Table();
 
 	std::string ToString();
 };

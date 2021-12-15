@@ -1,5 +1,5 @@
 #pragma once
-enum DataType
+enum class DataType
 {
     DATETIME,
     INTEGER,

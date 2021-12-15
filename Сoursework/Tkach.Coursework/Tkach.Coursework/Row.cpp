@@ -1,28 +1,20 @@
 #include "Row.h"
 
-Row::Row()
-{
+Row::Row() { }
 
-}
+Row::Row(std::vector<Cell*> &cells) : cells(cells) { }
 
-
-Row::Row(std::vector<Cell*> cells)
-{
-	this->cells = cells;
-}
-
-Row::~Row()
-{
-	// cells удал€ютс€ в Table
-}
+// cells удал€ютс€ в Table
+Row::~Row() { }
 
 std::string Row::ToString()
 {
 	std::string output;
 
-	for (int i = 0; i < cells.size(); i++)
+	for (auto it = std::begin(cells); it != std::end(cells); it ++)
 	{
-		output += cells[i]->ToString() + "\t";
+		output += (*it)->ToString() + "\t";
 	}
+
 	return output;
 }

@@ -1,25 +1,18 @@
 #include "Table.h"
 
-Table::Table()
+Table::Table() { }
+
+Table::Table(std::string name, 
+		     std::vector<std::string> &columnNames, 
+			 std::vector<DataType> &columnTypes,
+			 std::vector<Cell*> &cells) 
+	: name(name), cells(cells)
 {
-	name = "";
+	
 }
 
-Table::Table(std::string name, std::vector<Row*> rows, std::vector<Column*> columns)
-{
-	this->name = name;
-	this->rows = rows;
-	this->columns = columns;
-}
-
-Table::Table(std::string name, std::vector<Row*> rows, std::vector<Column*> columns,
-			 std::vector<std::vector<Cell*>> cells)
-	: Table(name, rows, columns)
-{
-	this->cells = cells;
-}
-
-Table::Table(std::string name, std::vector<Column*> columns)
+Table::Table(std::string name, std::vector<Column*> &columns)
+	: name(name), columns(columns)
 {
 	this->name = name;
 	this->columns = columns;
@@ -38,22 +31,19 @@ Table::Table(std::string name, std::vector<Column*> columns)
 
 Table::~Table()
 {
-	for (int i = 0; i < rows.size(); i++)
+	for (auto it = std::begin(rows); it != std::end(rows); it++)
 	{
-		delete rows[i];
+		delete (*it);
 	}
 
-	for (int i = 0; i < columns.size(); i++)
+	for (auto it = std::begin(columns); it != std::end(columns); it++)
 	{
-		delete columns[i];
+		delete (*it);
 	}
 
-	for (int i = 0; i < cells.size(); i++)
+	for (auto it = std::begin(cells); it != std::end(cells); it++)
 	{
-		for (int j = 0; j < cells[i].size(); j++)
-		{
-			delete cells[i][j];
-		}
+		delete (*it);
 	}
 }
 
@@ -61,19 +51,24 @@ std::string Table::ToString()
 {
 	std::string output = name + "\n";
 
-	for (int i = 0; i < columns.size(); i++)
+	for (auto it = std::begin(columns); it != std::end(columns); it++)
 	{
-		output += columns[i]->name + "\t";
+		output += (*it)->name + "\t";
 	}
+
 	output += "\n";
 
-	for (int i = 0; i < cells.size(); i++)
+	int columnCounter = 0;
+	for (auto it = std::begin(cells); it != std::end(cells); it++)
 	{
-		for (int j = 0; j < cells[i].size(); j++)
+		columnCounter++;
+		output += (*it)->ToString() + "\t";
+		
+		if (columnCounter == columns.size())
 		{
-			output += cells[i][j]->ToString() + "\t";
+			columnCounter = 0;
+			output += "\n";
 		}
-		output += "\n";
 	}
 
 	return output;

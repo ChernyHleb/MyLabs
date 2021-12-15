@@ -9,8 +9,8 @@ public:
 	std::vector<Cell*> cells;
 
 	Row();
-	Row(std::vector<Cell*>);
-	~Row();
+	Row(std::vector<Cell*> &);
+	virtual ~Row();
 
 	std::string ToString();
 };

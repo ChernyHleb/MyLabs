@@ -8,7 +8,7 @@ public:
 
 	Cell();
 	Cell(std::string);
-	~Cell();
+	virtual ~Cell();
 
 	std::string ToString();
 };

@@ -1,33 +1,22 @@
 #include "Column.h"
 
-Column::Column() : type(DataType::EMPTY) // в остальных сделать так же
-{
+Column::Column() : type(DataType::EMPTY) { }
 
-}
+Column::Column(std::string name, DataType type) : name(name), type(type) { }
 
-Column::Column(std::string name, DataType type) 
-{
-	this->name = name;
-	this->type = type;
-}
+Column::Column(std::string name, DataType type, std::vector<Cell*> &cells)
+	: name(name), type(type), cells(cells) { }
 
-Column::Column(std::string name, DataType type, std::vector<Cell*> cells)
-{ 
-	this->cells = cells;
-}
-
-Column::~Column()
-{
-	// cells уда€л€ютс€ в Table
-}
+// cells уда€л€ютс€ в Table
+Column::~Column() { }
 
 std::string Column::ToString()
 {
 	std::string output = name + ": ";
-	
-	for (int i = 0; i < cells.size(); i++)
+
+	for (auto it = std::begin(cells); it != std::end(cells); it++)
 	{
-		output += cells[i]->ToString() + "\t";
+		output += (*it)->ToString() + "\t";
 	}
 
 	return output;
