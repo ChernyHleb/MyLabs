@@ -13,12 +13,11 @@ public:
 	std::vector<Cell*> cells;
 
 	Table();
-	Table(std::string, 
-		  std::vector<std::string> &, 
-		  std::vector<DataType> &,
-		  std::vector<Cell*> &
+	Table(std::string,
+		std::vector<std::string>&,
+		std::vector<DataType>&,
+		std::vector<Row*>&
 	);
-	Table(std::string, std::vector<Column*> &);
 	virtual ~Table();
 
 	std::string ToString();

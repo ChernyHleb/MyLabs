@@ -5,56 +5,41 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    std::vector<Cell*> col1Values
+    std::vector<std::string> colNames
     {
-        new Cell("01.01.2020"),
-        new Cell("02.01.2020"),
-        new Cell("03.01.2020"),
-        new Cell("01.02.2020"),
-        new Cell("02.02.2020"),
-        new Cell("03.02.2020"),
-        new Cell("03.03.2020")
+        "Время", "Температура", "Влажность", "Город"
     };
 
-    std::vector<Cell*> col2Values
+    std::vector<DataType> colTypes
     {
-        new Cell("6"),
-        new Cell("4"),
-        new Cell("2"),
-        new Cell("4"),
-        new Cell("5"),
-        new Cell("2"),
-        new Cell("1")
+        DataType::DATETIME, DataType::INTEGER, DataType::INTEGER, DataType::STRING
     };
 
-    std::vector<Cell*> col3Values
-    {
-        new Cell("23"),
-        new Cell("43"),
-        new Cell("25"),
-        new Cell("24"),
-        new Cell("64"),
-        new Cell("15"),
-        new Cell("24")
+    std::vector<std::string> cellValues
+    { 
+        "01.01.2020", "6", "23", "Москва",
+        "02.01.2020", "4", "43", "Ростов",
+        "03.01.2020", "2", "25", "Москва",
+        "01.02.2020", "4", "24", "Ростов",
+        "02.02.2020", "5", "64", "Подольск",
+        "03.02.2020", "2", "15", "Подольск",
+        "03.03.2020", "1", "24", "Ростов"
     };
 
-    std::vector<Cell*> col4Values
+    std::vector<Row*> rows;
+    int rowLen = 4;
+    for (auto it = std::begin(cellValues); it != std::end(cellValues);)
     {
-        new Cell("Москва"),
-        new Cell("Ростов"),
-        new Cell("Москва"),
-        new Cell("Ростов"),
-        new Cell("Подольск"),
-        new Cell("Подольск"),
-        new Cell("Ростов")
-    };
+        std::vector<Cell*> rowCells;
+        for (int i = 0; i < rowLen; i++)
+        {
+            rowCells.push_back(new Cell(*it));
+            it++;
+        }
+        rows.push_back(new Row(rowCells));
+    }
 
-    Column* col1 = new Column("Время", DataType::DATETIME, col1Values);
-    Column* col2 = new Column("Температура", DataType::INTEGER, col2Values);
-    Column* col3 = new Column("Влажность", DataType::INTEGER, col3Values);
-    Column* col4 = new Column("Город", DataType::STRING, col4Values);
-
-    Table* table = new Table("Таблица1", std::vector<Column*>{col1, col2, col3, col4});
+    Table* table = new Table("Таблица1", colNames, colTypes, rows);
 
     std::cout << table->ToString();
 

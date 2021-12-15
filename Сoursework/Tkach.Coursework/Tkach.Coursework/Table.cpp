@@ -5,27 +5,35 @@ Table::Table() { }
 Table::Table(std::string name, 
 		     std::vector<std::string> &columnNames, 
 			 std::vector<DataType> &columnTypes,
-			 std::vector<Cell*> &cells) 
-	: name(name), cells(cells)
+			 std::vector<Row*> &rows) 
+	: name(name), rows(rows)
 {
-	
-}
+	int columnsAmount = rows[0]->cells.size();
 
-Table::Table(std::string name, std::vector<Column*> &columns)
-	: name(name), columns(columns)
-{
-	this->name = name;
-	this->columns = columns;
-
-	for (int i = 0; i < columns[0]->cells.size(); i++)
+	for (int columnCounter = 0; columnCounter < columnsAmount; columnCounter++)
 	{
-		std::vector<Cell*> rowCells;
-		for (int j = 0; j < columns.size(); j++)
+		std::vector<Cell*> columnCells;
+		for (auto row = std::begin(rows); row != std::end(rows); row++)
 		{
-			rowCells.push_back(columns[j]->cells[i]);
+			Cell* currentCell = (*row)->cells[columnCounter];
+			columnCells.push_back(currentCell);
 		}
-		rows.push_back(new Row("", rowCells));
-		this->cells.push_back(rowCells);
+
+		columns.push_back(
+			new Column(
+				columnNames[columnCounter], 
+				columnTypes[columnCounter], 
+				columnCells
+			)
+		);
+	}
+
+	for (auto row = std::begin(rows); row != std::end(rows); row++)
+	{
+		for (auto cell = std::begin((*row)->cells); cell != std::end((*row)->cells); cell++)
+		{
+			cells.push_back(*cell);
+		}
 	}
 }
 
