@@ -26,6 +26,7 @@ int main()
         "03.03.2020", "1", "24", "Ростов"
     };
 
+    // TODO перенести в Table,
     std::vector<Row*> rows;
     int rowLen = 4;
     for (auto it = std::begin(cellValues); it != std::end(cellValues);)
