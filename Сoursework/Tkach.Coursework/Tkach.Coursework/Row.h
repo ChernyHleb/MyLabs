@@ -11,7 +11,7 @@ public:
 	virtual ~Row();
 
 	void setCells(const std::vector<Cell*>& a_cells);
-	std::vector<Cell*>& cells() const;
+	const std::vector<Cell*>& cells() const;
 
 	std::string ToString();
 

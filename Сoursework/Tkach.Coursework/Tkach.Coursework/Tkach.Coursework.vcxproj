@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Column.h" />
+    <ClInclude Include="FieldDescr.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="DataType.h" />

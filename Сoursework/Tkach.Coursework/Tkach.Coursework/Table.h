@@ -9,8 +9,6 @@ class Table
 public:
 	Table();
 
-	// доработать
-	// сделать остальные по образцу
 	// сделать комментарии для методов в формате doxygen
 	Table(
 		std::string& a_name,
@@ -18,15 +16,14 @@ public:
 	);
 	virtual ~Table();
 
-	// реализовать
 	void addRow(const std::vector<std::string>& a_values);
-	std::vector<Row*>& rows();
+	const std::vector<Row*>& rows() const;
 
 	void addColumn(const FieldDescr& a_descr);
-	std::vector<Column*>& columns();
+	const std::vector<Column*>& columns() const;
 
 	void setName(const std::string& a_name);
-	std::string& name() const;
+	const std::string& name() const;
 
 	std::string ToString();
 

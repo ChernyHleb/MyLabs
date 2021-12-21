@@ -6,4 +6,7 @@ struct FieldDescr
 {
 	DataType dataType;
 	std::string name;
+	FieldDescr(DataType a_dataType, std::string a_name)
+	: dataType(a_dataType), name(a_name) { }	
+	FieldDescr() { }
 };

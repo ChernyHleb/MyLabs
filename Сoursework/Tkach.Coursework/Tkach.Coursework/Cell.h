@@ -9,7 +9,7 @@ public:
 	virtual ~Cell();
 
 	void setValue(const std::string& a_value);
-	std::string& value() const;
+	const std::string& value() const;
 
 	std::string ToString();
 

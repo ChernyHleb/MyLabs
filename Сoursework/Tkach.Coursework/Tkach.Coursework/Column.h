@@ -16,10 +16,10 @@ public:
 	virtual ~Column();
 
 	void setDescr(const FieldDescr& a_descr);
-	FieldDescr& descr() const;
+	const FieldDescr& descr() const;
 
-
-	std::vector<Cell*>& cells() const;
+	void addCell(Cell* a_cell);
+	const std::vector<Cell*>& cells() const;
 
 	std::string ToString();
 

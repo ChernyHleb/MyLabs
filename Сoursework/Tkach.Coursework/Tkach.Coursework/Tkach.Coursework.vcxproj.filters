@@ -47,5 +47,8 @@
     <ClInclude Include="DataType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FieldDescr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
