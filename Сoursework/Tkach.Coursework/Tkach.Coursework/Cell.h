@@ -4,12 +4,16 @@
 class Cell
 {
 public:
-	std::string value;
-
 	Cell();
-	Cell(std::string);
+	Cell(std::string& a_value);
 	virtual ~Cell();
 
+	void setValue(const std::string& a_value);
+	std::string& value() const;
+
 	std::string ToString();
+
+private:
+	std::string m_value;
 };
 

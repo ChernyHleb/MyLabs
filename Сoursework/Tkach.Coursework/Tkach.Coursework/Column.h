@@ -2,20 +2,29 @@
 #include <string>
 #include <vector>
 #include "Cell.h"
-#include "DataType.h"
+#include "FieldDescr.h"
 
 class Column
 {
 public:
-	std::string name;
-	std::vector<Cell*> cells;
-	DataType type;
-
 	Column();
-	Column(std::string, DataType);
-	Column(std::string, DataType, std::vector<Cell*> &);
+	Column(FieldDescr& a_descr);
+	Column(
+		FieldDescr& a_descr, 
+		std::vector<Cell*>& a_cells
+	);
 	virtual ~Column();
 
+	void setDescr(const FieldDescr& a_descr);
+	FieldDescr& descr() const;
+
+
+	std::vector<Cell*>& cells() const;
+
 	std::string ToString();
+
+private:
+	FieldDescr m_descr;
+	std::vector<Cell*> m_cells;
 };
 

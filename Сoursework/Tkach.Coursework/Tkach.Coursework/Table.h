@@ -4,12 +4,6 @@
 #include "Row.h"
 #include "Column.h"
 
-struct FieldDescr
-{
-	DataType dataType;
-	std::string name;
-};
-
 class Table
 {
 public:
@@ -26,18 +20,18 @@ public:
 
 	// реализовать
 	void addRow(const std::vector<std::string>& a_values);
+	std::vector<Row*>& rows();
+
 	void addColumn(const FieldDescr& a_descr);
+	std::vector<Column*>& columns();
 
 	void setName(const std::string& a_name);
 	std::string& name() const;
 
-	std::vector<Row*>& rows();
-	std::vector<Column*>& columns();
-
 	std::string ToString();
 
 private:
-	std::string m_name;// m - member a - attribute
+	std::string m_name;
 	std::vector<Row*> m_rows;
 	std::vector<Column*> m_columns;
 	std::vector<Cell*> m_cells;
