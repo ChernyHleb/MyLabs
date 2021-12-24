@@ -2,7 +2,7 @@
 
 namespace Calculator.models
 {
-    class CalculatorPresenter : interfaces.ICalculatorPresenter
+    public class CalculatorPresenter : interfaces.ICalculatorPresenter
     {
         interfaces.ICalculatorView view;
         interfaces.ICalculator model;

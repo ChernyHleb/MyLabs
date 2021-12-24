@@ -1,6 +1,6 @@
 ﻿namespace Calculator.interfaces
 {
-    interface ICalculator
+    public interface ICalculator
     {
         /**
         * Вычисляет сумму двух чисел

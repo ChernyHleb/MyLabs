@@ -1,6 +1,6 @@
 ﻿namespace Calculator.models
 {
-    class Calculator : interfaces.ICalculator
+    public class Calculator : interfaces.ICalculator
     {
         public Calculator()
         {

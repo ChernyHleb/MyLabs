@@ -2,7 +2,7 @@
 
 namespace Calculator.interfaces
 {
-    interface ICalculatorView
+    public interface ICalculatorView
     {
 
         /**
