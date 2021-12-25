@@ -35,19 +35,23 @@ namespace OTIK.Lab3
             return new VSAS(header, filesToCompress);
         }
 
-        public void Archive(VSAS fileArchive, string name, bool encrypt, bool compress)
+        public void Archive(VSAS fileArchive, string name, bool encrypt, int compress)
         {
             if (encrypt)
                 fileArchive.header.algNumEncryption = 1;
             else
                 fileArchive.header.algNumEncryption = 0;
 
-            if (compress)
+            if (compress == 1)
                 fileArchive.header.algNumContextCompression = 1;
             else
+            if (compress == 0)
                 fileArchive.header.algNumContextCompression = 0;
+            else
+            if (compress == 2)
+                fileArchive.header.algNumContextCompression = 2;
 
-            if(compress)
+            if (compress != 0)
                 Console.WriteLine("INPUT FILES COMPRESSION");
             if (encrypt)
                 Console.WriteLine("INPUT FILES ENCRYPTION");
@@ -59,11 +63,12 @@ namespace OTIK.Lab3
             foreach(InnerFile file in fileArchive.files)
             {
                 if(encrypt) Encrypt(file);
-                if (compress) Compress(file);
-                
+                if (compress == 1) CompressWithFano(file);
+                if (compress == 2) CompressWithArythmetic(file);
+
                 arr.AddRange(file.header.ToBytes());
                 if (encrypt) arr.AddRange(file.encryptionHeader);
-                if (compress) arr.AddRange(file.symCodeTable);
+                if (compress == 1) arr.AddRange(file.symCodeTable);
 
 
                 arr.AddRange(file.data);
@@ -197,7 +202,7 @@ namespace OTIK.Lab3
                 }
 
 
-                Dictionary<string, byte> codeSym = new Dictionary<string, byte>();
+                    Dictionary<string, byte> codeSym = new Dictionary<string, byte>();
                 // формирование таблицы кодов в виде словаря
                 if (archiveHeader.algNumContextCompression == 1)
                 {
@@ -235,7 +240,6 @@ namespace OTIK.Lab3
 
                     BitArray bits = new BitArray(file.Skip(counter).Take(dataSize).ToArray());
                     counter += dataSize;
-
                     
                     string code = "";
                     foreach(bool bit in bits)
@@ -254,6 +258,29 @@ namespace OTIK.Lab3
 
                     innerFileHeader.compressedSize = BitConverter.GetBytes(uncompressedDataList.Count);
                     uncompressedData = uncompressedDataList.ToArray();
+                }
+                else if (archiveHeader.algNumContextCompression == 2)
+                {
+                    List<byte> newData = new List<byte>();
+                    dataSize = BitConverter.ToInt32(innerFileHeader.compressedSize, 0);
+                    List<byte> oldData = new List<byte>();
+                    oldData.AddRange(file.Skip(counter).Take(dataSize).ToArray());
+                    counter += dataSize;
+
+                    for(int c = 0; c < oldData.Count; c++)
+                    {
+                        if (oldData[c] == (byte)'^')
+                        {
+                            int amount = oldData[c + 1];
+                            byte b = oldData[c + 2];
+                            for (int c2 = 0; c2 < amount; c2++)
+                                newData.Add(b);
+                            c += 2;
+                        }
+                        else newData.Add(oldData[c]);
+                    }
+
+                    data = newData.ToArray();
                 }
 
                 if (archiveHeader.algNumEncryption == 1)
@@ -318,7 +345,7 @@ namespace OTIK.Lab3
             file.header.symTableOffset = BitConverter.GetBytes(encryptionHeader.Count);
         }
 
-        protected void Compress(InnerFile file)
+        protected void CompressWithFano(InnerFile file)
         {
             int dataSize = 0;
 
@@ -370,6 +397,45 @@ namespace OTIK.Lab3
             file.data = newData;
             file.header.compressedSize = BitConverter.GetBytes(newData.Length);
             file.header.fileDataOffset = BitConverter.GetBytes(file.symCodeTable.Length);
+        }
+
+        protected void CompressWithArythmetic(InnerFile file)
+        {
+            int dataSize = 0;
+
+            int compressedSize = BitConverter.ToInt32(file.header.compressedSize, 0);
+            if (compressedSize == 0)
+                dataSize = BitConverter.ToInt32(file.header.uncompressedSize, 0);
+            else
+                dataSize = compressedSize;
+
+            List<byte> newdata = new List<byte>();
+            List<byte> data = new List<byte>(file.data);
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                byte symcounter = 1;
+                for (int j = i + 1; j < data.Count; j++)
+                {
+                    if (data[j] == data[i])
+                    {
+                        symcounter++;
+                        i = j;
+                    }
+                    else
+                        break;
+                }
+
+                if(symcounter > 1)
+                {
+                    //newdata.Add((byte)'^');
+                    newdata.Add(symcounter);
+                }
+                newdata.Add(data[i]);
+            }
+
+            file.data = newdata.ToArray();
+            file.header.compressedSize = BitConverter.GetBytes(newdata.Count);
         }
     }
 }

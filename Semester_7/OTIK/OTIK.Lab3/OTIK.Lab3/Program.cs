@@ -34,10 +34,10 @@ namespace OTIK.Lab3
             Compressor compressor = new Compressor(@".\input\", @".\output\");
             compressor.getFiles();
 
-            compressor.Archive(compressor.FormVSAS(), "Archive.vsas", true, true);
+            compressor.Archive(compressor.FormVSAS(), "Archive.vsas", false, 2);
 
-            foreach (VSAS file in compressor.filesToExtract) 
-                compressor.Extract(file);
+            //foreach (VSAS file in compressor.filesToExtract) 
+            //    compressor.Extract(file);
 
             Console.ReadKey();
         }

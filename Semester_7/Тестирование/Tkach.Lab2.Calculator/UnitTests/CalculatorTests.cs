@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Calculator;
 using Calculator.models;
 using Calculator.interfaces;
+using Calculator.models;
 
 namespace UnitTests
 {
@@ -67,5 +68,54 @@ namespace UnitTests
             // Assert
             Assert.AreEqual<double>(expected, result);
         }
+
+        [TestMethod]
+        public void Model_divide_CommonDividion_1()
+        {
+            // Arrange
+            Calculator.models.Calculator calculator = new Calculator.models.Calculator();
+            double expected = 3.25;
+            // Act
+            double result = calculator.divide(13, 4);
+            // Assert
+            Assert.AreEqual<double>(expected, result);
+        }
+
+        [TestMethod]
+        public void Model_multiply_CommonMultiplication_1()
+        {
+            // Arrange
+            Calculator.models.Calculator calculator = new Calculator.models.Calculator();
+            double expected = 169;
+            // Act
+            double result = calculator.multiply(13, 13);
+            // Assert
+            Assert.AreEqual<double>(expected, result);
+        }
+        
+        [TestMethod]
+        public void Model_subtract_CommonSubtracttion_1()
+        {
+            // Arrange
+            Calculator.models.Calculator calculator = new Calculator.models.Calculator();
+            double expected = -25;
+            // Act
+            double result = calculator.subtract(150, 175);
+            // Assert
+            Assert.AreEqual<double>(expected, result);
+        }
+         
+        [TestMethod]
+        public void Model_sum_CommonSum_1()
+        {
+            // Arrange
+            Calculator.models.Calculator calculator = new Calculator.models.Calculator();
+            double expected = 228;
+            // Act
+            double result = calculator.sum(200, 28);
+            // Assert
+            Assert.AreEqual<double>(expected, result);
+        }
+
     }
 }
