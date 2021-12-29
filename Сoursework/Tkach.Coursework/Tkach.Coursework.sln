@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tkach.Coursework", "Tkach.Coursework\Tkach.Coursework.vcxproj", "{C2ABB492-96B2-4D99-9636-0043A6C742DA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tkach.Coursework.Tests", "Tkach.Coursework.Tests\Tkach.Coursework.Tests.vcxproj", "{4F74819E-41D4-4554-85E8-B61C42D73160}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{C2ABB492-96B2-4D99-9636-0043A6C742DA}.Release|x64.Build.0 = Release|x64
 		{C2ABB492-96B2-4D99-9636-0043A6C742DA}.Release|x86.ActiveCfg = Release|Win32
 		{C2ABB492-96B2-4D99-9636-0043A6C742DA}.Release|x86.Build.0 = Release|Win32
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Debug|x64.ActiveCfg = Debug|x64
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Debug|x64.Build.0 = Debug|x64
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Debug|x86.ActiveCfg = Debug|Win32
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Debug|x86.Build.0 = Debug|Win32
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Release|x64.ActiveCfg = Release|x64
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Release|x64.Build.0 = Release|x64
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Release|x86.ActiveCfg = Release|Win32
+		{4F74819E-41D4-4554-85E8-B61C42D73160}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
