@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="800">
-    <Grid>
-        <Label Content="Адрес почты" HorizontalAlignment="Left" Margin="350,50,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="tb_adress" HorizontalAlignment="Left" Margin="300,80,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <Label Content="Текст сообщения" HorizontalAlignment="Center" Margin="0,124,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="tb_text" HorizontalAlignment="Center" Margin="0,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="200"/>
-        <TextBox x:Name="l_err"  HorizontalAlignment="Left" Margin="43,372,0,0" VerticalAlignment="Top" Width="696" Height="55" HorizontalContentAlignment="Center" TextWrapping="Wrap"/>
-        <Button x:Name="btn_send" Content="Отправить сообщение" HorizontalAlignment="Left" Margin="641,319,0,0" VerticalAlignment="Top" Height="40" Width="135" Click="ClickSendButton"/>
+        Title="MainWindow" Height="391" Width="325">
+    <Grid Margin="0,0,0,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="33*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Mail  Reciever Address" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="136" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="tb_adress" HorizontalAlignment="Left" Margin="10,31,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
+        <Label Content="Mail Text" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="tb_text" HorizontalAlignment="Left" Margin="10,75,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="305" Height="260" RenderTransformOrigin="0.516,0.51" TextChanged="tb_text_TextChanged" Grid.ColumnSpan="2"/>
+        <Button x:Name="btn_send" Content="SEND" HorizontalAlignment="Left" Margin="10,345,0,0" VerticalAlignment="Top" Height="26" Width="305" Click="ClickSendButton" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

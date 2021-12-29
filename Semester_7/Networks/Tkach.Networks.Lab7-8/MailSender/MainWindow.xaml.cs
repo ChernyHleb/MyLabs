@@ -26,7 +26,7 @@ namespace MailSender
 
         public void ClickSendButton(object sender, RoutedEventArgs e)
         {
-            l_err.Text = "";
+            //l_err.Text = "";
             try
             {            
                 
@@ -50,8 +50,13 @@ namespace MailSender
             }
             catch(Exception ex)
             {
-                l_err.Text = ex.Message;
+                //l_err.Text = ex.Message;
             }
+        }
+
+        private void tb_text_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }
