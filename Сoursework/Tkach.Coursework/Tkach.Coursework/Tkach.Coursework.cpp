@@ -26,7 +26,12 @@ int main()
         { "03.03.2020", "1", "24", "Ростов" }
     };
 
-    Table* table = new Table(name, descrs);
+    Table* table = new Table(name);
+
+    for (auto it = std::begin(descrs); it != std::end(descrs); it++)
+    {
+        table->addColumn(*it);
+    }
 
     for (auto it = std::begin(data); it != std::end(data); it++)
     {
