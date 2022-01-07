@@ -17,11 +17,13 @@ namespace Tkach.Networks.Lab1_2
 
             // связывание, перевод сокета в режим ожидания
             tcpSocket.Bind(tcpEndPoint);
+            Console.WriteLine("~ TCP Server is created");
             // очередь
             tcpSocket.Listen(5);
+            Console.WriteLine("~ TCP Server listening...");
 
             // процесс прослушивания
-            while(true)
+            while (true)
             {
                 var listener = tcpSocket.Accept();
                 var dataBuffer = new byte[256];
@@ -35,6 +37,7 @@ namespace Tkach.Networks.Lab1_2
                 }
                 while (listener.Available > 0);
 
+                Console.WriteLine("~ Message from TCP Client:");
                 Console.WriteLine(data);
 
                 listener.Send(Encoding.UTF8.GetBytes("Success"));

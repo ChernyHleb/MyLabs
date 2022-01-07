@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Tkach.Networks.Lab1-2\Server.csproj", "{8F7C0DD3-EAC2-4DB8-ACC2-544FCAB39B11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Server", "Tkach.Networks.Lab1-2\TCP_Server.csproj", "{8F7C0DD3-EAC2-4DB8-ACC2-544FCAB39B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{941672B6-BF07-4B0C-9C04-3FDDE971FC47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_Client", "Client\TCP_Client.csproj", "{941672B6-BF07-4B0C-9C04-3FDDE971FC47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDP_Client", "UDP_Client\UDP_Client.csproj", "{6C3E8345-9459-4618-9B0E-39AC201CDDFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDP_Server", "UDP_Server\UDP_Server.csproj", "{7EDB8084-86D0-452B-9885-8BD5B4101DCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{941672B6-BF07-4B0C-9C04-3FDDE971FC47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{941672B6-BF07-4B0C-9C04-3FDDE971FC47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{941672B6-BF07-4B0C-9C04-3FDDE971FC47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C3E8345-9459-4618-9B0E-39AC201CDDFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C3E8345-9459-4618-9B0E-39AC201CDDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C3E8345-9459-4618-9B0E-39AC201CDDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C3E8345-9459-4618-9B0E-39AC201CDDFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDB8084-86D0-452B-9885-8BD5B4101DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDB8084-86D0-452B-9885-8BD5B4101DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDB8084-86D0-452B-9885-8BD5B4101DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDB8084-86D0-452B-9885-8BD5B4101DCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
