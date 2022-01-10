@@ -5,13 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailReceiver"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="800">
-    <Grid>
+        Title="MainWindow" Height="480" Width="385">
+    <Grid Margin="0,0,10,0">
 
 
-        <Label Content="Текст сообщения" HorizontalAlignment="Center" Margin="0,33,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="tb_text" HorizontalAlignment="Center" Margin="0,95,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="200"/>
-        <TextBox x:Name="l_err"  HorizontalAlignment="Left" Margin="43,372,0,0" VerticalAlignment="Top" Width="696" Height="55" HorizontalContentAlignment="Center" TextWrapping="Wrap"/>
-        <Button x:Name="btn_send" Content="Получить сообщение" HorizontalAlignment="Left" Margin="641,319,0,0" VerticalAlignment="Top" Height="40" Width="135" Click="ClickRecieveButton"/>
+        <Label Content="Message Text:&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,295,0,0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="tb_text" HorizontalAlignment="Center" Margin="0,329,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="355" Height="125" Text="Hello World!" RenderTransformOrigin="0.569,0.463"/>
+        <Button x:Name="btn_send" Content="REFRESH&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="22" Width="135" Click="ClickRecieveButton"/>
+        <DataGrid Margin="10,49,0,174" SelectionChanged="DataGrid_SelectionChanged" x:Name="gayGrid">
+            <DataGrid.CellStyle>
+                <Style/>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sender" Width="*" Binding="{Binding Path=Test1}" />
+                <DataGridTextColumn Header="DateTime" Width="*" Binding="{Binding Path=Test2}" />
+                <DataGridTextColumn Header="Theme" Width="*" Binding="{Binding Path=Test3}" />
+                
+            </DataGrid.Columns>
+            <DataGrid.ColumnHeaderStyle>
+                <Style/>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
     </Grid>
 </Window>

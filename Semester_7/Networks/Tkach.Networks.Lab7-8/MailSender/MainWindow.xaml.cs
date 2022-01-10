@@ -18,7 +18,7 @@ namespace MailSender
         public MainWindow()
         {
             message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Никита Ткач", "tkach@internet.ru"));
+            message.From.Add(new MailboxAddress("TkachTest", "tkachtest@gmail.com"));
             message.Subject = "From MailSender";
             client = new SmtpClient();
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace MailSender
                     throw new Exception("No adress");                            
                 if (tb_text.Text == "")
                     throw new Exception("No adress");
-                message.To.Add(new MailboxAddress("Никита Ткач", tb_adress.Text));
+                message.To.Add(new MailboxAddress("TkachTest", tb_adress.Text));
                 message.Body = new TextPart("plain")
                 {
                     Text = tb_text.Text
@@ -43,7 +43,7 @@ namespace MailSender
                     client.Connect("smtp.mail.ru", 465, true);
 
                     // Note: only needed if the SMTP server requires authentication
-                    client.Authenticate("tkach@internet.ru", "tUsrFijviHXvSzyQmnvc");
+                    client.Authenticate("tkachtest@gmail.com", "tUsrFijviHXvSzyQmnvc");
 
                     client.Send(message);
                     client.Disconnect(true);
