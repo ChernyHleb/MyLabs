@@ -1,0 +1,31 @@
+                                     '$'<program> || 'int''main''('')''{'      ||
+           '$''}'<statement>'{'')''(''main'<type> || 'int''main''('')''{'      ||
+            '$''}'<statement>'{'')''(''main''int' || 'int''main''('')''{'      ||
+                 '$''}'<statement>'{'')''(''main' || 'main''('')''{'           ||
+                       '$''}'<statement>'{'')''(' || '('')''{'                 ||
+                          '$''}'<statement>'{'')' || ')''{'                    ||
+                             '$''}'<statement>'{' || '{'                       ||
+                                '$''}'<statement> || 'A''\\''A''&&''B'';'      ||
+                          '$''}'<bool_expression> || 'A''\\''A''&&''B'';'      ||
+       '$''}'<bool_expression><relop><identifier> || 'A''\\''A''&&''B'';'      ||
+'$''}'<bool_expression><relop><id_end><character> || 'A''\\''A''&&''B'';'      ||
+        '$''}'<bool_expression><relop><id_end>'A' || 'A''\\''A''&&''B'';'      ||
+           '$''}'<bool_expression><relop><id_end> || '\\''A''&&''B'';'         ||
+                   '$''}'<bool_expression><relop> || '\\''A''&&''B'';'         ||
+                      '$''}'<bool_expression>'\\' || '\\''A''&&''B'';'         ||
+                          '$''}'<bool_expression> || 'A''&&''B'';'             ||
+       '$''}'<bool_expression><relop><identifier> || 'A''&&''B'';'             ||
+'$''}'<bool_expression><relop><id_end><character> || 'A''&&''B'';'             ||
+        '$''}'<bool_expression><relop><id_end>'A' || 'A''&&''B'';'             ||
+           '$''}'<bool_expression><relop><id_end> || '&&''B'';'                ||
+                   '$''}'<bool_expression><relop> || '&&''B'';'                ||
+                      '$''}'<bool_expression>'&&' || '&&''B'';'                ||
+                          '$''}'<bool_expression> || 'B'';'                    ||
+       '$''}'<bool_expression><relop><identifier> || 'B'';'                    ||
+'$''}'<bool_expression><relop><id_end><character> || 'B'';'                    ||
+        '$''}'<bool_expression><relop><id_end>'B' || 'B'';'                    ||
+           '$''}'<bool_expression><relop><id_end> || ';'                       ||
+                   '$''}'<bool_expression><relop> || ';'                       || Error. Empty cell in table||
+                          '$''}'<bool_expression> || ';'                       || Error. Empty cell in table||
+                                           '$''}' || ';'                       || Error. Term mismatch      ||
+                                              '$' || ';'                       || Error. Term mismatch      ||

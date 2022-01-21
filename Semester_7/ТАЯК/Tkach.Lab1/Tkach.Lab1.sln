@@ -3,23 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tkach.Lab1", "Tkach.Lab1\Tkach.Lab1.csproj", "{77DE7E75-0369-477C-ABA2-5718F0AFFE82}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tkach.Lab1", "Tkach.Lab1\Tkach.Lab1.vcxproj", "{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77DE7E75-0369-477C-ABA2-5718F0AFFE82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77DE7E75-0369-477C-ABA2-5718F0AFFE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77DE7E75-0369-477C-ABA2-5718F0AFFE82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77DE7E75-0369-477C-ABA2-5718F0AFFE82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Debug|x64.ActiveCfg = Debug|x64
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Debug|x64.Build.0 = Debug|x64
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Debug|x86.ActiveCfg = Debug|Win32
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Debug|x86.Build.0 = Debug|Win32
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Release|x64.ActiveCfg = Release|x64
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Release|x64.Build.0 = Release|x64
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Release|x86.ActiveCfg = Release|Win32
+		{9189B0BF-42C6-4B68-BE33-7FBCB9ECDB70}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1C2C8919-305E-46E7-ABD0-2D2439AED188}
+		SolutionGuid = {20510BE5-95F3-4BF9-8E15-E96B867D5E73}
 	EndGlobalSection
 EndGlobal
