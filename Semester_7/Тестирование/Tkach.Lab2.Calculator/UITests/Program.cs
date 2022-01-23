@@ -76,7 +76,7 @@ namespace UITests
                 AutomationElement aeExpressionBox = getAeElementChildById(aeCalculator, "ExpressionBox");
                 Console.ForegroundColor = ConsoleColor.White;
 
-                // запуск тестов
+                //  запуск тестов
 
                 TEST_SumButton(aeSumButton, aeEqButton, aeInputBox);
                 TEST_SubButton(aeSubButton, aeEqButton, aeInputBox);
