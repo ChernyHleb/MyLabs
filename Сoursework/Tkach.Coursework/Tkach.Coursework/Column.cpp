@@ -12,13 +12,31 @@ Column::Column(FieldDescr& a_descr, std::vector<Cell*>& a_cells)
 
 Column::~Column() { }
 
-void Column::setDescr(const FieldDescr& a_descr) { m_descr = a_descr; }
+bool Column::setDescr(const FieldDescr& a_descr) 
+{ 
+	// дескриптор можно изменять только если не были добавлены клетки
+
+	if(m_cells.size() == 0)
+	{
+		m_descr = a_descr;
+		return true;
+	}
+
+	return false;
+}
 
 const FieldDescr& Column::descr() const { return m_descr; }
 
-void Column::addCell(Cell* a_cell)
+bool Column::addCell(Cell* a_cell)
 {
-	m_cells.push_back(a_cell);
+	// клетки можно добавлять только если дескриптор не пустой
+	if (m_descr.dataType != DataType::EMPTY && m_descr.name != "")
+	{
+		m_cells.push_back(a_cell);
+		return true;
+	}
+
+	return false;
 }
 
 const std::vector<Cell*>& Column::cells() const { return m_cells; }

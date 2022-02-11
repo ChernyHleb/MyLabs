@@ -10,7 +10,7 @@ public:
 	Row(std::vector<Cell*>& a_cells);
 	virtual ~Row();
 
-	void setCells(const std::vector<Cell*>& a_cells);
+	void addCells(const std::vector<Cell*>& a_cells);
 	const std::vector<Cell*>& cells() const;
 
 	std::string ToString();

@@ -1,5 +1,8 @@
 ﻿#include <iostream>
+#include <regex>
 #include "Table.h"
+#include "DataFormatChecker.h"
+#include "Cell.h"
 
 int main()
 {
@@ -38,7 +41,14 @@ int main()
         table->addRow(*it);
     }
 
-    std::cout << table->ToString();
+    //std::cout << table->ToString();
 
-    delete table;
+    //delete table;
+
+    /*std::regex reg = std::regex("([[:digit:]]{4})(([0][1-9])|([1][012]))(([12][[:digit:]])|(3[01])|([0][1-9]))T(([01][[:digit:]])|(2[0-3]))(([0-4][[:digit:]])|(5[0-9]))(([0-4][[:digit:]])|(5[0-9]))");
+    std::string str = "20050809T183142";
+
+    std::cout << std::regex_match(str, reg);*/
+
+    
 }

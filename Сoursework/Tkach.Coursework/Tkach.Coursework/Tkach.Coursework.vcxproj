@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Column.cpp" />
+    <ClCompile Include="DataFormatChecker.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="Table.cpp" />
     <ClCompile Include="Tkach.Coursework.cpp" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Column.h" />
+    <ClInclude Include="DataFormatChecker.h" />
     <ClInclude Include="FieldDescr.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="Table.h" />

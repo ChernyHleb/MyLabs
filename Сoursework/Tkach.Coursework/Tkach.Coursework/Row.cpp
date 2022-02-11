@@ -6,7 +6,13 @@ Row::Row(std::vector<Cell*>& a_cells) : m_cells(a_cells) { }
 
 Row::~Row() { }
 
-void Row::setCells(const std::vector<Cell*>& a_cells) { m_cells = a_cells; }
+void Row::addCells(const std::vector<Cell*>& a_cells) 
+{ 
+	for (auto it = std::begin(a_cells); it != std::end(a_cells); it++)
+	{
+		m_cells.push_back(*it);
+	}
+}
 
 const std::vector<Cell*>& Row::cells() const 
 { 
