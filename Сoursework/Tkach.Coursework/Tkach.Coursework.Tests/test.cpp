@@ -481,17 +481,206 @@ namespace DATA_FORMAT_CHECKER_TESTS
 		EXPECT_EQ(checker.patterns_EMPTY().size(), 1);
 	}
 
-	TEST(DataFormatChecker_PatternsMatch, DATETIME_correct_values)
+	TEST(DataFormatChecker_PatternsMatch, DATETIME)
 	{
 		// ARRANGE
 		DataFormatChecker checker = DataFormatChecker();
-		FieldDescr descr(DataType::DATETIME, "Date Time Test");
+		std::vector<std::string> values{ 
+			"20050809T183142",
+			"2000-12-28T00:01:00",
+			"1999-10-28T10:51",
+			"2001-01-01 10:51",
+			"2001-01-00T10:51",
+			"",
+			"321"
+		};
+
+		// ACT
+		std::vector<bool> results = checker.PatternsMatch(checker.patterns_DATETIME(), values);
+
+		//ASSERT
+		EXPECT_TRUE(results[0]);
+		EXPECT_TRUE(results[1]);
+		EXPECT_TRUE(results[2]);
+		EXPECT_FALSE(results[3]);
+		EXPECT_FALSE(results[4]);
+		EXPECT_FALSE(results[5]);
+		EXPECT_FALSE(results[6]);
+	}
+
+	TEST(DataFormatChecker_PatternsMatch, DATE)
+	{
+		// ARRANGE
+		DataFormatChecker checker = DataFormatChecker();
+		std::vector<std::string> values{
+			"2005",
+			"1997-03",
+			"19601231",
+			"1960-12-31",
+
+			"19998",
+			"1998-13",
+			"19831032",
+			"1999-12-00"
+		};
+
+		// ACT
+		std::vector<bool> results = checker.PatternsMatch(checker.patterns_DATE(), values);
+
+		//ASSERT
+		EXPECT_TRUE(results[0]);
+		EXPECT_TRUE(results[1]);
+		EXPECT_TRUE(results[2]);
+		EXPECT_TRUE(results[3]);
+		EXPECT_FALSE(results[4]);
+		EXPECT_FALSE(results[5]);
+		EXPECT_FALSE(results[6]);
+		EXPECT_FALSE(results[7]);
+	}
+
+	TEST(DataFormatChecker_PatternsMatch, TIME)
+	{
+		// ARRANGE
+		DataFormatChecker checker = DataFormatChecker();
+		std::vector<std::string> values{
+			"0030",
+			"23:03",
+			"191919",
+			"04:20:00",
+
+			"2431",
+			"23-13",
+			"024060",
+			"04:60:0"
+		};
+
+		// ACT
+		std::vector<bool> results = checker.PatternsMatch(checker.patterns_TIME(), values);
+
+		//ASSERT
+		EXPECT_TRUE(results[0]);
+		EXPECT_TRUE(results[1]);
+		EXPECT_TRUE(results[2]);
+		EXPECT_TRUE(results[3]);
+		EXPECT_FALSE(results[4]);
+		EXPECT_FALSE(results[5]);
+		EXPECT_FALSE(results[6]);
+		EXPECT_FALSE(results[7]);
+	}
+
+	TEST(DataFormatChecker_PatternsMatch, INTEGER)
+	{
+		// ARRANGE
+		DataFormatChecker checker = DataFormatChecker();
+		std::vector<std::string> values{
+			"123",
+			"1000000",
+			"-32",
+			"0",
+
+			"-0",
+			"0.23",
+			"+231",
+			"qwerty"
+		};
+
+		// ACT
+		std::vector<bool> results = checker.PatternsMatch(checker.patterns_INTEGER(), values);
+
+		//ASSERT
+		EXPECT_TRUE(results[0]);
+		EXPECT_TRUE(results[1]);
+		EXPECT_TRUE(results[2]);
+		EXPECT_TRUE(results[3]);
+		EXPECT_FALSE(results[4]);
+		EXPECT_FALSE(results[5]);
+		EXPECT_FALSE(results[6]);
+		EXPECT_FALSE(results[7]);
+	}
+
+	TEST(DataFormatChecker_PatternsMatch, DOUBLE)
+	{
+		// ARRANGE
+		DataFormatChecker checker = DataFormatChecker();
+		std::vector<std::string> values{
+			"1.23",
+			"0.000001",
+			"0",
+			"-0.543",//
+
+			"00.321",
+			"0..23",
+			"23.1000",//
+			"qwerty"
+		};
+
+		// ACT
+		std::vector<bool> results = checker.PatternsMatch(checker.patterns_DOUBLE(), values);
+
+		//ASSERT
+		EXPECT_TRUE(results[0]);
+		EXPECT_TRUE(results[1]);
+		EXPECT_TRUE(results[2]);
+		EXPECT_TRUE(results[3]);
+		EXPECT_FALSE(results[4]);
+		EXPECT_FALSE(results[5]);
+		EXPECT_FALSE(results[6]);
+		EXPECT_FALSE(results[7]);
+	}
+
+	TEST(DataFormatChecker_PatternsMatch, STRING)
+	{
+		// ARRANGE
+		DataFormatChecker checker = DataFormatChecker();
+		std::vector<std::string> values{
+			"1.23",
+			"ncs9*NE(*n(#*$R89df9sdhf89WHf9",
+			"",
+			"строка:)"
+		};
+
+		// ACT
+		std::vector<bool> results = checker.PatternsMatch(checker.patterns_STRING(), values);
+
+		//ASSERT
+		EXPECT_TRUE(results[0]);
+		EXPECT_TRUE(results[1]);
+		EXPECT_TRUE(results[2]);
+		EXPECT_TRUE(results[3]);
+	}
+	
+	TEST(DataFormatChecker_PatternsMatch, EMPTY)
+	{
+		// ARRANGE
+		DataFormatChecker checker = DataFormatChecker();
+		std::vector<std::string> values{
+			"",
+			"ncs9*NE(*n(#*$R89df9sdhf89WHf9",
+			"0",
+			"строка:)"
+		};
+
+		// ACT
+		std::vector<bool> results = checker.PatternsMatch(checker.patterns_EMPTY(), values);
+
+		//ASSERT
+		EXPECT_TRUE(results[0]);
+		EXPECT_FALSE(results[1]);
+		EXPECT_FALSE(results[2]);
+		EXPECT_FALSE(results[3]);
+	}
+
+	TEST(DataFormatChecker_Check, all_correct)
+	{
+		// ARRANGE
+		FieldDescr descr(DataType::INTEGER, "Units");
 		std::vector<Cell*> cells{ 
-			new Cell(std::string("20050809T183142")),
-			new Cell(std::string("2000-12-28T00:01:00")),
-			new Cell(std::string("1999-10-28T10:51"))
+			new Cell(std::string("1")), 
+			new Cell(std::string("2")),
+			new Cell(std::string("3"))
 		};
 		Column column(descr, cells);
+		DataFormatChecker checker = DataFormatChecker();
 
 		// ACT
 		bool result = checker.Check(column);
@@ -499,88 +688,43 @@ namespace DATA_FORMAT_CHECKER_TESTS
 		//ASSERT
 		ASSERT_TRUE(result);
 	}
-
-	TEST(DataFormatChecker_PatternsMatch, DATE_correct_values)
+	
+	TEST(DataFormatChecker_Check, one_incorrect)
 	{
 		// ARRANGE
-		DataFormatChecker checker = DataFormatChecker();
-		FieldDescr descr(DataType::DATETIME, "Date Time Test");
+		FieldDescr descr(DataType::TIME, "Time");
 		std::vector<Cell*> cells{
-			new Cell(std::string("1999")),
-			new Cell(std::string("2000-12")),
-			new Cell(std::string("20001101")),
-			new Cell(std::string("1")),
-			new Cell(std::string("2"))
+			new Cell(std::string("04:20")),
+			new Cell(std::string("24:00")),
+			new Cell(std::string("0320"))
 		};
 		Column column(descr, cells);
+		DataFormatChecker checker = DataFormatChecker();
 
 		// ACT
+		bool result = checker.Check(column);
 
 		//ASSERT
-
-	}
-
-	TEST(DataFormatChecker_PatternsMatch, TIME_correct_values)
-	{
-		// ARRANGE
-
-		// ACT
-
-		//ASSERT
-
-	}
-
-	TEST(DataFormatChecker_PatternsMatch, INTEGER_correct_values)
-	{
-		// ARRANGE
-
-		// ACT
-
-		//ASSERT
-
-	}
-
-	TEST(DataFormatChecker_PatternsMatch, DOUBLE_correct_values)
-	{
-		// ARRANGE
-
-		// ACT
-
-		//ASSERT
-
-	}
-
-	TEST(DataFormatChecker_PatternsMatch, STRING_correct_values)
-	{
-		// ARRANGE
-
-		// ACT
-
-		//ASSERT
-
+		ASSERT_FALSE(result);
 	}
 	
-	TEST(DataFormatChecker_PatternsMatch, EMPTY_correct_values)
+	TEST(DataFormatChecker_Check, all_incorrect)
 	{
 		// ARRANGE
+		FieldDescr descr(DataType::TIME, "Time");
+		std::vector<Cell*> cells{
+			new Cell(std::string("-=-=-=")),
+			new Cell(std::string("dc-==")),
+			new Cell(std::string("#$#$#$"))
+		};
+		Column column(descr, cells);
+		DataFormatChecker checker = DataFormatChecker();
 
 		// ACT
+		bool result = checker.Check(column);
 
 		//ASSERT
-
+		ASSERT_FALSE(result);
 	}
-
-	TEST(DataFormatChecker_PatternsMatch, incorrect_values)
-	{
-		// ARRANGE
-
-		// ACT
-
-		//ASSERT
-
-	}
-
-
-
 
 }

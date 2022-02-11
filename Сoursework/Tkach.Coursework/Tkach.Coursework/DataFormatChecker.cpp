@@ -82,10 +82,10 @@ DataFormatChecker::DataFormatChecker()
 	m_patterns_INTEGER.push_back(std::regex("(-?[1-9][0-9]*)|0"));
 	
 	// число с плавающей точкой
-	m_patterns_DOUBLE.push_back(std::regex("-?([1-9][0-9]*[.]?[0-9]+)|(0[.][0-9]+)|([0-9])"));
+	m_patterns_DOUBLE.push_back(std::regex("-?([1-9][0-9]*[.]?[0-9]*[1-9]+)|-?(0[.][0-9]*[1-9]+)|-?([0-9])"));
 
 	// строка
-	m_patterns_STRING.push_back(std::regex("[\w\W]*"));
+	m_patterns_STRING.push_back(std::regex(".*"));
 	
 	// пустой тип
 	m_patterns_EMPTY.push_back(std::regex("^$"));
